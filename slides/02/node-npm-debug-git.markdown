@@ -34,13 +34,15 @@ __Hmmmm. For a class on Node, we haven't really talked about it too much yet. Do
 </section>
 
 <section markdown="block">
-##  Hold on What Are Some Examples of I/O?
+##  Hold on ... I/O?
 
-* read data from a database
-* request data from a web service
-* read a file
-* waiting for _some network connection_
-{:.fragment}
+__What exactly do we mean by I/O__ &rarr;
+
+* {:.fragment} reading or writing to a database
+* {:.fragment} requesting data from a web service
+* {:.fragment} scanning through a file
+* {:.fragment} waiting for _some network connection_
+* {:.fragment} you know... any __input__ and __output__
 </section>
 
 
@@ -96,8 +98,8 @@ Done!
 __Why was "Done" output before the response body?__ &rarr;
 
 * the function to print out the body was actually an asynchonous __callback__
-* a __callback__ is a function passed as an argument to another function that is expected to be executed at some later time (perhaps when an operation is completed)
-* the callback function is not executed immediately
+* a __callback__ is a function passed as an argument to another function that is expected to be executed at some later time (perhaps when an operation is completed, or a specific event occurs)
+* __the callback function is not executed immediately__
 * instead, <code>console.log("Done!")</code> is executed next
 * when the request to google is done, the callback function is executed, which is at the end of the program
 {:.fragment}
@@ -162,7 +164,7 @@ Some actual examples
 <section markdown="block">
 ## A Bunch of Parentheses
 
-* (not sure if blackjack was a great use-case...)
+* (not sure if a console-game was a great use-case...)
 * (waiting for user input can be considered an I/O bound app, though!)
 * (but we used a synchronous prompt library to gather input)
 * (you can rewrite with another lib if you want!)
@@ -188,6 +190,7 @@ __NPM__ is Node's official package manager.  __Does anyone know of any other pac
 * {:.fragment} __gem__ for Ruby
 * {:.fragment} or __pip__, __easy_install__ for Python
 * {:.fragment} or __CPAN__ for Perl
+* {:.fragment} or __composer__ for PHP
 </section>
 
 <section markdown="block">
@@ -238,6 +241,11 @@ It's like:
 
 * gemfile - ruby
 * requirements.txt - python
+
+Soooo... if you're program depends on specific modules (maybe like a module that allows prompting a user for input)
+
+* it may be a good idea to put that module in package.json
+* ... so that you don't have to remember all of the requirements!
 </section>
 
 
@@ -279,19 +287,52 @@ __Create a function that determines if a set of parentheses is balanced (what do
 </section>
 
 <section markdown="block">
-## Here's a Funny Implementation
+## Here's an Implementation
 
-[isBalanced](../../examples/parens.js)
+<pre><code data-trim contenteditable>
+var isBalanced = function(s) {
+    var stack = [], balanced = true;
 
-(there's a slight issue with it, and I made it obvious)
+    for(var i = 0; i < s.length; i++) {
+        var ch = s.charAt(i);    
+        if (ch === '(') {
+            stack.push(ch);
+        } else if (ch === ')') {
+            if (stack.length === 0) {
+                balanced = false;
+                break;
+            } 
+            stack.pop();
+        }
+    }
+
+    if (stack.length !== 0) {
+        balanced = false;
+    }
+
+    return balanced;
+};
+</code></pre>
+
 </section>
 
 <section markdown="block">
-## Let's Figure Out How to Debug This Program
+## Testing It
 
-Let's pretend that the bug in our code is not obvious. __How can we view our stack to debug the issue?__ &rarr;
+<pre><code data-trim contenteditable>
+console.log(isBalanced('()'));
+console.log(isBalanced(')('));
+console.log(isBalanced('()()'));
+console.log(isBalanced('()())'));
+</code></pre>
 
-* {:.fragment} console.log... __let's try this__ &rarr;
+</section>
+<section markdown="block">
+## Let's Check Out Some Debugging Tools...
+
+Let's intentionally create a logical error in our code (perhaps return immediately after popping). __To figure out what went wrong, we can...__ &rarr;
+
+* {:.fragment} just print stuff out with console.log (the old fashioned way!)
 * {:.fragment} use a debugger
 </section>
 
@@ -307,7 +348,6 @@ Wait... what? [The commandline is hard.](http://www.nytimes.com/1992/10/21/busin
 
 _Terrible_. Yay 90's. Though the __"elaborate nationwide publicity stunt designed to ridicule sexual stereotyping in children's toys"__ was pretty neat!
 {:.fragment}
-
 </section>
 
 <section markdown="block">
@@ -355,7 +395,7 @@ Like any other debugger, you can:
 </section>
 
 <section markdown="block">
-# Great. Wrote Some Code. Let's Version It.
+# Great. Wrote Some Code. Let's Put it in Version Control.
 </section>
 
 <section markdown="block">
@@ -845,7 +885,89 @@ git push origin master
 </code></pre>
 </section>
 
+<section markdown="block">
+# OK... how about getting all of this set up for our assignment?
 
+</section>
+{% comment %}
+<section markdown="block">
+## Getting Private Repositories
 
+In order to set up private repositories with consistent names, we'll have to do a few things:
 
+1. {:.fragment} __Send me your GitHub username [through this form](https://docs.google.com/a/nyu.edu/forms/d/1mgHQ2NupHDAlirAcbYjeSShFeAWNyPH1sqCqa7zTe2M/viewform)__ (not via email)
+2. {:.fragment} I'll add you to the class _organization_ on GitHub (basically, a mechanism to group a bunch of users together)
+3. {:.fragment} You'll receive an email to confirm that you're going to be part of the _organization_
+4. {:.fragment} __Click on the link in the email...__
+5. {:.fragment} I'll create a private repository for you
+	* {:.fragment} (someone mentioned that you can actually create your own private repos in the organization)
+	* {:.fragment} (but I'd rather create repositories for everyone to keep the names consistent)
+    * {:.fragment} (also, depending on your client, you may need to init first instead of clone)
+</section>
+
+<section markdown="block">
+## Speaking Of
+
+### I have close to 90% of your github usernames
+
+* that's great (!)
+* but there are a few people that didn't send me their username (!?)
+
+<br>
+
+### For those of you that have your repository all set up...
+
+* Your repository __should be private__; you're the only user that can see your repository (__let me know if isn't the case!__) &rarr;
+* You should try pushing code to your repository to make sure that your git installation works fine...
+
+</section>
+
+<section markdown="block">
+## Please Try Your Homework ASAP
+
+Mainly because a lot of things could go wrong, and __I'll be more likely to be able to help you if you let me know about your issues early__. 
+
+* {:.fragment} maybe you can't install __Node.js__ (for example, someone had permissions issues with homebrew and installation on OSX)
+* {:.fragment} or you can't install a module...  :
+* {:.fragment} or perhaps __git__ _doesn't work_
+
+</section>
+<section markdown="block">
+## Don't Wait Last Minute!
+
+This will help uncover the common problems in the previous slide.
+
+* {:.fragment} install __Node.js__ and __NPM__ 
+* {:.fragment} try installing __readline-sync__ with __NPM__
+* {:.fragment} check that you can use git to push to your private repository
+
+<br>
+In fact, you don't have to wait for your private repository to be setup.
+{:.fragment}
+
+* {:.fragment} you can just start coding
+* {:.fragment} ... when you have your private repo, clone it so that an entirely new directory is created (don't clone into your existing work)...
+* {:.fragment} ... and add the files that you had been working on 
+</section>
+{% endcomment %}
+
+<section markdown="block">
+## Regarding Submission
+
+Again, I will clone all of the repositories at the homework's deadline. __That means...__ &rarr;
+
+* any commits made after the deadline...
+* won't be seen by the graders
+
+</section>
+<section markdown="block">
+## Details Again...
+
+(they may not have made sense at the beginning of class... but maybe now?)
+
+* if git clone doesn't work, use init workflow
+* name the files and function exactly as specified
+* commandline arguments: <code>process.argv[2]</code>
+
+</section>
 

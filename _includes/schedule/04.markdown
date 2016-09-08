@@ -2,14 +2,10 @@
 {% comment %}
 * [Git Issues](slides/04/git-issues.html)
 {% endcomment %}
-* [Questions: Console.log](slides/04/questions-log.html)
-* [Strings and Arrays](slides/04/strings-arrays.html)
-* [Higher Order Functions](slides/04/higher-order-functions.html) 
 * [Higher Order Functions Continued](slides/04/higher-order-functions-continued.html) 
 
 </td>
 	<td markdown="block">
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 5 - Higher Order Functions
 </td>
 	<td markdown="block">
 <strike>Due Feb 11th (Th)</strike>

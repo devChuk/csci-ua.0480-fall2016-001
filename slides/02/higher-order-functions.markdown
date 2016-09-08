@@ -182,15 +182,17 @@ __Of course, JavaScript already has a [forEach implementation](https://developer
 * doesn't return anything (gives back undefined)
 </section>
 
+{% comment %}
 <section markdown="block">
 # Here's a hint for the homework - (a trivial function to write, so kind of harmless)
 
 </section>
+{% endcomment %}
 
 <section markdown="block">
 ## generateCards
 
-__From the assignment - write a function that creates a deck of cards. The function will__ &rarr;
+__Write a function that creates a deck of cards. The function will__ &rarr;
 
 * generate and return an array of card objects
 * each card object has a suit (♠, ♥, ♦, ♣) and a face (the strings '2' .. '10', 'J', 'Q', 'K', 'A')

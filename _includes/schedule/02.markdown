@@ -1,23 +1,40 @@
 	<td markdown="block">
 {% comment %}
 * [About Class #2](slides/02/meta.html)
-* [Review](slides/02/review.html)
-* [Node, NPM, and git](slides/03/node-npm-debug-git.html)
-* [Objects](slides/03/objects.html)
 {% endcomment %}
 
-
+* [Review](slides/02/review.html) (and [a more in depth review on basics if you want it](slides/02/review-basics.html))
+* [Functions Some More!](slides/02/functions-addendum.html)
+* [Objects](slides/02/objects.html)
+* [Strings and Arrays](slides/02/strings-arrays.html)
+* [Higher Order Functions](slides/02/higher-order-functions.html) 
+* [Node, NPM, and git](slides/02/node-npm-debug-git.html)
+* [Console.log](slides/02/questions-log.html)
+{% comment %}
+* [Objects and Mutability, Arguments Object](slides/02/objects-addendum.html)
+{% endcomment %}
 
 
 
 </td>
 	<td markdown="block">
 * [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 4 - Data Structures: Data Structures: Objects and Arrays
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 5 - Higher Order Functions
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 20 - node.js
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch12.html) - Chapter 12 - Strings
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch15.html) - Chapter 15 - Functions (starting from "Handling Missing or Extra Parameters")
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch16.html) - Chapter 16 -  Variables: Scopes, Environments, and Closures (starting from "Closures: Functions Stay Connected to Their Birth Scopes")
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch17.html) - Chapter 17 - Objects (up to "Converting Any Value to an Object")
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch18.html) - Chapter 18 - Arrays
+
+
 </td>
 	<td markdown="block">
+
 
 Due Thursday, 9/15, by 11pm
 
 * [Homework #1](homework/01.html)
+* Repository should be posted by Thursday, September 8th, at 11PM
 
 </td>

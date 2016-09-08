@@ -61,20 +61,21 @@ __They're pretty unremarkable (whew!)__ &rarr;
 <section markdown="block">
 ## Arrays are What?
 
-Also, <code>Arrays</code> are _actually just objects_. This means that their indexes are properties.
+__Also, <code>Arrays</code> are _actually just objects_. This means that their indexes are properties.__ &rarr;
 
-* indexes don't have to be contiguous!?
-* you can have _holes_ in your arrays (length counts them as elements, though):
+* {:.fragment} indexes don't have to be contiguous!?
+* {:.fragment} you can have _holes_ in your arrays (length counts them as elements, though):
     <pre><code data-trim contenteditable>
 var a = [];
 a[0] = 'ok'
 a[4] = 'where are the previous elements?'
 console.log(a);
+console.log(a.length);
 </code></pre>
-* generally, avoid doing this... behavior when working with <code>Array</code> holes varies depending on what you're doing!
-* [there's actually a section in the book devoted to this](http://speakingjs.com/es5/ch18.html#array_holes)
-
+* {:.fragment} generally, avoid doing this... behavior when working with <code>Array</code> holes varies depending on what you're doing!
+* {:.fragment} [there's actually a section in the book devoted to this](http://speakingjs.com/es5/ch18.html#array_holes)
 </section>
+
 <section markdown="block">
 ## String and Array Methods
 
@@ -518,7 +519,6 @@ Loop over <code>nums = [1, 2, 3, 4];</code> and print out double the value of ev
 for(var i = 0, cachedLength = nums.length; i < cachedLength; i++) {
 	console.log(nums[i] * 2);
 }
-nums.every(doubleItLessThanThree);
 </code></pre>
 {:.fragment}
 </section>
@@ -535,7 +535,6 @@ nums.forEach(doubleIt);
 </code></pre>
 
 <pre><code data-trim contenteditable>
-// with forEach (define callback first)
 // with every and simulating break (define callback first)
 var doubleItLessThanThree = function(x) {
 	if (x >= 3) {

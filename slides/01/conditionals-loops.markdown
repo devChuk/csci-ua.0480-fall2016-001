@@ -201,10 +201,11 @@ __From Eloquent JavaScript__:
 * for numbers divisible by __both__ 3 and 5, print "FizzBuzz" instead
 </section>
 
+<!--
 <section markdown="block">
 ## Max Number
 
 * write a function that takes one parameter, an array - assume that it will only have 0 or more numbers
 * the function should return the largest number in the array
 </section>
-
+-->

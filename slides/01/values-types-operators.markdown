@@ -469,6 +469,34 @@ false
 </section>
 
 <section markdown="block">
+## Inherent Truthiness
+
+__When non-boolean types are converted to booleans, the followings rules are used__ &rarr;
+
+* <code>0</code>, <code>NaN</code>, empty string (<code>""</code>), and <code>undefined/null</code> are false
+* other values are true-ish
+
+<br>
+
+__Let's test this out...__ &rarr;
+
+<pre><code data-trim contenteditable>
+// outputs "in here"
+if("this string says false, but...!?") {
+	console.log("in here!");
+}
+
+// no output
+var myString = "";
+
+if(myString) {
+	console.log("you shouldn't see me!");
+}
+</code></pre>
+
+</section>
+
+<section markdown="block">
 ## Logical Operators
 
 __Boolean__ values can be combined and manipulated using logical operators.  __What are some logical operators, and what do they do?__ &rarr;
@@ -502,8 +530,10 @@ false
 
 </section>
 
+
+
 <section markdown="block">
-## And and Or
+## And and Or With Non Boolean Values
 
 Some details about <code>&&</code> and <code>||</code>:
 
@@ -520,28 +550,35 @@ Some details about <code>&&</code> and <code>||</code>:
 </section>
 
 <section markdown="block">
-## Inherent Truthiness
+## And and Or Continued
 
-__Some quick rules on automatic conversion of strings and numbers to booleans__ &rarr;
-
-* <code>0</code>, <code>NaN</code>, empty string (<code>""</code>), and <code>undefined/null</code> are false
-* other values are true-ish
-
-<br>
-
-__What's the result of the following boolean expressions?__ &rarr;
+		
+Based on the previous slide, __what are the values produced by the following expressions?__ &rarr;
 
 <pre><code data-trim contenteditable>
-0 || 5
-"hello" || 5
-true && "what?"
+5 - 5 || 2
+5 - 5 && 2
+"hello" || "goodbye"
+"hello" &&  "goodbye"
 </code></pre>
 
-<code>5</code>
+<pre><code data-trim contenteditable>
+2
+0
+hello
+goodbye
+</code></pre>
 {:.fragment}
-<code>"hello"</code>
+
+This actually comes in handy for checking if a property exists on an object, and defaulting to a specific value if it doesn't:
 {:.fragment}
-<code>"what?"</code>
+
+<pre><code data-trim contenteditable>
+// we haven't seen objects yet, but you get the idea
+var obj = {prop1: "a value"}; 
+obj.prop1 || "default value"
+obj.prop2 || "default value"
+</code></pre>
 {:.fragment}
 </section>
 
@@ -590,7 +627,6 @@ __Comparison Operators__ are __binary__ , __infix__ operators that can be used t
 ## `undefined` and `null`
 
 See the [section on undefined and null in our book](http://speakingjs.com/es5/ch08.html#undefined_null) 
-
 
 * __undefined__ means no value
 	* think of a function that doesn't return a value

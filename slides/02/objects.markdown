@@ -189,8 +189,10 @@ console.log("here's one!")
 
 * [Strings have a bunch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#Methods_2 )
 * [Arrays do too](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods_of_array_instances)
+* We'll take a closer look at these when we go over strings and Arrays in the next set of slides
 </section>
 
+{% comment %}
 <section markdown="block">
 ### Some Useful String Methods
 
@@ -307,9 +309,10 @@ nums.every(function(num, i) {
 });
 </code></pre>
 </section>
+{% endcomment %}
 
 <section markdown="block">
-## Whew. Back to Objects. The Math One
+## Math! 
 
 [There are a bunch of built-in objects that are available globally](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects). We've already seen some... like the <code>console</code> object or the <code>isNan()</code> and <code>parseInt</code> functions.
 
@@ -321,6 +324,7 @@ There's also the built-in <code>Math</code> object. It provides a bunch of misce
 * __random__ - returns a random number between 0 and 1
 </section>
 
+{% comment %}
 <section markdown="block">
 ## An Exercise
 
@@ -336,6 +340,7 @@ __Write a function called <code>humanReadableArray</code>:__ &rarr;
 <br>
 [By the way, who are Alice and Bob?](http://en.wikipedia.org/wiki/Alice_and_Bob)
 </section>
+{% endcomment %}
 
 <section markdown="block">
 ## Reading, Modifying and Deleting

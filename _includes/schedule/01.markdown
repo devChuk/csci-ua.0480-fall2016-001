@@ -5,11 +5,8 @@
 * [Variables, Built-in Functions](slides/01/variables-control-structures.html)
 * [Control Structures](slides/01/conditionals-loops.html)
 * [Coercion (Revisited), Casting, Undefined, and Style](slides/01/coercion-casting-undefined.html)
-* [And/Or](slides/01/and-or-nan-undefined.html)
 * [Functions](slides/01/functions.html)
 * [Hoisting](slides/01/hoisting.html)
-* [Functions Some More!](slides/01/functions-addendum.html)
-* Homework #0
 
 {% comment %}
 * [About Class #3](slides/03/meta.html)
@@ -21,7 +18,9 @@
 * [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 3 - Functions
 
 {% comment %}
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 4 - Data Structures: Data Structures: Objects and Arrays
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch13.html) - Chapter 13 - Statements
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch15.html) - Chapter 15 - Functions (up to "More Control over Function Calls")
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch16.html) - Chapter 16 -  Variables: Scopes, Environments, and Closures (up to "Global Variables")
 {% endcomment %}
 </td>
 	<td markdown="block">

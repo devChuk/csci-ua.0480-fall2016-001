@@ -348,9 +348,9 @@ __What happens when you put such a function declaration inside an if statement o
 </section>
 
 <section markdown="block">
-## A Quick Aside on Arrays (Again)
+## A Quick Aside on Arrays 
 
-An __array__ literal, assignment and the __length__ property
+An __Array__ literal, assignment and the __length__ property
 
 <pre><code data-trim contenteditable>
 var numbers = [1, 2, 3];
@@ -363,9 +363,12 @@ console.log(numbers.length);
 <section markdown="block">
 ## Max Number
 
-* write a function that takes one parameter, an array - assume that it will only have 0 or more numbers
-* the function should return the largest number in the array
-* if the array is empty, just return undefined
+__Write a function that:__ &rarr;
+
+* takes one parameter, an `Array` 
+* assume that the `Array` will only 0 or more values that are of type, `Number` &rarr;
+* the function should return the largest number in the `Array`
+* if the `Array` is empty, just return undefined
 </section>
 {% comment %}
 * Definingafunction
