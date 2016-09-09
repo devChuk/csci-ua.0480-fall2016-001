@@ -162,7 +162,7 @@ To run your programs, use the commandline (Terminal.app, DOS, etc.):
 
 For your implementation of Tic Tac Toe, you'll break down the game into several functions. These helper functions will be written in a _module_ (a file separate from the file that actually runs your game), which you'll use in part 3: `src/tic-tac-toe.js`
 
-The helper functions you'll be implementing are described below. Unit tests have been included in your repository in the file, `tests/tic-tac-toe-test.js`. 
+The helper functions you'll be implementing are described below. Unit tests have been included in your repository in the file, `test/tic-tac-toe-test.js`. 
 
 ### Creating a Module / Exporting Functions 
 
