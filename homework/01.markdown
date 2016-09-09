@@ -1481,6 +1481,30 @@ function handleUserInput(userPrompt, greeting, response) {
 main();
 </code></pre>
 
+__Issues Reading a File__
+
+When creating a readline interface for reading a file, the fileName argument to the `createReadStream` function expects a path to a file. Depending on where you're running node from (what directory), you'll have to figure out what the relative or absolute path is to `data/enable1.txt`.
+
+The syntax is like this:
+
+<pre><code data-trim contenteditable>fileInput = readline.createInterface({ 
+    input: fs.createReadStream(fileName)
+});
+</code></pre>
+
+The easiest way to deal with this is to set `fileName` to an absolute path. This way, it can work anywhere you run node. 
+
+`/Users/jversoza/project/homework01/data/enable1.txt`
+
+If you're running your program from your project directory, then fileName should be:
+
+`data/enable1.txt`
+
+If you're running from your `src`, then fileName should be:
+
+`../data/enable1.txt`
+
+
 __Reading a file after user input is not working__
 
 * make sure you create your readline interface for reading a file __after__ you've received user input
