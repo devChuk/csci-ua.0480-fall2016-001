@@ -120,11 +120,14 @@ npm install -g jshint
 npm install --save-dev chai
 </code></pre>
 
-Note that the last command will make a modification to an existing file, `package.json`, within your project folder. You should commit the changes made to this file.
+Note that the last command installs a module _locally_ to your project directory. It will do two things:
+
+* It will make a modification to an existing file, `package.json`, within your project folder
+* It will create a `node_modules` folder where your downloaded modules are stored (this folder is included in your `.gitignore` file because these external libraries are not meant to be in your project's version control
 
 ### (1 point) Install Required Modules
 
-You'll need a module to help you ask the user for input. 
+You'll also need a module to help you ask the user for input.
 
 * in your repository directory, install the node module, <code>readline-sync</code>, by running this command in your project's directory:
     <pre><code> npm install --save readline-sync
@@ -132,12 +135,11 @@ You'll need a module to help you ask the user for input.
 * note that the <code>readline-sync</code> module allows you to prompt for user input __synchronously__
 	* this is very different from how node.js apps usually operate
 	* however, for our purposes, using sync prompt is fine (for now), and it mimics the browser's prompt functionality well
-* installing <code>readline-sync</code> will create a folder called <code>node_modules</code> in the directory that you ran npm in (don't worry, it'll be ignored by git!)
-* create a file called <code>app.js</code> (if it isn't already there!)
 * check out the example usage on [readline-sync's npm page](https://www.npmjs.com/package/readline-sync)
     * essentially just `var readlineSync = require('readline-sync');`
     * which imports the function <code>question</code> from the <code>readline-sync</code> module into your program
 * note that installing `readline-sync` will make a modification to `package.json`. This modification be committed these changes.
+* you'll use this module in both your Tic Tac Toe game and your scrabble solver
 
 ### (4 points) Minimum Number of Commits
 
@@ -1259,7 +1261,7 @@ The top scoring words are:
 
 ### Preparation
 
-1. Find `enable1.txt` in your `src` folder - this is your word list
+1. Find `enable1.txt` in your `data` folder - this is your word list
 2. Find `scrabble.js` in your `src` folder - this is where you'll write your program
 3. In `scrabble.js`, require the built-in `readline` and `fs` modules:
     <pre><code data-trim contenteditable>var readline = require('readline');
@@ -1338,7 +1340,11 @@ console.log('last line of program!');
 
 The score for a word is calculated by summing the point values of each letter in the word. You can use the following object to associate letters with point values:
 
-<pre><code data-trim contenteditable>var letterValues = { "E": 1, "A": 1, "I": 1, "O": 1, "N": 1, "R": 1, "T": 1, "L": 1, "S": 1, "U": 1, "D": 2, "G": 2, "B": 3, "C": 3, "M": 3, "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10 };
+<pre><code data-trim contenteditable>var letterValues = { 
+        "E": 1, "A": 1, "I": 1, "O": 1, "N": 1, "R": 1, "T": 1, "L": 1, "S": 1, "U": 1, 
+        "D": 2, "G": 2, "B": 3, "C": 3, "M": 3, "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, 
+        "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10 
+};
 </code></pre>
 
 You'll likely want to represent each word as an object... with the actual word as one property and the word's score as a second property. You can then sort an `Array` of these "word/score" objects using the [sort method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) on your `Array`.
