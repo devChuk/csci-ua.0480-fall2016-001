@@ -1,8 +1,8 @@
 	<td markdown="block">
 * [Previous Slides, Mutability and Arguments Object](slides/02/strings-arrays.html#/18)
 * [Node, NPM, and git](slides/03/node-npm-debug-git.html)
-    * process.argv???
-    * /
+    * process.argv
+    * JSON.parse
 * [Higher Order Functions](slides/03/higher-order-functions.html) 
 * [Higher Order Functions Continued](slides/03/higher-order-functions-continued.html) 
 * [Console.log](slides/03/questions-log.html)
