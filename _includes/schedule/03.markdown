@@ -1,10 +1,34 @@
 	<td markdown="block">
+* [Previous Slides, Mutability and Arguments Object](slides/02/strings-arrays.html#/18)
+* [Node, NPM, and git](slides/03/node-npm-debug-git.html)
+    * process.argv???
+    * /
+* [Higher Order Functions](slides/03/higher-order-functions.html) 
+* [Higher Order Functions Continued](slides/03/higher-order-functions-continued.html) 
+* [Console.log](slides/03/questions-log.html)
+
+{% comment %}
+* [Node, NPM, and git](slides/02/node-npm-debug-git.html)
+* [Higher Order Functions](slides/02/higher-order-functions.html) 
+* [Higher Order Functions Continued](slides/04/higher-order-functions-continued.html) 
+* [Console.log](slides/02/questions-log.html)
+
+{% endcomment %}
 
 </td>
 	<td markdown="block">
 
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 20 - node.js
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 5 - Higher Order Functions
+* [Node.js Modules (Official Node Docs)](https://nodejs.org/api/modules.html)
+
 </td>
 	<td markdown="block">
+
+In-class programming activity:
+
+* [forEach, filter, reduce](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfvbcstf1-IKNVD-YFK77X_zr4ph3f8dYLlo1jBwdNswTwVaQ/viewform)
+
 <!--
 * [](assignments/.html)
 -->

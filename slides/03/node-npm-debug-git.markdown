@@ -191,6 +191,10 @@ __NPM__ is Node's official package manager.  __Does anyone know of any other pac
 * {:.fragment} or __pip__, __easy_install__ for Python
 * {:.fragment} or __CPAN__ for Perl
 * {:.fragment} or __composer__ for PHP
+
+<br>
+Among other things, `npm` allows you to download and install packages (_modules_), as well as remove and upgrade them.
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -235,24 +239,160 @@ __BTW, what are some analogous tools that we'd use to avoid installing packages 
 <section markdown="block">
 ### package.json
 
-Lastly __NPM__ can use a file called __package.json__ to store dependencies
+Lastly __NPM__ can use a file called __package.json__ to store dependencies. This will usually be placed in the root of your project folder.
 
-It's like: 
+Other languages specify dependencies in specific files too:
 
 * gemfile - ruby
 * requirements.txt - python
 
-Soooo... if you're program depends on specific modules (maybe like a module that allows prompting a user for input)
+Soooo... if your program depends on a set of modules
 
 * it may be a good idea to put that module in package.json
-* ... so that you don't have to remember all of the requirements!
+* ... so that you don't have to remember all of the requirements, and they can be installed all at once!
+</section>
+
+<section markdown="block">
+## package.json Continued
+
+__A sample package.json for a tic-tac-toe game that requires:__
+
+1. synchronous (blocking) i/o for asking for console input (readline-sync)
+2. assertions for unit tests (chai)
+
+<br>
+May look like this:
+
+<pre><code data-trim contenteditable>
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "dependencies": {
+    "readline-sync": "^1.4.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  },
+}
+</code></pre>
+
+
+</section>
+
+
+<section markdown="block">
+## Modules
+
+So... what is npm installing? What are these _modules_ anyway?
+
+__Modules__ are just JavaScript files!
+{:.fragment}
+
+* {:.fragment} you can bring in the code from one file into another file using the `require` function
+* {:.fragment} however, your module must explicitly export the objects/functions that can be used by the file that's bringing in the module
+* {:.fragment} there are _built-in_ modules
+* {:.fragment} ...and you can, of course, write your own modules!
+
+</section>
+<section markdown="block">
+## A Little More Than Just Files
+
+__From the [node docs on modules](https://nodejs.org/api/modules.html):__
+
+Before a module's code is executed, Node.js will wrap it with a function wrapper that looks like the following:
+
+<pre><code data-trim contenteditable>
+(function (exports, require, module, __filename, __dirname) {
+    // Your module code actually lives in here
+});
+</code></pre>
+
+<br>
+
+* which keeps top level variables scoped to the module than global (so when you require a module, it doesn't pollute your global name space!)It helps to provide some global-looking variables that are actually specific to the module, such as:
+* the module and exports objects can be used to define what's accessible by the file bringing in the module
+* convenience variables: \_\_filename and \_\_dirname, the module's absolute filename and path
+</section>
+
+<section markdown="block">
+## Using `exports`
+
+1. Create all of your functions ... 
+2. Then, at the end, assign module.exports to an object literal containing all of the functions that you want to export
+
+<pre><code data-trim contenteditable>function repeat(ele, n) {
+    // implementation
+} 
+    
+function generateBoard(rows, cols, initialValue) {
+    // implementation
+} 
+
+// ...
+
+module.exports = {
+    repeat: repeat,
+    generateBoard: generateBoard,
+    // ...
+}
+</code></pre>
+</section>
+
+
+<section markdown="block">
+## Another Way
+
+__Create all of your functions in an object and assign that object to module.exports__ &rarr;
+
+<pre><code data-trim contenteditable>
+var tic = { 
+    repeat: function(value, n) {
+        // implementation
+    },
+    
+    generateBoard: function(rows, columns, initialCellValue) {
+        // implementation
+    },
+    
+    // ...
+}
+    
+module.exports = tic;
+
+</code></pre>
+
+<br>
+Note that if one function depends on another, you'll have to prefix with the object name (`module.exports` or `this`.
+
+</section>
+
+<section markdown="block">
+## Aaaaand...
+
+__Create functions as properties on `module.exports`__ &rarr;
+
+<pre><code data-trim contenteditable>
+module.exports.repeat = function(value, n) {
+    // implementation
+}
+    
+module.exports.generateBoard = function(rows, columns, initialCellValue) {
+    // implementation
+},
+    
+// ...
+
+</code></pre>
+
+<br>
+Note that if one function depends on another, you'll have to prefix with the object name (`module.exports` or `this`.
 </section>
 
 
 <section markdown="block">
 ### Node.js - require
 
-Node's require is analogous to:
+Node's built-in function `require` is analogous to:
 
 * PHP's __include__
 * Ruby's __require__
@@ -266,6 +406,168 @@ It returns an object... and that object most likely has some useful methods and 
 var request = require('request');
 </code></pre>
 </section>
+
+<section markdown="block">
+## Modules Continued
+
+Again, modules allow the inclusion of other JavaScript files into your application. From the Node docs:
+
+> Files and modules are in one-to-one correspondence
+
+In other words, __modules are just JavaScript files__. The [Node docs](http://nodejs.org/api/modules.html#modules_modules) are pretty comprehensive about how modules work.
+</section>
+
+<section markdown="block">
+## Core Modules
+
+Some modules are __compiled directly into the node binary__. They're available without having to create or download a module. __A couple of useful core modules include:__ &rarr;
+
+* [HTTP](http://nodejs.org/api/http.html) - for creating both HTTP clients and servers
+* [File System](http://nodejs.org/api/fs.html) - for manipulating files and directories
+
+<br>
+</section>
+
+<section markdown="block">
+## Require in Detail
+
+__Using a module__:
+
+* the <code>require</code> function loads a file 
+	* it takes a single argument, the name of the file to load (the .js extension can optionally be omitted when loading)
+	* it gives back an object
+* ...the object that it returns has all of the exported properties of the module / file loaded
+* __let's try it out with a core module__ &rarr;
+
+<pre><code data-trim contenteditable>
+// bring in the http module
+var http = require('http');
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Downloaded Modules
+
+Of course, we're not stuck with just using the core modules. We could download pre-built modules as well. __How did we install some Node modules and how did we use them?__ &rarr;
+
+<pre><code data-trim contenteditable>
+npm install module-name
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+var prompt = require('readline-sync').prompt;
+var request = require('request');
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Creating your own module:
+
+* there's an available __<code>exports</code>__ object in Node
+* creating properties on that object makes those properties _public_ to whatever is _importing_ the file
+* variables that aren't exported are _private_ to the module
+* __lets take a look (notice that the <code>exports</code> object is not available in the shell)__ &rarr;
+
+<pre><code data-trim contenteditable>
+// showing what's in exports
+console.log(exports);
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+// adding a property to exports
+exports.foo = 'bar, baz';
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## All Together
+
+__Here's a full example of creating and using a module__: &rarr;
+
+A module called __creatures.js__:
+
+<pre><code data-trim contenteditable>
+exports.makeCreatureList = function (r) {
+	return ['narwhale', 'unicorn'];
+};
+</code></pre>
+
+__And... using that module__: &rarr;
+
+<pre><code data-trim contenteditable>
+var creaturesModule = require('./creatures.js');
+creaturesModule.makeCreatureList().forEach(function(name) {
+	console.log(name);
+});
+</code></pre>
+</section>
+
+<section markdown="block">
+## Module Location
+
+__Where do you think the <code>require</code> function looks for a module? (we can probably guess 3 places correctly!)__ &rarr;
+
+Some hints: 
+{:.fragment}
+
+* installing modules for homework
+* consider the examples in the previous slides
+{:.fragment}
+
+1. if it's a __core module__, just bring the module in (it's compiled into the node binary)
+2. if it's a __file__ (starts with /, ../, ./, etc.), 
+	* try to find that file relative to the location of the file that has the call to require
+	* or as an absolute path
+3. or load it from the __node\_modules__ folder (which is where modules are downloaded when you install from npm)
+{:.fragment}
+
+<br>
+Or... just [check out the crazy docs](http://nodejs.org/api/modules.html#modules_all_together).
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Notes About Downloading and Installing Modules
+
+* modules are downloaded and installed in the __node\_modules__ directory located in in the directory that you ran npm
+* if it's not found there, it will look at the parent's directory's __node\_modules__ folder
+* it will continue to look one directory up until the node\_modules (if it exists) directory at the root of the filesystem is reached 
+* __be careful with regards to where things are installed / moving projects around__
+</section>
+
+<section markdown="block" data-background="#440000">
+# You should place your dependencies locally in <code>node_modules</code> folders
+
+</section>
+
+<section markdown="block">
+## Why Modules?
+
+__Why do modules exist? Why is certain functionality broken out into modules? Why would we create our own modules?__
+
+* {:.fragment} modules provide __solutions to commonly encountered programming tasks__
+* {:.fragment} they promote __code reuse__ 
+* {:.fragment} __namespacing__ and preventing naming collisions
+* {:.fragment} organizing code / __keeping related functionality together__
+</section>
+
+<section markdown="block">
+## Node's Module System
+
+JavaScript, the language, doesn't actually have a module system!
+
+Node's module system is built off of a spec/API called CommonJS.
+
+__You won't be able to use this same module system in browser implementations of JavaScript without first including other JavaScript files/libraries (and there are a few to choose from) manually on your page.__
+</section>
+
 <section markdown="block">
 # Debugging
 

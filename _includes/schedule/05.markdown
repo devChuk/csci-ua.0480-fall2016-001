@@ -1,10 +1,4 @@
 	<td markdown="block">
-    {% comment %}
-* [About Class #5 and indexOf, timing, toFixed](slides/05/meta.html)
-* [Higher Order Functions Continued](slides/04/higher-order-functions-continued.html#/14) 
-    {% endcomment %}
-* Previous class on higher order functions 
-* [How Does Require Work](slides/05/control-require.html)
 
 </td>
 	<td markdown="block">

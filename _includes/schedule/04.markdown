@@ -1,8 +1,4 @@
 	<td markdown="block">
-{% comment %}
-* [Git Issues](slides/04/git-issues.html)
-{% endcomment %}
-* [Higher Order Functions Continued](slides/04/higher-order-functions-continued.html) 
 
 </td>
 	<td markdown="block">
