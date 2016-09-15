@@ -323,7 +323,7 @@ var cards = [{'suit':'♦', 'face':'4'},
 <section markdown="block">
 ## Counting Face Cards
 
-__Let's try the most convential way... together__. (also, add it to your [in-class programming activity form](https://docs.google.com/a/nyu.edu/forms/d/1j14LMEy3KFWT9gBxlpLmUfEtr699LcQ36_DOVSD4I_4/viewform)). &rarr;
+__Let's try the most convential way... together__. (also, add it to your [in-class programming activity form](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfvbcstf1-IKNVD-YFK77X_zr4ph3f8dYLlo1jBwdNswTwVaQ/viewform)). &rarr;
 
 <pre><code data-trim contenteditable>
 var count = 0;

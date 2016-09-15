@@ -1,15 +1,27 @@
 	<td markdown="block">
 
+* [Higher Order Functions Continued](slides/04/higher-order-functions-continued.html) 
+* [JSON](slides/02/objects.html#/20)
+* [Objects Revisited](slides/04/objects-prototypes.html)
+* [A Detour: Globals, Methods, and This](slides/04/globals-methods-this.html)
+* [Objects and Prototypes](slides/04/prototypes.html)
+* [Patterns, Errors, Use Strict](slides/04/patterns-errors-strict.html)
+
+
 </td>
 	<td markdown="block">
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 6 - The Secret Life of Objects
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 8 - Bugs and Error Handling 
+* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch17.html#prototype_relationship) - Chapter 17 -  Layer 2: The Prototype Relationship Between Objects
 </td>
 	<td markdown="block">
-<strike>Due Feb 11th (Th)</strike>
+Due Thursday, 9/22, by 11pm
 
-* <strike>Homework #02 to be posted</strike>
+* Homework #2 (to posted 11pm this evening)
+{% comment %} * [Homework #3](homework/03.html) {% endcomment %}
 
-Homework will be posted after we cover higher order functions in-depth in class 5.
-{% comment %}
-[Homework #2](assignments.html#hw02)
-{% endcomment %}
+Due Tuesday, 9/20, by 11pm
+
+* Quiz on hoisting, higher order functions
+
 </td>

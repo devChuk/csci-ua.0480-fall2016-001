@@ -56,20 +56,19 @@ nav-state: schedule
 <!-- ------------ --><a name="04"></a>
 <tr><td>4</td><td><strong>Sep 15</strong><br>Thu</td>
 <td markdown="block">
-* Networking Primer
-* Network Programming
-* Streams / Buffers / IO
-
+* Higher Order Functions
+* Objects and Prototypes
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/04.markdown %}
-{% endcomment %}
 </tr>
 
 
 <!-- ------------ --><a name="05"></a>
 <tr><td>5</td><td><strong>Sep 20</strong><br>Tue</td>
 <td markdown="block">
+* Networking Primer
+* Network Programming
+* Streams / Buffers / IO
 * Web Development
 * HTTP
 * A Simple Web Server

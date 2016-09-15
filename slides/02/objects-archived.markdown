@@ -16,37 +16,28 @@ title: Objects
 * Objects, Object Creation
 * Properties
 * Methods
+* String Methods
+* Array Methods
 * Math Methods 
 * Modifying and Deleting Properties
-* Mutability
 * Detecting Properties
 * Looping Over Objects
 </section>
-<section markdown="block">
-## Types (Again) According to the Specification
-
-[The ECMAScript 5 specifications list 6 types, but they're not the ones that typeof returns](http://www.ecma-international.org/ecma-262/5.1/#sec-8) (of course!):
-
-* <code>Undefined</code>
-* <code>Null</code>
-* <code>Boolean</code>
-* <code>String</code>
-* <code>Number</code>
-* <code>Object</code>
-
-</section>
 
 <section markdown="block">
-## Ok... So What About typeof?
+## Types So Far
 
-1. number
-2. string
-3. boolean
-4. object
-5. function
-6. undefined 
+__What are the six types that we've learned so far?__ &rarr;
+
+(sort of in order of how we've seen them)...
 {:.fragment}
 
+* {:.fragment} <code>number</code>
+* {:.fragment} <code>string</code>
+* {:.fragment} <code>boolean</code>
+* {:.fragment} <code>undefined</code>
+* {:.fragment} <code>function</code>
+* {:.fragment} <code>object</code>
 </section>
 
 <section markdown="block">
@@ -76,10 +67,10 @@ __Can anyone think of analogous types in other languages?__ &rarr;
 <section markdown="block">
 ## Creating Objects
 
-Here's an example of an object:
+Here's an example of an object (scroll over to see the whole thing):
 
 <pre><code data-trim contenteditable>
-var course = {name:'AIT', section:10, undergraduate:true};
+var course = {name:'Applied Internet Technology', section:2, undergraduate:true};
 </code></pre>
 
 __Object literals__ consist of:
@@ -192,40 +183,136 @@ console.log("here's one!")
 </section>
 
 <section markdown="block">
-## Methods (Again)
+## These Methods You Talk About Sound Intriguing 
 
-It's worthwhile to repeat that __an object property can be a function__. 
+### Let's take a look at some more methods!
 
-* when an object's property is a function, it's sometimes called a __method__
-* let's use what we know about functions and objects to create methods
+* [Strings have a bunch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#Methods_2 )
+* [Arrays do too](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods_of_array_instances)
+* We'll take a closer look at these when we go over strings and Arrays in the next set of slides
+</section>
 
+{% comment %}
+<section markdown="block">
+### Some Useful String Methods
 
-<pre><code data-trim contenteditable>
-var obj = {};
-function f() {
-    console.log("Hi, I'm a method!");
-}
-obj.doStuff = f;
-</code></pre>
+(note... these methods don't mutate the original string)
 
-<pre><code data-trim contenteditable>
-var obj = {
-    doStuff: function() {
-        console.log("Hi, I'm a method!");    
-    },
-};
-</code></pre>
+* __split([separator][, limit])__ - splits a String object into an array of strings by separating the string into substrings - default is one element of original string if no separator is specified. &rarr;
+* __toUpperCase()__ and __toLowerCase__ - um... self explanatory? &rarr;
+* __slice(beginSlice[, endSlice])__ - extracts a section of a string and returns a new string starting at index, beginSlice, and going to end of string or endSlice
+* __replace(regexp\|substr, newSubStr\|function[, flags])__ - returns a new string with some or all matches of a pattern replaced by a replacement (both substrings and regexes work) &rarr;
+</section>
 
-<pre><code data-trim contenteditable>
-var obj = {};
-obj.doStuff = function() {
-    console.log("Hi, I'm a method!");    
-};
-</code></pre>
+<section markdown="block">
+### Some Useful Array Methods
+
+(these methods actually modify the array that they're called on)
+
+* __pop()__ - removes the last element from an array and returns that element
+* __push(element1, ..., elementN)__ - adds one or more elements to the end of an array and returns the new length of the array
+* __reverse()__ - reverses the order of the elements of an array — the first becomes the last, and the last becomes the first.
+* __sort([compareFunction])__ - sorts the elements of an array in place and returns the array
+* __splice(index, howMany[, element1[, ...[, elementN]]])__ - adds and/or removes elements from an array
+</section>
+
+<section markdown="block">
+### And Even More Array Methods
+
+* __join([separator = ','])__ &rarr; joins all elements of an array into a string using separator (default is comma)
+* __slice(index, howMany[, element1[, ...[, elementN]]])__ -  returns a shallow copy of a portion of an array into a new array object
+* __forEach(callback[, thisArg])__ - calls a function for each element in the array
+* __every(callback[, thisArg])__ -  tests whether all elements in the array pass the test implemented by the provided function
+</section>
+
+<section markdown="block">
+### Looping Over Arrays
+
+Errrr. It looks like there are a lot of ways to do this. __What are they (there are three, and one of 'em is the old classic.__ &rarr;
+
+* use a for loop
+* use the forEach method
+* use the every method
+{:.fragment}
+
+<br>
+__Which one should we use?__ &rarr;
+{:.fragment}
+
+* the classic <code>for</code> loop is actually the fastest (though, for some engines, you'll have to cache the length!?)
+* <code>forEach</code> and every are a little bit closer to what you're actually doing (_more expressive_)
+	* though using a callback / dealing with scoping may be tricky
+	* can't break out of <code>forEach</code>
+	* can break out of <code>every</code> by returning <code>false</code> (you have to return <code>true</code> on every iteration, though)
+{:.fragment}
 
 </section>
+
 <section markdown="block">
-## Whew. Back to Objects. The Math One
+### Looping Over Arrays Part 1
+
+Loop over <code>nums = [1, 2, 3, 4];</code> and print out double the value of every element. __Do this three ways__ &rarr;
+
+<pre><code data-trim contenteditable>
+
+// with classic for loop and length caching
+for(var i = 0, cachedLength = nums.length; i < cachedLength; i++) {
+	console.log(nums[i] * 2);
+}
+nums.every(doubleItLessThanThree);
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+### Looping Over Arrays Part 2
+
+<pre><code data-trim contenteditable>
+// with forEach (define callback first)
+var doubleIt = function(x) {
+	console.log(x * 2);
+}
+nums.forEach(doubleIt); 
+</code></pre>
+
+<pre><code data-trim contenteditable>
+// with forEach (define callback first)
+// with every and simulating break (define callback first)
+var doubleItLessThanThree = function(x) {
+	if (x >= 3) {
+		return false;
+	}
+	console.log(x * 2);
+	return true;
+}
+
+nums.every(doubleItLessThanThree);
+</code></pre>
+</section>
+
+<section markdown="block">
+## Again,With More Anonymous Functions
+
+<pre><code data-trim contenteditable>
+// with forEach
+nums.forEach(function(num, i) {
+	console.log(num * 2);
+});
+
+// with every and simulating break
+nums.every(function(num, i) {
+	if (num >= 3) {
+		return false;
+	}
+	console.log(num * 2);
+	return true;
+});
+</code></pre>
+</section>
+{% endcomment %}
+
+<section markdown="block">
+## Math! 
 
 [There are a bunch of built-in objects that are available globally](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects). We've already seen some... like the <code>console</code> object or the <code>isNan()</code> and <code>parseInt</code> functions.
 
@@ -237,6 +324,23 @@ There's also the built-in <code>Math</code> object. It provides a bunch of misce
 * __random__ - returns a random number between 0 and 1
 </section>
 
+{% comment %}
+<section markdown="block">
+## An Exercise
+
+__Write a function called <code>humanReadableArray</code>:__ &rarr;
+
+* it takes __one argument__, an __Array called items__, and it __returns a string__ representation of the Array 
+*  the string representation of the Array is... 
+	* an empty string if the incoming Array is empty: <code>[]</code> &rarr; <code>""</code>
+	* the only item in the Array if the Array has just one element: <code>["Alice"]</code> &rarr; <code>"Alice"</code> 
+	* item 1 and item 2 combined by using "and" if the Array has 2 elements: <code>["Alice","Bob"]</code> &rarr; "Alice and Bob"
+	* all items separated by commas, with the last element joined with "and" (with a serial comma, of course!): <code>["Alice","Bob","Carol"]</code> &rarr; "Alice, Bob, and Carol" 
+
+<br>
+[By the way, who are Alice and Bob?](http://en.wikipedia.org/wiki/Alice_and_Bob)
+</section>
+{% endcomment %}
 
 <section markdown="block">
 ## Reading, Modifying and Deleting
@@ -259,35 +363,6 @@ console.log(course.nothingToSeeHere);
 
 </section>
 
-<section markdown="block">
-## Objects and Mutability
-
-__Uh... so what's the implication here regarding objects and mutability?__ &rarr;
-
-* {:.fragment} clearly __objects are mutable__
-    * functions are objects; they're mutable too!
-    * arrays are objects; they're mutable too (we'll see this again later)!
-* {:.fragment} numbers, strings and booleans are not, though! 
-</section>
-
-<section markdown="block">
-## Mutability and References
-
-__What will this print out?__ &rarr;
-<pre><code data-trim contenteditable>
-a = {'foo':1, 'bar':2};
-b = a;
-b['baz'] = 3;
-b.qux = 4;
-console.log(a);
-</code></pre>
-
-<pre><code data-trim contenteditable>
-{ foo: 1, bar: 2, baz: 3, qux: 4 }
-</code></pre>
-{:.fragment}
-
-</section>
 
 <section markdown="block">
 ## Detecting Properties
@@ -335,8 +410,9 @@ __Use hasOwnProperty for now... so you won't have to worry about "inherited" pro
 Use a <code>for (prop in obj)</code> loop:
 
 * make sure that you use __hasOwnProperty__ in loop to exclude _inherited_ properties
-* avoid using this kind of loop for <code>Arrays</code>
+* don't use this kind of loop for <code>Arrays</code>
 	* does not preserve order
+	* includes _inherited_ properties
 <pre><code data-trim contenteditable>
 for (property in course) {
 	if (course.hasOwnProperty(property)) {
@@ -354,32 +430,12 @@ However, as soon as you perform an _object-like_ operation on them, such as a me
 
 * __JavaScript creates an actual String, Number or Boolean object that wraps that primitive...__
 * and throws it away immediately, once the operations is done
-* this does mean, however, that __you can't create arbitrary properties on primitives__
+* this does mean, however, that __you can't create arbitrary properties on primitives
 
 <br>
 
 [See this article on the _secret_ life of JavaScript primitives!](http://javascriptweblog.wordpress.com/2010/09/27/the-secret-life-of-javascript-primitives/)
 </section>
-
-<section markdown="block">
-## And Finally... JSON
-
-
-JSON or _JavaScript Object Notation_ is a data storage and communication format based off of JavaScript object literals... but with a few modifications:
-
-* all property names are surrounded by double quotes
-* values are restricted to simple data: no function calls, variables, comments or computations
-
-
-<br>
-Conversion to-and-from JSON can be done using the following methods on the built-in JSON object:
-
-* [stringify(value)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) - returns a JSON string representation of the value passed in
-* [parse(text)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) - returns an object created from the supplied JSON text
-
-</section>
-
-
 {% comment %}
 <section markdown="block">
 ## Topics
