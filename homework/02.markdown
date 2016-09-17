@@ -502,6 +502,7 @@ Instead of hardcoding a JSON string in your program, __modify your program__ so 
 * Use the <code>request</code> library again to get retrieve and process the data from this new URL
 * Continue to do this until the <code>next</code> property does not contain a url
 * Your program should print out reports on several games.
+* Finally, run jshint on your code and fix any warnings/errors
 * Example Output:
 
 <pre><code data-trim contenteditable>Game ID: 0021500750
