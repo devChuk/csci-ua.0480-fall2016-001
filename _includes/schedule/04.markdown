@@ -15,13 +15,16 @@
 * [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch17.html#prototype_relationship) - Chapter 17 -  Layer 2: The Prototype Relationship Between Objects
 </td>
 	<td markdown="block">
+Due Saturday, 9/24, by 11pm
+
+* [Homework #2](homework/02.html) 
+
 Due Thursday, 9/22, by 11pm
 
-* Homework #2 (to posted 11pm this evening)
-{% comment %} * [Homework #3](homework/03.html) {% endcomment %}
+* Quiz #01 - Hoisting and Higher Order Functions (find it in NYU Classes)
 
-Due Tuesday, 9/20, by 11pm
+Practice / Optional (not graded)
 
-* Quiz on hoisting, higher order functions
+* Quiz #00 - JavaScript Basics 
 
 </td>
