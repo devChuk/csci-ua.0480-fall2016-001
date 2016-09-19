@@ -70,7 +70,8 @@ Go through the functions in order; the concepts explored build off one-another, 
     * you'll also need a couple of modules installed locally for the unit tests to run:
         * install `chai` locally for assertions
         * `npm install --save-dev chai`
-        * finally, install mocha-sinon locally for mocking console.log
+        * finally, install sinon and mocha-sinon locally for mocking console.log
+        * `npm install --save-dev sinon`
         * `npm install --save-dev mocha-sinon`
 1. implement functions below in __exercises.js__
 2. make sure you export your functions as you implement them so that...
