@@ -65,10 +65,13 @@ Go through the functions in order; the concepts explored build off one-another, 
 
 0. prep...
     * make sure that `mocha` and `jshint` are still installed globally (from previous assignment)
-    * if they're not installed, use `npm install` with the `-g` flag (or just check out homework #1)
-    * you'll use these to run unit tests and static analysis
-    * finally, install `chai` locally for assertions
-    * `npm install --save-dev chai`
+        * if they're not installed, use `npm install` with the `-g` flag (or just check out homework #1)
+        * you'll use these to run unit tests and static analysis
+    * you'll also need a couple of modules installed locally for the unit tests to run:
+        * install `chai` locally for assertions
+        * `npm install --save-dev chai`
+        * finally, install mocha-sinon locally for mocking console.log
+        * `npm install --save-dev mocha-sinon`
 1. implement functions below in __exercises.js__
 2. make sure you export your functions as you implement them so that...
 3. you can run tests as you develop these functions (again, the tests are included in the repository):
