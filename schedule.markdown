@@ -57,7 +57,6 @@ nav-state: schedule
 <tr><td>4</td><td><strong>Sep 15</strong><br>Thu</td>
 <td markdown="block">
 * Higher Order Functions
-* Objects and Prototypes
 </td>
 {% include schedule/04.markdown %}
 </tr>
@@ -66,28 +65,22 @@ nav-state: schedule
 <!-- ------------ --><a name="05"></a>
 <tr><td>5</td><td><strong>Sep 20</strong><br>Tue</td>
 <td markdown="block">
+* Objects and Prototypes
+* Patterns
 * Networking Primer
 * Network Programming
 * Streams / Buffers / IO
-* Web Development
-* HTTP
-* A Simple Web Server
-
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/05.markdown %}
-{% endcomment %}
 </tr>
 
 
 <!-- ------------ --><a name="06"></a>
 <tr><td>6</td><td><strong>Sep 22</strong><br>Thu</td>
 <td markdown="block">
-
-* Creating a "Framework"
-* Cookies
-* Sessions
-* Forms
+* Web Development
+* HTTP
+* A Simple Web Server
 
 </td>
 <td></td><td></td><td></td>{% comment %}
@@ -99,9 +92,10 @@ nav-state: schedule
 <!-- ------------ --><a name="07"></a>
 <tr><td>7</td><td><strong>Sep 27</strong><br>Tue</td>
 <td markdown="block">
-* HTTP Module
-* Web Framework
-* Project Layout
+* Creating a "Framework"
+* Cookies
+* Sessions
+* Forms
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/07.markdown %}
@@ -112,10 +106,9 @@ nav-state: schedule
 <!-- ------------ --><a name="08"></a>
 <tr><td>8</td><td><strong>Sep 29</strong><br>Thu</td>
 <td markdown="block">
-* Web Framework Continued
-* Forms, Sessions, etc. Revisited
-* Middleware
-* Templating
+* HTTP Module
+* Web Framework
+* Project Layout
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/08.markdown %}
@@ -126,8 +119,10 @@ nav-state: schedule
 <!-- ------------ --><a name="09"></a>
 <tr><td>9</td><td><strong>Oct 04</strong><br>Tue</td>
 <td markdown="block">
-
-* NoSQL Database
+* Web Framework Continued
+* Forms, Sessions, etc. Revisited
+* Middleware
+* Templating
 
 <!--
 * Request and Response Objects
@@ -148,7 +143,8 @@ introduce nodemon!
 <!-- ------------ --><a name="10"></a>
 <tr><td>10</td><td><strong>Oct 06</strong><br>Thu</td>
 <td markdown="block">
-* Object Document Mapper
+* NoSQL Database
+* Object Document Mapper 
 
 {% comment %} 
 * Using GET / Review
@@ -164,6 +160,7 @@ introduce nodemon!
 <tr><td>11</td><td><strong>Oct 11</strong><br>Tue</td>
 <td markdown="block">
 
+* Object Document Mapper Continued
 * Database Design
 
 {% comment %}

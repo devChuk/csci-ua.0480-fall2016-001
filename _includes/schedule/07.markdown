@@ -1,13 +1,7 @@
 	<td markdown="block">
-* [Objects and Prototypes Summary](slides/07/objects-review.html)
-* [Patterns, Errors, Use Strict from Previous Class](slides/06/patterns-errors-strict.html)
-* [Intro to Web Development](slides/07/web.html)
-* [A Web Server](slides/07/server.html)
 * [Node's HTTP Module](slides/07/node-http.html)
 </td>
 	<td markdown="block">
-* [{{ site.book_js }}]({{ site.books_js_link }}) <br> Chapter 13 - JavaScript and the Browser
-* [{{ site.book_js }}]({{ site.books_js_link }}) <br> Chapter 17 - HTTP (up to browsers and http)
 * {{ site.book_web }} <br> Chapter 1 - Introducing Express
 * {{ site.book_web }} <br> Chapter 2 - Getting Started With Node
 </td>

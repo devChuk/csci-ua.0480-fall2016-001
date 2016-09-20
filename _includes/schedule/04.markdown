@@ -4,15 +4,17 @@
 * [JSON](slides/02/objects.html#/20)
 * [Objects Revisited](slides/04/objects-prototypes.html)
 * [A Detour: Globals, Methods, and This](slides/04/globals-methods-this.html)
+
+{% comment %}
+<!-- moved to class 5 -->
 * [Objects and Prototypes](slides/04/prototypes.html)
 * [Patterns, Errors, Use Strict](slides/04/patterns-errors-strict.html)
+{% endcomment %}
 
 
 </td>
 	<td markdown="block">
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 6 - The Secret Life of Objects
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 8 - Bugs and Error Handling 
-* [{{ site.book_js_2 }}](http://speakingjs.com/es5/ch17.html#prototype_relationship) - Chapter 17 -  Layer 2: The Prototype Relationship Between Objects
+* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 5 - Higher Order Functions
 </td>
 	<td markdown="block">
 Due Saturday, 9/24, by 11pm

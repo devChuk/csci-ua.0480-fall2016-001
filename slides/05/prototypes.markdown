@@ -9,6 +9,7 @@ title: "Prototypes"
 
 <p><small></small></p>
 </section>
+
 <section markdown="block">
 ## Where did we Leave Off?
 
@@ -109,7 +110,7 @@ console.log(
 * __arrays__ derive from <code>Array.prototype</code>
 
 <br>
-__Let's see what happens when we call <code>Object.prototype</code>.__ &rarr;
+__Let's see what happens when we call <code>getPRototypeOf</code>.__ &rarr;
 
 <pre><code data-trim contenteditable>
 function f(x) { return x;}
@@ -135,7 +136,7 @@ console.log(
 </code></pre>
 {:.fragment}
 
-* __<code>Object.prototype</code>__ is at the top of the prototype chain (its the last object checked for properties)
+* __<code>Object.prototype</code>__ is at the top of the prototype chain (it's the last object checked for properties)
 * it provides a bunch of [methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype#Methods) and [properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype#Methods) to all JavaScript objects
 	* __<code>toString()</code>__
 	* __<code>hasOwnProperty()</code>__ (we've seen this before!)
@@ -161,6 +162,8 @@ var sadWerewolf = Object.create(protoWerewolf);
 sadWerewolf.mood = 'sullen';
 sadWerewolf.howl('moon');
 </code></pre>
+
+(It turns out, for inheritance, it's common to use Object.create(MyObj.prototype) ... we'll see why later)
 </section>
 
 <section markdown="block">
@@ -194,7 +197,15 @@ var partyWerewolf = new Werewolf('partying');
 console.log(partyWerewolf.mood);
 </code></pre>
 
-<br>
+You can think of the above constructor as doing the following when invoked with new...
+
+<pre><code data-trim contenteditable>
+function Werewolf(mood) {
+    // this = {}
+	this.mood = mood;
+    // return this
+}
+</code></pre>
 __Let's try adding some more properties to <code>this</code>.__&rarr;
 
 </section>
@@ -218,14 +229,17 @@ partyWerewolf.howl('bowl of chips');
 </section>
 
 <section markdown="block">
-## Something Happened!
+### Something Happened! Just one Prototype
 
-### When we added a property to the constructor's prototype, something happened! 
+When we added a property to the constructor's prototype, something unusual happened!  __How were the instances of that constructor affected?__ &rarr;
 
-__How were the instances of that constructor affected?__ &rarr;
-
-The instances immediately had access to the new property, even though they were instantiated before the prototype was set.
+__The instances immediately had access to the new property__, even though they were instantiated before the prototype was set.
 {:.fragment}
+
+1. {:.fragment} all instances share that prototype object
+2. {:.fragment} so... when a property is looked up on any of those instances and isn't found
+3. {:.fragment} it looks at that shared prototype object
+4. {:.fragment} it's typical for a prototype object to only contain methods
 </section>
 
 <section markdown="block">
@@ -312,7 +326,7 @@ etc.
 </section>
 
 <section markdown="block">
-## Overriding Properties (Last One Really?)
+## Overriding Properties
 
 __Why would overriding properties be useful?__ &rarr;
 
@@ -333,55 +347,174 @@ console.log(partyWerewolf + '');
 </section>
 
 <section markdown="block">
+## Common Pattern for Inheritance
+
+__A common pattern for implementing inheritance is to:__ &rarr;
+
+* use a fresh object that has the prototype set to the parent constructor's prototype property (WAT?)
+* as the child constructor's prototype property
+* ... which can be done with <code>Object.create</code>
+
+Using our parent constructor, <code>Werewolf</code>
+
+<pre><code data-trim contenteditable>
+function Werewolf(mood) {
+    this.mood = mood;
+}
+Werewolf.prototype.howl = function(thing) {
+	console.log('The werewolf howls at the ' + thing + '.');
+}
+</code></pre>
+
+Create a constructor for a space werewolf (!!!) by setting its prototype to a new object who's prototype is <code>Werewolf.prototype</code>
+<pre><code data-trim contenteditable>
+function SpaceWerewolf() {}
+SpaceWerewolf.prototype = Object.create(Werewolf.prototype);
+</code></pre>
+
+__This isn't quite complete, though.__ &rarr;
+</section>
+
+<section markdown="block">
+## Inheritance Continued
+
+__In the previous implementation, there's actually some stuff missing when we create a <code>SpaceWerewolf</code>.  What's missing from the previous implementation that results in incomplete inheritance?__ &rarr;
+
+* {:.fragment} the prototype only contains methods
+* {:.fragment} what about properties set from the constructor (like <code>mood</code>)?
+
+<br>
+<pre><code data-trim contenteditable>
+var w = new SpaceWerewolf();
+console.log(mood)
+</code></pre>
+{:.fragment}
+</section>
+
+
+<section markdown="block">
+## Calling Super
+
+Hm. The constructor, <code>Werewolf</code>, sets the property, <code>mood</code>...
+
+* if only we can execute the parent constructor (you know... like call <code>super</code> in Java).
+* __but we can, how?__ &rarr;
+* {:.fragment} use <code>call</code>
+
+<pre><code data-trim contenteditable>
+function SpaceWerewolf(mood) {
+    Werewolf.call(this, mood);
+}
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## One Last Detail, Constructor Property
+
+All object's have a property named <code>constructor</code>. __<code>constructor</code>__ is the function that was used to create the instance's prototype.
+
+<pre><code data-trim contenteditable>
+var a = [];
+console.log(a.constructor); // [Function: Array] 
+</code></pre>
+
+So we should probably set that on our child constructor's prototype property explicitly so that all objects created from <code>SpaceWerewolf</code> have that as its constructor.
+
+<pre><code data-trim contenteditable>
+SpaceWerewolf.prototype.constructor = SpaceWerewolf;
+</code></pre>
+</section>
+
+<section markdown="block">
+## All Together
+
+
+<pre><code data-trim contenteditable>
+function Werewolf(mood) {
+    this.mood = mood;
+}
+Werewolf.prototype.howl = function(thing) {
+	console.log('The werewolf howls at the ' + thing + '.');
+}
+</code></pre>
+
+<pre><code data-trim contenteditable>
+function SpaceWerewolf(mood) {
+    Werewolf.call(this, mood);
+}
+SpaceWerewolf.prototype = Object.create(Werewolf.prototype);
+SpaceWerewolf.prototype.constructor = SpaceWerewolf;
+
+var w = new SpaceWerewolf('in space');
+console.log(w.mood);
+console.log(w.constructor);
+</code></pre>
+
+</section>
+<section markdown="block">
 ## Prototype: An Example
 
-__What's the output of this code?__ &rarr;
+__Check out the following example...__ &rarr;
 
 <pre><code data-trim contenteditable>
 function Monster() {
 	this.scary = true;
 }
 
+Monster.prototype.boo = function() { console.log('Boo!');}
+</code></pre>
+
+<pre><code data-trim contenteditable>
 function Werewolf(mood) {
+    Monster.call(this);
 	this.mood = mood;	
 }
 
-Werewolf.prototype = new Monster();
+Werewolf.prototype = Object.create(Monster.prototype);
+Werewolf.prototype.constructor = Werewolf;
 </code></pre>
 
 <pre><code data-trim contenteditable>
 Werewolf.prototype.howl = function(thing) {
 	console.log('The werewolf howls at the ' + thing + '.');
 }
-
-var sadWerewolf = new Werewolf('sad');
-var partyWerewolf = new Werewolf('partying');
-partyWerewolf.scary = false;
-</code></pre>
-
-<pre><code data-trim contenteditable>
-console.log(sadWerewolf.scary);
-console.log(partyWerewolf.scary);
 </code></pre>
 </section>
 
 <section markdown="block">
 ## Example Continued
 
-__The output would be...__
+__What would the output be if the following code were run...__ &rarr;
+
+<pre><code data-trim contenteditable>
+var sadWerewolf = new Werewolf('sad');
+var partyWerewolf = new Werewolf('partying');
+partyWerewolf.scary = false;
+
+console.log(sadWerewolf.scary);
+console.log(partyWerewolf.scary);
+partyWerewolf.boo();
+</code></pre>
 
 <pre><code data-trim contenteditable>
 true
 false
+Boo!
 </code></pre>
+{:.fragment}
 
 Some notes on the example:
+{:.fragment}
 
-* to inherit properties from Monster, we set our Werewolf constructor's prototype to a new Monster
-* <code>var sadWerewolf = new Werewolf('sad'); </code>
-* ...which is why scary was found in the prototype chain for <code>sadWerewolf</code>
+* {:.fragment} to inherit properties from Monster...
+    * {:.fragment} we set our Werewolf constructor's prototype to a fresh object with <code>Monster.prototype</code> as the prototype
+    * {:.fragment} we called the "super" constructor
+* {:.fragment} <code>var sadWerewolf = new Werewolf('sad'); </code>
+* {:.fragment} ...which is why scary was found in the prototype chain for <code>sadWerewolf</code>
 </section>
 
+{% comment %}
 <section markdown="block">
 ## Create Your Own!
 
@@ -431,6 +564,8 @@ console.log(myBike.wheels);
 </code></pre>
 
 </section>	
+{% endcomment %}
+
 <section markdown="block">
 ## Enumerating Properties Revisited
 
@@ -544,7 +679,7 @@ __There are a few ways to create objects... what are they?__ &rarr;
 <section markdown="block">
 ## A Few Things to Remember
 
-__What object is at the top of the prototype chain?__ &arr;
+__What object is at the top of the prototype chain?__ &rarr;
 
 <code>Object.prototype</code> is at the top of the prototype chain
 {:.fragment}
