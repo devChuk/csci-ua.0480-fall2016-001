@@ -3,7 +3,6 @@
 * [Patterns, Errors, Use Strict](slides/05/patterns-errors-strict.html)
 * [Objects and Prototypes Summary](slides/05/objects-review.html)
 * [Intro to Web Development](slides/05/web.html)
-* [Networking and Sockets](slides/05/sockets.html)
 
 {% comment %}
 * [A Web Server](slides/05/server.html)

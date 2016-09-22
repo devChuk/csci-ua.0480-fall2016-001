@@ -11,6 +11,17 @@ title: "Networking and Sockets"
 </section>
 
 <section markdown="block">
+## Some Definitions
+
+Before we start, we should probably get a few definitions out of the way!
+
+* __ip address__ - number given to a computer / device on a network
+* __port__ - a number given to a communication end point that usually represents some specific service... allowing multiple services to be run on the same device... an analogy from this [guide to network programming](http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html) compares an ip address to a street address of a building, and a port to an apartment number in that building
+* __socket__ - an endpoint to a connection... so there two sockets per connection, but in network programming apis, a socket object is typically the object that mediates communication (reads/writes) to a connected client or server... [this SO article goes deep on sockets vs ports](http://stackoverflow.com/questions/152457/what-is-the-difference-between-a-port-and-a-socket)
+* __localhost__ - 127.0.0.1 ... or your _local_ computer... when used as the domain name in `nc`, your browser, etc. ... the connection is made from your computer to a service running on itself
+
+</section>
+<section markdown="block">
 ## net module
 
 Node comes with a built in `net` module. It provides __functions for creating servers and clients__.
@@ -30,6 +41,23 @@ var server = net.createServer(function(sock) {
 
 server.listen(PORT, HOST);
 </code></pre>
+
+</section>
+
+<section markdown="block">
+## Running the Above Example
+
+To run the above example, you'll have to have two terminal windows / tabs open.
+
+1. run `node myFile.js` in one window
+    * this is your __server__, it's waiting for connections
+    * note that it'll look like terminal is _frozen_ or waiting for _something_
+    * anything you `console.log` out will be shown in this window
+    * to stop your server, use CTRL + c
+2. in another terminal, use netcat as a client to connect to your server
+    * `nc localhost 8080`
+    * you can type text that gets sent to the server...
+    * again, CTRL + c will close the client
 
 </section>
 

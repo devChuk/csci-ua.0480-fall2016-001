@@ -1,4 +1,10 @@
 	<td markdown="block">
+* From Previous Class: [Intro to Web Development](slides/05/web.html) 
+* [Networking and Sockets](slides/06/sockets.html)
+* [A Webserver](slides/06/webserver.html)
+* From Previous Class (maybe?) [Patterns, Errors, Use Strict](slides/05/patterns-errors-strict.html)
+
+{% comment %}
 * Homework
 * We missed covering [JSON from a previous class](slides/03/objects.html#/20)
 * [Objects Revisited](slides/06/objects-prototypes.html)
@@ -6,12 +12,28 @@
 * [Objects and Prototypes](slides/06/prototypes.html)
 * Maybe talk about require again from previous class?
 * [Patterns, Errors, Use Strict](slides/06/patterns-errors-strict.html)
+{% endcomment %}
 </td>
 	<td markdown="block">
 * [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 6 - The Secret Life of Objects
 * [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 8 - Bugs and Error Handling 
 </td>
 	<td markdown="block">
+In-Class Programming Activity
+
+* [Creating an HTTP Request object, and a Poll](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSe2mqmcuD_bhT_XFqDpXTbdBUTIvfIOTtqepiQ_dTWhIICyaA/viewform)
+
+Due Saturday, 10/01, by 11pm
+
+* Homework #3 (to be posted Friday)
+{% comment %}
+* [Homework #3](homework/03.html) 
+{% endcomment %}
+
+Due Thursday, 9/29, by 11pm
+
+* Quiz #02 - Objects and HTTP (Open in NYU Classes Tonight at 11pm)
+
 <!--
 * [](assignments/.html)
 -->

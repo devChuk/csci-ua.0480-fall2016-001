@@ -205,6 +205,7 @@ A request consists of:
 * __request headers__ <code>Host: jvers.com</code>, <code>User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 </code>
 * __an empty line__
 * __an optional body__
+* note that a new line is represented by a [carriage return, line feed](https://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html#sec2.2): __\r\n__
 
 <br>
 [Here's a list of request header fields](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields).
@@ -231,6 +232,7 @@ A response consists of:
 * __response header fields__ - <code>Content-Type: text/html</code>
 * __an empty line__
 * __an optional message body__ - usually an HTML document!
+* note that a new line is represented by a [carriage return, line feed](https://www.w3.org/Protocols/rfc2616/rfc2616-sec2.html#sec2.2): __\r\n__
 
 <br>
 [And of course, a list of response header fields](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields).
@@ -263,7 +265,7 @@ __There are 5 different classes of status codes__ &rarr;
 <section markdown="block">
 ## A Sample Interaction
 
-A request:
+A request (again, using \r\n as newlines):
 
 <pre><code data-trim contenteditable>
 GET /teaching/ HTTP/1.1
@@ -278,7 +280,7 @@ Accept-Language: en-US,en;q=0.8
 <section markdown="block">
 ## A Sample Interaction Continued
 
-A response:
+A response (again, using \r\n as newlines):
 
 <pre><code data-trim contenteditable>
 HTTP/1.1 200 OK
@@ -292,7 +294,7 @@ Cache-control: private
 .
 .
 .
-(html)
+(html, an image, whatevs yr payload is)
 </code></pre>
 </section>
 
@@ -304,7 +306,7 @@ Cache-control: private
 <section markdown="block">
 ## netcat
 
-__nc__ is a commandline utility for TCP connection and communication through UDP. It can take a host and port as arguments:
+__nc__ is a commandline utility for connection and communication through TCP or UDP. It can take a host and port as arguments:
 
 <pre><code data-trim contenteditable>
 nc cs.nyu.edu 80
@@ -328,7 +330,12 @@ Host: cs.nyu.edu
 <section markdown="block">
 ## curl
 
-__curl__ is a command line tool to transfer data to and from a server. The -I flag retrieves headers only.
+__curl__ is a command line tool to transfer data to and from a server. 
+
+* the -I (uppercase I) flag retrieves headers only
+* the -i (lowercase i) flag retrieves headers and body
+
+<br>
 <pre><code data-trim contenteditable>
 # get the response headers for google.com only
 curl -I google.com
@@ -336,34 +343,55 @@ curl -I google.com
 # get the response headers for www.google.com only
 curl -I www.google.com
 
-# get the entire response (including body)
+# get the body only
 curl www.google.com
+
+# get the entire response (headers and body)
+curl -i www.google.com
 </code></pre>
+</section>
+
+<section markdown="block">
+## A Brief Note About Request and Response Headers
+
+We some some _actual_ requests / responses. It looked like there were some important headers set! &rarr;
+
+__Request__
+
+* {:.fragment} `Host:` the hostname of the server that is being connected to (sometimes a server may use this string to determine what to respond with!) 
+
+<br>
+
+__Response__
+
+* {:.fragment} `Content-Type:` ... the type of resource that the server is responding with (text/html, text/css, image/jpeg, etc....[mime types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types))
+* {:.fragment} `Location:` ... the url to redirect to for 3xx status codes
+
 </section>
 
 <section markdown="block">
 ## Chrome 
 
-View &rarr; Developer &rarr; Developer Tools
+__Chrome comes with great tools for development!__ &rarr;
 
-...Network
-
-...(specific request)
-
-...view source
-
+1. {:.fragment} go to View &rarr; Developer &rarr; Developer Tools
+2. {:.fragment} click on Network
+3. {:.fragment} go to the page 
+4. {:.fragment} watch the requests fly by!
+5. {:.fragment} (why so many!?)
 </section>
+
 <section markdown="block">
 # Let's try using nc, curl and Chrome to get some status codes!
 </section>
 <section markdown="block">
 ## Clients and Servers
 
-So... web development can mean a lot of things. Broadly speaking: 
+__So... web development can mean a lot of things. Broadly speaking:__ &rarr; 
 
 * you can be developing for the client (writing HTML, client side JavaScript applications)
-* ...or for the server (server-side code that manipulates and retrieves data)
+* ...or for the server (server-side code responsible for dealing with requests / responses, manipulating and retrieving data, etc.)
 
 <br>
-We'll be dealing with server-side development first...
+We'll be dealing with __server-side__ development first...
 </section>
