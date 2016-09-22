@@ -493,7 +493,7 @@ Instead of hardcoding a JSON string in your program, __modify your program__ so 
 * Use the requests library to retrieve the URL that contains the game data for the Hawks Pacers game that you previously hardcoded
 * The URL for the game data is:
     * [http://foureyes.github.io/csci-ua.0480-fall2016-001/homework/02/0021500750.json](http://foureyes.github.io/csci-ua.0480-fall2016-001/homework/02/0021500750.json)
-* [Read the documentation](https://github.com/mikeal/request) to see how to use the requests module (or see the [slides](http://foureyes.github.io/csci-ua.0480-fall2015-001/slides/03/node-npm-debug-git.html#/6))
+* [Read the documentation](https://github.com/mikeal/request) to see how to use the requests module (or see the [slides](http://foureyes.github.io/csci-ua.0480-fall2016-001/slides/03/node-npm-debug-git.html#/6))
 * Notice that the data is now only available within the callback that you pass in to calling <code>request</code> 
 * A __callback__ is a function passed as an argument to another function... the callback will be invoked / executed at a later time, when some event is triggered
 * In the case of <code>request</code>, it's the function that you pass in as the 2nd argument
