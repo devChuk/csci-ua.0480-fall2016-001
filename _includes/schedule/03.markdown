@@ -4,7 +4,6 @@
     * process.argv
     * JSON.parse
 * [Higher Order Functions](slides/03/higher-order-functions.html) 
-* [Higher Order Functions Continued](slides/03/higher-order-functions-continued.html) 
 * [Console.log](slides/03/questions-log.html)
 
 {% comment %}
