@@ -291,10 +291,8 @@ Content-Length: 163
 Content-Type: text/html; charset=UTF-8
 Set-Cookie: STATICSERVERID=s3; path=/
 Cache-control: private
-.
-.
-.
-(html, an image, whatevs yr payload is)
+
+<h2>Check out my fancy header!</h2>
 </code></pre>
 </section>
 

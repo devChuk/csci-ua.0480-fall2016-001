@@ -88,11 +88,11 @@ __Again, the server object has a `listen` method__ &rarr;
 </section>
 
 <section markdown="block">
-## Server Object Events
+## Socket Object Events
 
 __You can specify what your server will do based on specific events by using the socket object that's passed in to your anonymous function / callback for initial connection).__ 
 
-Some examples of events include:
+Some examples of socket events include:
 
 * `data` - generated when socket receives data
 * `close` - generated when socket is closed
@@ -151,12 +151,22 @@ The callback function for `sock.on` has a single parameter, `data`, which repres
 <section markdown="block">
 ## Write and End
 
-There are a couple of additional methods that you can call on a socket object:
+Of course, you can also send data to the client with socket's `write` and `end` methods
 
 1. __`write(data, encoding)`__ - sends data back to the connected client
     * you can send back binary data (a buffer)
     * or a string (which, by default uses utf-8 for encoding... otherwise specify by explicitly passing encoding)
 2. __`end`__ - let's the client know that it wants to stop the connection
+    * end also takes a single argument... which is just data to send just before closing  (like calling `write` then `end` consecutively)
+
+<br>
+Example usage demonstrating a few writes, and then an end:
+<pre><code data-trim contenteditable>
+sock.write('hello'); 
+sock.write('how are you?'); 
+sock.end('goodbye');  // lets client know connection will be closed 
+// (there's also sock.destroy to close the connection immediately)
+</code></pre>
 
 </section>
 
@@ -166,21 +176,15 @@ There are a couple of additional methods that you can call on a socket object:
 Here's a server that just sends back the data that it is sent to it by the client. To have it disconnect after it gets data, uncomment `sock.end()`.
 
 <pre><code data-trim contenteditable>
-var server = net.createServer(function(sock) {
-    console.log('Got connection from (addr, port):', sock.remoteAddress, sock.remotePort); 
+// within create server
+sock.on('data', function(binaryData) {
+    console.log('got data\n=====\n' + binaryData); 
+    sock.write(binaryData);
 
-    sock.on('data', function(binaryData) {
-        console.log('got data\n=====\n' + binaryData); 
-        sock.write(binaryData);
-        // sock.end();
-    });
-
-    sock.on('close', function(data) {
-        console.log('closed', sock.remoteAddress, sock.remotePort); 
-    });
-
+    // uncomment me if you want the connection to close
+    // immediately after we send back data
+    // sock.end();
 });
-
 </code></pre>
 </section>
 

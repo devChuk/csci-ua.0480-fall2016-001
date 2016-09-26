@@ -23,16 +23,13 @@ In-Class Programming Activity
 
 * [Creating an HTTP Request object, and a Poll](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSe2mqmcuD_bhT_XFqDpXTbdBUTIvfIOTtqepiQ_dTWhIICyaA/viewform)
 
-Due Saturday, 10/01, by 11pm
+Due Sunday, 10/02, by 11pm
 
-* Homework #3 (to be posted Friday)
-{% comment %}
 * [Homework #3](homework/03.html) 
-{% endcomment %}
 
 Due Thursday, 9/29, by 11pm
 
-* Quiz #02 - Objects and HTTP (Open in NYU Classes Tonight at 11pm)
+* Quiz #02 and #03 - Objects Basics and Objects and Prototypes
 
 <!--
 * [](assignments/.html)

@@ -7,500 +7,701 @@ title: CSCI-UA.0480 - Homework #3
 	<div class="panel-heading">Homework #3</div>
 	<div class="panel-body" markdown="block">
 
-# Node's HTTP Module, First Express Project, __Due Friday, Feb 26th, by 11PM__
+# Creating a Tiny Web Framework, __Due Sunday, Oct 2nd, by 11PM__
 
 ## Overview
 
 ### Description
 
-__stringy.js__ - Design objects
+You'll be writing a small web framework that allows a developer to write simple web applications. These web applications will be built off of and run from node's built-in TCP server.
 
-__testStringy.js__ - Test your work in <code>stringy.js</code>
+__You can only use the following two modules for this assignment__ &rarr;
 
-__demo.js__ - Create a demo site using node's http module.
+1. `net` - a module for creating TCP servers and clients
+2. `fs` - a module for file system related tasks, such as reading and writing files
 
-__test.js__ - Create a browser test page site using Express.
+__You can't use the `http` module... or install additional frameworks, such as `express`__
 
 ### Submission Process
 
-You will be given access to a private repository on GitHub. It will contain the following files: __stringy.js__, __testStringy.js__,  __demo.js__ and __test.js__.
+You will be given access to a private repository on GitHub. It will contain: 
+
+1. stub source files in the `src` directory
+2. default assets (images, css, etc.) in the `public` folder
+3. unit tests in `test`
+4. various configuration files, such as `package.json`, `.jshintrc`, etc.
 
 * __Push__ your changes to the homework repository on GitHub.
 * Commits later than the deadline will not be included in grading
 
-### (3 points) Make at Least 4 Commits
+### (4 points) Make at Least 4 Commits
 
 * Commit multiple times throughout your development process.
 * Make at least 3 separate commits - (for example, one option may be to make one commit per part in the homework).
 
-## Part 1 - Designing Objects 
 
-Design two objects - one that represents a mutable string and a palindrome (a word that is spelled the same backwards and forwards). Create constructors for both objects: <code>MutableString</code> for mutable strings and <code>Palindrome</code> for palindromes. Every <code>Palindrome</code> object should have a <code>MutableString</code> as its prototype.
+## Part 0 - `miniWeb` - Framework Overview
 
-Read the following for help on creating objects:
+Your framework, called `miniWeb`, will be built off of node's `net` module. It'll use the `net` module to create a TCP server that will allow connections from clients. The code that you'll write will handle an incoming http request from a client by parsing the http request, determining what do based on the request, and finally sending back an http response. You'll do this by minimally creating these objects (you can create more objects, but these 3 must be present):
 
-* [slides](http://foureyes.github.io/csci-ua.0480-spring2016-010/slides/06/prototypes.html#/22)
-* [mdn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
-* [chapter 6 in our book](http://eloquentjavascript.net/06_object.html)
+1. `Request` - an object that represents an http request
+2. `Response` - an object that represents an http response... and has the ability to actually send back a response to the client
+3. `App` - represents your web application; takes incoming requests and determines what to do based on path, method, etc. ... 
 
-### Object Specifications
+You can use the objects that you create to write simple web applications. Here are some example of how you might use your mini web framework. Again, __you are making the library / objects / module__ that makes the following possible:
 
-In __stringy.js__, create objects, functions and methods that meet the specifications below. You can add as many helper functions or methods as needed. Keep methods on the <code>.prototype</code> property of the appropriate constructor. 
+* Create a new web application
+    <pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+var app = new App();
+</code></pre>
+* Serve the contents of the file in `$PROJECT_ROOT/html/index.html` when a request for `/` is received
+    <pre><code data-trim contenteditable>app.get('/', function(req, res) {
+    res.sendFile('/html/index.html');
+});
+</code></pre>
+* Serve the string `"just some text"` as plain text (`text/plain`)by manually setting a `Content-Type` header, status code, and response body ...when a request for the path, `/just/text`, is received
+    <pre><code data-trim contenteditable>app.get('/just/text', function(req, res) {
+    // set header
+    res.setHeader('Content-Type', 'text/plain');
 
-__Remember to add your constructors to module.exports so that they're accessible when you perform a require.__ &rarr;
+    // return a 200 with body, "just some text"
+    res.send(200, 'just some text!');
+});
+</code></pre>
+* Send back a temporary redirect when a client requests the path, `/gone`
+    <pre><code data-trim contenteditable>app.get('/gone', function(req, res) {
 
-<pre><code data-trim contenteditable>module.exports.Palindrome = Palindrome;
-module.exports.MutableString = MutableString;
+    // set the status code and location of a redirect
+    res.redirect(301, '/just/text');
+});
+
+* Bind your application / web server to port 8080 on localhost
+    <pre><code data-trim contenteditable>app.listen(8080, '127.0.0.1');
 </code></pre>
 
-#### (15 points) MutableString
+<a name="request"></a>
 
-<br>
+### 1. `Request` Object
 
-<code>MutableString(s)</code> - constructor for <code>MutableString</code> objects
+The `Request` object simply represents an http request. It can take an http request as a string, parse out information about that request and expose that information as properties (such as `method`, `path`, and `headers`). It assumes HTTP/1.1
 
-A <code>MutableString</code> object is a string that can be modified and added to. __Empty strings are not supported__.
+#### Constructor
 
-* parameters:
-    * <code>s</code> {string} - string to base this mutable string off of
-* returns: 
-    * {MutableString} a new <code>MutableString</code> object
-* examples:
-    <pre><code data-trim contenteditable>var ms = new MutableString("hello");
+`Request(httpRequest)` - creates a new request object based on the string passed in.
+
+<pre><code data-trim contenteditable>var s = ''
+s += 'GET /foo.html HTTP/1.1\r\n';   // request line
+s += 'Host: localhost:8080\r\n';     // headers
+s += '\r\n\r\n';                     // empty line to mark the boundary between the header and body
+
+var req = new Request(s);
 </code></pre>
 
-<br>
+The string passed in will be parsed into the properties shown below.
 
-<code>concat(s)</code> - adds a string to this mutable string object
+#### Properties
 
-* parameters:
-    * <code>s</code> {string} - string to add
-* returns: 
+1. `path` - the path requested (for example, `/foo/bar/baz.html`)
+2. `method` - the http verb (for example, `GET` or `POST`)
+3. `headers` - an object that has header names as property names and header values as property values (for example, `{"Host": "localhost:8080", "User-Agent": "Mozilla/5.0 ..."}`)
+4. `body` - the body of the request (for example, `username=foo`)
+
+Note that our `Request` object will assume HTTP/1.1, so it's not required to keep version as a property (though you can if you want!).
+
+#### Methods
+
+1. `toString` - returns a string representation of the request object as a valid http request (essentially taking its properties and creating a request)
+
+You can add additional properties and methods as needed.
+
+#### Example Usage
+
+<pre><code data-trim contenteditable>var s = ''
+s += 'GET /foo.html HTTP/1.1\r\n';   // request line
+s += 'Host: localhost:8080\r\n'; // headers
+s += '\r\n\r\n';                     /
+
+var req = new Request(s);
+
+console.log(req.path);
+// --> /foo.html
+
+console.log(req.method);
+// --> GET
+
+console.log(req.headers);
+// --> {'Host': 'localhost:8080' }
+
+console.log(req.body);
+// --> ''
+// the body is empty in this case ^^^
+
+console.log(req.toString()); // or req + ''
+// -->
+// GET /foo.html HTTP/1.1\r\n
+// Host: localhost:8080
+// 
+// (notice the empty line above to denote header / body boundary)
+</code></pre>
+
+<a name="response"></a>
+
+### 2. `Response` Object
+
+The `Response` object represents an http response, and it allows direct manipulation of the underlying socket that represents the current connection for the http request/response. It can hold data about an http response, turn that data into a valid http response... and send that data back to the client (as well as close the connection between the server and the client).
+
+#### Constructor
+
+`Response(httpRequest)` - creates a new response object using the socket passed in as an argument to send data to the client.
+
+<pre><code data-trim contenteditable> // when a socket, named sock, receives data...
+var res = new Response(sock);
+</code></pre>
+
+The constructor will set the socket instance passed in as a property on the resulting `Response` object. The socket will then be used to send data back to the client.
+
+#### Properties
+
+1. `sock` - the socket associated with the http response
+2. `headers` - an object that has response header names as property names and response header values as property values (for example, `{"Content-Type": "text/html", "Cache-Control": "max-age=3600"}`)
+3. `body` - the body of the response (such as an html document or an image)
+4. `statusCode` - the status code of the http response as a `Number` (for example: `200`)
+
+#### Methods
+
+Most of the methods in the `Response` either act as a proxy for `socket` methods (that is, you can call `end` on `Response`, which internally just calls `end` on its `sock` property) or are convenience methods for combining other `Response` object methods. Consequently, it would be useful to check out the [slides on networking and sockets](../slides/06/sockets.html) before starting. Alternatively, you can also look over the [official node documentation on the `net` module](https://nodejs.org/api/net.html).
+
+1. `setHeader(name, value)` - adds a new header name and header value pair to this `Response` object's internal `headers` property
+    * `name` - the name of the response header
+    * `value` - the value of the response header
     * no return value
-* example: 
-    * <pre><code data-trim contenteditable>ms.concat(" world");
-</code></pre>
-
-<br>
-
-<code>validIndex(i)</code> - determines whether or not index, <code>i</code>, exists with this mutable string.
-
-A valid index is an index from 0 up to the length of the string - 1. __Negative values are also valid indexes.__ -1 is the last character and -length of the string is the first character.
-
-* parameters:
-    * <code>i</code> {number} - the index to check for
-* returns: 
-    * {boolean} 
-* example: 
-    <pre><code data-trim contenteditable>ms = new MutableString("hello");
-ms.validIndex(-5); // --> true (h)
-ms.validIndex(1); // --> true (e)
-ms.validIndex(-7); // --> false (does not exist)
-</code></pre>
-
-<br>
-
-<code>charAt(i)</code> - return the character at index, <code>i</code>.
-
-For positive indexes, 0 is the first character, length of string -1 is the last character. For negative indexes, -1 is the last character and -length of string is the first character. 
-
-If the index doesn't exist, <code>charAt</code> will return <code>undefined</code>
-
-* parameters:
-    * <code>i</code> {number} - the index of the character to retrieve
-* returns: 
-    * {string} - the character at the index specified
-* example: 
-    <pre><code data-trim contenteditable>ms = new MutableString("hello");
-ms.validIndex(-5); // --> h
-ms.validIndex(1); // --> e
-ms.validIndex(-7); // --> undefined
-</code></pre>
-
-<br>
-
-<code>set(i, ch ... i, ch)</code> - sets character at index, <code>i</code>, to string <code>ch</code>.
-
-<code>set can take an arbitrary number of arguments. Every even argument is an index, every odd is the character to set it to. </code>If an index doesn't exist, then the character is not set. If the last argument is only an index (that is, there is no corresponding character), ignore it. Negative indexes are allowed.
-
-* parameters:
-    * <code>i</code> {number} - the index where the new character will be set
-    * <code>ch</code> {string} - the value to set the character to (no validation is required to make sure that <code>ch</code> is only one character long).
-* returns: 
+    * example usage:
+        <pre><code data-trim contenteditable>res.setHeader('Content-Type', 'text/html'); </code></pre>
+2. `write(data)` - sends data to the client by calling the `write` method on this `Response` object's internal socket object (essentially a pass-through / proxy method to call the same method on `this.sock`)
+    * `data` - a `String` or `Buffer` (binary data) to be sent to the client
     * no return value
-* examples: 
-    <pre><code data-trim contenteditable>var ms = new MutableString("hello");
-ms.set(0, "c", -1, "s"); // --> ms will represent "cells"
-var ms = new MutableString("hello");
-ms.set(0, "c", -1); // --> ms will represent "cello" (-1 is ignored)
-var ms = new MutableString("hello");
-ms.set(-100, "c"); // --> ms will represent "hello" (-100 is ignored)
+    * example usage:
+        <pre><code data-trim contenteditable>res.write("&lt;h2&gt;A bit o' HTML&lt;/h2&gt;"); </code></pre>
+3. `end(s)` - sends data and ends the connection by callings the `end` method on this `Response` object's internal socket object (essentially a pass-through / proxy method to call the same method on `this.sock`)
+    * `s` - a `String` or `Buffer` (binary data) to be sent to the client
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>res.write("some stuff"); 
+res.end('some more stuff'); // closes connection!
+</code></pre>
+4. `send(statusCode, body)` - sets the statusCode and the body of this `Request` object, sends the valid http response to the client, and closes the connection. Essentially, it sets response properties, converts the `Response` to a string uses the `Response` object's `end` method to send the response and close the connection... all in one method call.
+    * `statusCode` - the status code of the http response 
+    * `body` - the body of the http response
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>res.setHeader('Content-Type', 'text/html');
+res.send(200, 'Hi there!');
+// sends back the following http response (newlines are \r\n):
+// HTTP/1.1 200 OK
+// Content-Type: text/html
+//
+// Hi there!
+// (then closes the connection)
+</code></pre>
+5. `writeHead(statusCode)` - sets the statusCode, and writes everything but the body, and leaves the connection open; this is simply a combination of setting the `statusCode` property and calling `this.write`
+    * `statusCode` - the status code of the http response 
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>res.setHeader('Content-Type', 'text/html');
+res.writeHead(200);
+// connection isn't closed yet! we can still write more
+res.write('More stuff');
+res.end('');
+// sends back the following http response (newlines are \r\n):
+// HTTP/1.1 200 OK
+// Content-Type: text/html
+//
+// More stuff
+</code></pre>
+6. `redirect(statusCode, url)` - redirects to the supplied `url` using the supplied `statusCode`... if `statusCode` is no given, then default to permanent redirect, `301` (for the redirect to work, the appropriate header must be set to the url provided!). Lastly, immediately sends response and closes connection.
+    * `statusCode` - (optional) the status code of the http response redirect
+    * `url` - the url to redirect to
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>res.redirect(302, 'http://another.site/here');
+// response is immediately sent and connection is closed
+// (essentially ... set statusCode and header, then this.write and this.end or just this.end)
+</code></pre>
+7. `sendFile(fileName)` - sends file specified by fileName (which will be searched for in `$PROJECT_ROOT/public`) to client by specifying appropriate content type, writing the data from the file... and immediately closing the connection after the data is sent
+    * `fileName` - the name of the file to be sent
+    * no return value
+    * implementation details
+        * use the `fs` module and the [`readFile` function](https://nodejs.org/api/fs.html#fs_fs_readfile_file_options_callback) to do this instead of using `readline` like we did previously (this is because we may be handling binary data)
+        * `fileName` is searched for in `./public`
+        * consequently, you can prefix the `fileName` with `__dirname + '/../public'` to get an absolute path to the file
+        * you'll have to set the content type based on the file (using the file's extension is adequate for this assignment)
+        * minimally, support the following extensions and file types:
+            1. `jpeg` or `jpg`: `image/jpeg`
+            2. `png`: `image/png`
+            3. `gif`: `image/gif`
+            4. `html`: `text/html`
+            5. `css`: `text/css`
+            6. `txt`: `text/plain`
+        * if the file is an image type, then don't specify an encoding to `readFile`
+        * if the file is text, then just assume `utf8`
+        * you'll need a callback function ... which means that if you want to access the correct `this` or have arguments, you'll have to use bind (see the hints on this in later instructions)
+        * in your callback 
+            * send back a 500 error if something went wrong
+            * otherwise... __do this in the following order__:
+                1. set the content type by setting the appropriate header
+                2. write the head first using `this.writeHead(200);`
+                3. __then send the data from the file__... `this.write(data);`
+                4. finally, end the connection ... `this.end()`
+            * the above ensures that the binary data is set as binary data rather than being converted to a string first 
+    * example usage:
+        <pre><code data-trim contenteditable>// assuming there's a directory called public/css in your project's root...
+res.sendFile('/css/base.css');
+//
+// note that the url does not have to match the name/path of the file being read!
+</code></pre>
+
+8. `toString()` - returns a string representation of this response object that can serve as a valid http response
+    * no arguments
+    * returns a string, a valid http response
+    * example usage:
+        <pre><code data-trim contenteditable>res.setHeader('Content-Type': 'text/plain');
+res.statusCode = 404;
+res.body = "Uh oh! No page here!"
+console.log(res.toString());
+// HTTP/1.1 404 Not Found
+// Content-Type: 'text/plain'
+//
+// Uh oh! No page here!
+</code></pre>
+
+<a name="app"></a>
+
+### 3. `App` Object
+
+The app object represents a web application. It's responsible for:
+
+1. accepting incoming http requests
+2. holding "routes" or url/path combinations (right now our framework will only support GETs)
+3. determining what to do based on the incoming request
+4. sending back a response
+
+Number 2 and 3 are determined by the user that is writing a web application with this framework. That is, they specify what routes are present ... and what to do when that route is matched by writing code. For example, a hello world application could be written as follows (this is what someone using your web framework would write):
+
+<pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+var app = new App();
+
+app.get('/hello', function(req, res) {
+    res.send(200, 'HELLO WORLD');
+});
+
+app.listen(8080, '127.0.0.1');
+</code></pre>
+
+#### Constructor
+
+`App()` - creates a new App object and sets the connection callback function to `this.handleConnection` which you'll implement below ... additionally, initializes its routes to empty object (see Properties section). Example usage of constructor:
+
+<pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+var app = new App();
+</code></pre>
+
+Note that when you import the module, you can set a variable directly to it that serves as a constructor. This is done by `module.exports = App;` within the module itself.
+
+The `App` object itself represents both a web server and the web application running on that server. Consequently, it'll hold an instance of a `Server` object from node's `net` module. See [the slides](../slides/06/sockets.html#/2) or the [node documentation](https://nodejs.org/api/net.html#net_class_net_server).
+
+When you create a server using `net.createServer`, it expects a callback function to be specified when a client connects to the server. That callback will be a method that you define, `handleConnection`. However, to have a method be passed as a callback __and__ retain its original access to the object that it belongs to, you'll have to use bind (otherwise, `this` will refer to the global object). In the constructor, it'll look something like this:
+
+<pre><code data-trim contenteditable>// within your constructor
+this.server = net.createServer(this.handleConnection.bind(this));
+
+// the above ensures that handleConnection will have a this that refers to the
+// object created by the constructor without having to call handleConnection
+// as a method on the object
+</code></pre>
+
+
+#### Properties
+
+1. `server` - an instance of the `net` module's `Server` object
+2. `routes` - an object that maps paths to callback functions
+
+#### Methods
+
+1. `get(path, cb)` - adds `path` as a property name in `routes`... the value of which is the callback function, `cb` (again, assumes support only for GET requests)
+    * `path` - the path to respond to (that is, a valid path for the web application)
+    * `callback` - the function called when `path` is requested (essentially... what to do when a specific path is asked for)
+        * the callback function will take two arguments
+        * a `Request` object
+        * a `Response` object
+        * `cb(req, res) ...`
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>app.get('/hello', function(req, res) {
+    res.send(200, 'HELLO WORLD');
+});
+</code></pre>
+2. `listen(port, host)` - binds the server to the given `port` and `host` ("listens" on `host`:`port`)
+    * `port` - the port number to bind to
+    * `host` - the host that the server will be running on (for example, '127.0.0.1')
+    * no return value
+    * example usage:
+        <pre><code data-trim contenteditable>app.listen(8080, '127.0.0.1');
+</code></pre>
+3. `handleConnection(sock)` - the function called when a client connects to the server... this will simply set the callback for the socket's `on` method: `sock.on('data', ...)` to the function below, `handleRequestData`
+    * `sock` - the socket representing the connection to the client (this will be supplied by the caller because this will be used as a callback function for `net.createServer`)
+    * no return value
+    * example usage (as a callback function for `net.createServer`):
+    <pre><code data-trim contenteditable>this.server = net.createServer(this.handleConnection.bind(this));</code></pre>
+4. `handleRequestData(sock, binaryData)` - the function called when the socket receives data from the client (our framework will not have a timeout, it'll just assume that once it receives data, that the data received is the entire request)...  this is where most of the logic of our framework will go; it processes a request and sends back a response!
+    * `sock` - the socket representing the connection to the client
+    * `binaryData` - the data sent by the client
+    * no return value
+    * this callback is essentially responsible for processing a request and sending back a response... it will:
+        1. convert the incoming data to a string 
+        2. create a new `Request` object based on that string
+        3. create a new `Response` 
+        4. sets a callback for when the connection is closed (the callback will be to log the response using `logResponse` below)
+        5. determine if the request is valid by checking for a `Host` header (it'll return a `400` if the request isn't valid)
+        6. look up the function to call in `this.routes` by using the `path` property from the incoming `Request` object ... __make sure that urls with and without a trailing slash (/) map to the same function__
+        7. call that function, passing in the `Request` and `Response` objects created above as arguments
+        8. if the `path` doesn't exist in `this.routes`, then send back a `404`
+    * hints:
+        * note that the callback for `sock.on(data, ...)` typically only takes a single argument
+        * however, we want access to a socket object so that we can create our `Response` object using that socket
+        * so... to fix the arguments, when we set `handleRequestData` as a callback in `handleConnection`, we'll have to use bind again:
+    * example usage:
+            <pre><code data-trim contenteditable>// within handleConnection...
+sock.on('data', this.handleRequestData.bind(this, sock));
+// once again, sets this... and also sets sock so that the returned function
+// only takes a single argument, binaryData
+    * example usage (as a callback function for `sock.on('data', ...)`):
+    <pre><code data-trim contenteditable> sock.on('data', this.handleRequestData.bind(this, sock)); </code></pre>
+5. `logResponse(req, res)` - logs out the http request method and path... as well as the response status code and short message
+    * example usage:
+    * `req` - the incoming http request
+    * `res` - the resulting http response
+    * no return value
+    * example usage (as a callback function for `sock.on('close', ...)`:
+        <pre><code data-trim contenteditable>// when a request / response cycle is finished, then log out some info
+// note that we'll need to bind req and res assuming that they're available (which they should be...
+// ...since this goes in handleRequestData, which creates both objects)
+sock.on('close', this.logResponse.bind(this, req, res));
+</code></pre> 
+
+## Part 1 - Warm Up
+
+In this part, you'll get familiarize yourself with the `net` module by creating a simple server that responds to http requests. You'll make use of events and callback functions to handle a new connection, data arriving on a socket and closing a connection. 
+
+Start by opening`src/warmUp.js`. Create a simple server that responds to any request with a valid http response that says `hello world` (as html, with surrounding markup)... the response will have:
+
+1. a status code of `200`
+2. a `Content-Type` header of `text/html`
+3. a body that contains the following markup:
+    <pre><code data-trim contenteditable> &lt;em&gt;Hello&lt;/em&gt; &lt;strong&gt;World&lt;/strong&gt; </code></pre>
+
+Use the following process to do this:
+
+1. Check out the [slides on the `net` module for some prep](../slides/06/sockets.html#/10), paying close attention to the [the last slide](../slides/06/sockets.html#/10).
+2. Build off of the last example by modifying the echo server code to...
+3. Write back a valid http request (you can write a string directly instead of using a `Buffer`):
+    * [see the slides on http](../slides/05/web.html#/18)
+    * [and an example response](../slides/05/web.html#/22)
+4. Close the connection after a `write` with `sock.end`.
+5. Run `warmup.js` (note that your terminal will look like its "frozen", but it's really just waiting for requests).
+6. Use `curl -i localhost:8080` to test your server.
+7. Then point your browser at `http://localhost:8080`.
+8. Make sure that the html renders (it should have italicized and bold text).
+9. To shutdown your server, CTRL + c in your terminal...
+10. Here's an example of what it might look like: <br> ![pic alt](../resources/img/hw03-01-warmUp.gif)
+
+Troubleshooting
+
+1. If your browser doesn't show anything, make sure you're calling `sock.end`.
+2. If html is showing up as text (that is, you see the tags / mark-up in the page itself), double check that you've set the content type correctly.
+
+## Part 2 - Even Warmer - a Request and Response Object
+
+In this part, you'll build off of your experience from part 1 by creating a `Request` and `Response` object. You'll use these objects and some simple routing to create a page that has an image and an external css file.
+
+### Start by creating a `Request` object
+
+In this section, you'll fully implement a `Request` object. You'll then conditionally serve up different content based on the `path` specified by the request.
+
+1. In `evenWarmer.js`, copy over your code to create a simple server, and make modifications to it so that it parses the request into a request object.
+    * The request object should follow the [specifications for the `Request` object above](#request).
+    * Implement all of the properties specified, and the single `toString` method.
+2. In your previous code, `sock.on('data', someCallback)` calls `someCallback` when the socket receives data... and that callback takes a single argument, the binary data that the client sent. Pass that data to your `Request` constructor to create a `Request` object
+3. Once you have the http request encapsulated by a `Request` object... use a simple conditional to:
+    1. Check if the `Request` object's path is `/` ... if so, display your hello world page.
+    2. Check if the `Request` object's path is `/foo.css` ... if so, send back a document with content type `text/css` containing `h2 {color: red;}`.
+    3. If it's neither `/` or `/foo.css`, then send back a `404`, content type 'text/plain', and a body of `uh oh... 404 page not found!`.
+4. Make sure to close the connection once you've written your http response by using `sock.end()`
+3. Run your server and check all 3 of these paths using both curl and your browser.
+    * You should see a `200` for `/` and `/foo.css`, along with the appropriate `Content-Type` header, and the body.
+    * You should see a `404` for everything else.
+4. Finally, to see how everything works together, modify the html that `/` sends back:
+    * Above hello world, include your style sheet using a `link` tag in your response for `/`...
+    * Also above hello world, but below your link tag, add an `h2` tag that contains the text, 'this is a red header!'
+    * When you point your browser at `localhost:8080', you should now see a red header above your hello world text.
+5. It should look something like <br> ![pic alt](../resources/img/hw03-02-evenWarmer-01-request.gif)
+
+### And now, for our `Response` object
+
+Instead of issuing `write` calls to the `socket` object, you'll wrap the `socket` up in a `Response` object and use that to send data to the client. Notice that all of the `methods` called on socket are being being called by equivalent methods on your `Response` object.
+
+1. Create a `Response` object based on the [specifications for the `Response` object above](#response).
+    * You can skip `sendFile` for now
+    * It may be useful to keep an object that maps status codes to short descriptions ({"200": "OK", "404": "Not Found"})
+2. To send back a response, remove your calls to `sock.write` and use a new `Response` object instead.
+3. Again, within the callback that you pass to `sock.on('data', someCallback)` and after you create a `Request` object, create a `Response` object....
+    * Pass in the `sock` object that's in scope (that is the socket object that `on` was called on)
+    * For example:
+        <pre><code data-trim contenteditable> sock.on('data', function(binaryData) {
+  var res = new Response(sock);
+  // ...
+}
+4. Replace every call to `sock.write` with:
+    * A call to your `Response` object's `setHeader` method to set the content type: `res.setHeader(...)`
+    * A call to your `Response` object's `send` method to send the response back with the appropriate body: `res.send(200, ...);`
+    * A call to your `Response` object's `end` method to close the connection
+5. Everything should still work as it did previously, so try using curl and your browser to request `/`, `/foo.css`, and any other page to trigger a 404
+
+<br>
+
+### Sending back files
+
+<br>
+
+#### Background 
+
+In the previous part, we purposely skipped implementing `sendFile`. Send file will take a `fileName` and send back an http response with the appropriate status code (`200`), `Content-Type` header (based on file type being sent back) and body. 
+
+It's a little bit tricky because of:
+
+1. dealing with callbacks
+2. dealing with `this`
+
+For this part, we'll use the `fs` module and `readFile`. See [the official docs for more detailed info](https://nodejs.org/api/fs.html#fs_fs_readfile_file_options_callback). Consequently, we'll have to go over:
+
+1. Using `fs.readFile`
+2. Using a method as a callback for `fs.readFile`
+3. Passing parameters to a callback
+4. The exact implementation of `sendFile`, and the callback function we end up passing to it
+
+<br>
+
+#### Using `fs.readFile`
+
+We're using `fs.readFile` so that we can read binary data. It'll read the entire contents of a file into memory. It works like this:
+
+<pre><code data-trim contenteditable>var fs = require('fs');
+fs.readFile('/tmp/foo.txt', {encoding:'utf8'}, function(err, data) {
+    console.log(data);
+}); 
+</code></pre>
+
+* Note that `readFile`'s second argument is a callback function.
+    * The callback function is executed when an error occurs or the file. 
+    * The callback receives an error object (which contains the error if an error occurred) and the data read from the file.
+    * If encoding was specified in the original call to `readFile`, then the data that's passed to the callback is a string
+    * If there is no encoding, then the raw buffer is passed as the data to the callback
+    * This is useful for reading binary data, like images:
+        <pre><code data-trim contenteditable>// leave encoding out of 2nd argument
+fs.readFile('/tmp/myImage.gif', {}, function(err, data) {
+    // we have the raw buffer!
+    console.log(data);
+}); 
+</code></pre>
+* Of course, the callback doesn't have to be an anonymous function, it can be a named function as well:
+    <pre><code data-trim contenteditable>// in this case, we're passing in handleRead as the callback rather
+// than using an anonymous function
+fs.readFile('/tmp/myImage.gif', {}, handlRead); 
+function handleRead(err, data) {
+    console.log(data);
+}
 </code></pre>
 
 <br>
 
-<code>toString()</code> - gives back a "_normal_" string representation of the mutable string.
+#### Using a method as a callback
 
-* parameters:
-    * none
-* returns:
-    * {string} a string that represents the mutable string
-* examples: 
-    <pre><code data-trim contenteditable>var ms = new MutableString("hello");
-console.log(ms.toString()) // --> hello
+It turns out that the callback to `readFile` (or any function that requires a callback) can be a method plucked from an object. However, if the callback needs to acces the `this` property of the original object, `this` has to bound explicitly. Let's see the problem:
+
+* Imagine you have the following object that represents a redacted file...
+* It takes a `fileName` and a `word` as arguments to the constructor
+* Calling `printFile` will print out the contents of the file with all occurrences of `word` redacted (in this case, it's replaced with the string, `SECRET`)
+* Here's a possible implementation:
+    <pre><code data-trim contenteditable>var fs = require('fs'); <br>    
+function RedactedFile(fileName, word) {
+    this.fileName = fileName;
+    this.word = word;
+}<br>
+RedactedFile.prototype.printFile = function() {
+   fs.readFile(this.fileName, this.handleRead); 
+};<br>
+RedactedFile.prototype.handleRead = function(err, data) {
+    // convert to string
+    var s = data + '';<br>
+    // let's try to replace every occurrence of this.word!<br>
+    var replacementPattern = new RegExp(this.word, "g")
+    s = s.replace(replacementPattern, 'SECRET');<br>
+    // print out the result
+    console.log(s);
+};
+</code></pre>
+* Now let's try running this on a file `/tmp/sensitiveData.txt`, which contains the following lines:
+    <pre><code data-trim contenteditable>I went to the pizza place next door...
+and I ordered 1,000 slices of pineapple pizza.
+</code></pre>
+* Here's the code that we write to print out a redacted version of `/tmp/sensitiveData.txt`:
+    <pre><code data-trim contenteditable>var redacted = new RedactedFile('/tmp/sensitiveData.txt', 'pizza');
+redacted.printFile();
+</code></pre>
+* However, when we run it, we don't get the result we expected!
+* It just prints out the word SECRET __between every character__!?
+* How did this happen?
+    * `this.handleRead` was passed in to `fs.readFile` as a callback...
+    * but when the callback actually gets executed, `this` within the callback function isn't actually bound to the original object (because when the callback is invoked, it's not invoked as a method, but as a regular function call!)
+    * consequently `this.word` is not what we expect (it's `undefined` rather than `pizza`)
+* Consequently, we have to explicitly set the `this` value of the callback
+* There are a few ways to do this... we'll use the way that we learned in class, which is to use `bind`
+* Replace `this.handleRead` with  `this.handleRead.bind(this)` 
+    <pre><code data-trim contenteditable>// fs.readFile(this.fileName, this.handleRead);
+fs.readFile(this.fileName, this.handleRead.bind(this));`
+</code></pre>
+* What does that do? 
+    * Remember that bind gives back function.
+    * With a specified `this` (as given by the caller).
+    * So, it explicitly sets the `this` of the `handleRead` function to the current `this`, which refers to the `RedactedFile` object
+* [Here's an SO article to read more about it!](http://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-context-inside-a-callback/20279485#20279485) This shows a few ways to use a method as a callback by  _somehow_ correctly setting `this`.
+
+<br>
+
+#### Passing arguments to a callback
+
+Imagine if our `handleRead` function took an extra argument, a disclaimer.
+
+<pre><code data-trim contenteditable>RedactedFile.prototype.handleRead = function(disclaimer, err, data) {
+    var s = data + '';
+    var replacementPattern = new RegExp(this.word, "g")
+    s = s.replace(replacementPattern, 'SECRET');
+    console.log(disclaimer);
+    console.log(s);
+};
+</code></pre>
+
+Now... we have an issue, because the callback that should be supplied to `readFile` should only have `err` and `data` as its two arguments (but now our callback has 3!). How can we transform our callback so that it only takes 2 arguments like it did before? Once again, we'll rely on `bind`!
+
+1. `bind` allows us to "fix" a parameter or parameters of a function to specific values 
+    * (so we can create a new function with less parameters)
+    * for example: `var parseInt100 = parseInt.bind(null, "100")` ... 
+    * binds "100" to the first argument of `parseInt`, and returns a function that takes only one argument, the `radix`
+    * `parseInt100(2)` ... gives us 4 (because the only argument is the radix)
+2. Consequently, the fix for a callback that requires a parameter is to use bind to fix the initial parameters:
+    <pre><code data-trim contenteditable>RedactedFile.prototype.printFile = function() {
+    var disclaimer = 'This file has been redacted';
+
+    // bind disclaimer as the first parameter
+    fs.readFile(this.fileName, this.handleRead.bind(this, disclaimer)); 
+};
 </code></pre>
 
 <br>
 
-<code>toCharArray()</code> - gives back an array of string representation of the mutable string. Each element represents a single character in the mutalbe string.
+#### Implementing `sendFile`
 
-* parameters:
-    * none
-* returns:
-    * {Array} an Array of strings that represents the mutable string
-* examples: 
-    <pre><code data-trim contenteditable>var ms = new MutableString("cat");
-console.log(ms.toCharArray()) // --> ['c', 'a', 't']
+Now that we know how to use `readFile` and its callback within the context of an object, we'll turn our attention back to  `sendFile`. `sendFile` will read the contents of the `fileName` supplied to it, and it'll read the file relative to the `public` folder in the repository. Here's how you'll implement `sendFile`:
+
+
+1. Determine the absolute path to the file that's passed in as its argument by using `\_\_dirname` to find the directory of the module... and go up one so that public can be accessed.
+    <pre><code data-trim contenteditable>var publicRoot = __dirname + '/../public';
+var filePath =  publicRoot + fileName;
+</code></pre>
+2. Use the extension of the file to determine:
+    * if it's an image
+    * ... and to figure out what the correct `Content-Type` should be
+        1. `jpeg` or `jpg`: `image/jpeg`
+        2. `png`: `image/png`
+        3. `gif`: `image/gif`
+        4. `html`: `text/html`
+        5. `css`: `text/css`
+        6. `txt`: `text/plain`
+3. Call `readFile` with:
+    * a callback function that's a method on the `Response` object, a standalone function or an anonymous function.
+    * a value for encoding if the file being read is text-based (`{"encoding": "utf8"}`)
+4. In any case, the callback should take a `contentType`, `err` and `data` as its arguments... but it should be bound so that `contentType` is set appropriately, and so that `this` can be used to access `Response` object methods
+5. Call the appropriate `Response` object methods from within your callback to send back a response; note that the methods must be called __in this order__ &rarr;
+    1. set the `Content-Type` header
+    2. send everything but the body by calling `this.writeHead(200)`
+    3. write the data that was passed in as an argument to the callback to the socket (that is, write the data from the file)
+    4. close the connection
+    5. why write the headers and the body separately? This avoids any issues where the binary data of the image is inadvertently converted to a string.
+
+<br>
+
+#### Testing `sendFile`
+
+Now try adding a path to display:
+
+1. an html file that's located in your `$PROJECT_ROOT/public/html/` folder called `test.html`
+2. an image that's in located in your `$PROJECT_ROOT/public/img/` folder called `bmo1.gif`
+
+To do this:
+
+1. Add another condition for the paths `/test` and `/img/bmo1.gif`
+2. Use `sendFile` to send the appropriate file relative to `public`
+3. Remember that the path of the request doesn't have to match the path of the actual file being read
+4. Here's what it'll all look like together: <br> ![pic alt](../resources/img/hw03-03-evenWarmer-response.gif)
+
+## Part 3 - Converting to App Object
+
+Now you'll start writing your module, `miniWeb.js`. 
+
+1. Copy everything from `evenWarmer.js` to `miniWeb.js`
+2. Use the [specifications for the `App` object above](#app)
+3. Go through your code and check for places that may cause 500 errors (for example, if the `err` object exists when handling a file read, send back a 500 as a response... or if the framework user tries to send a file that has an extension that is not recognized, that should also be a 500)
+4. Export your `App` constructor: `module.exports = App`
+
+## Part 4 - Using your Module!
+
+Create a small site using your framework. In a file called `fansite.js` create a fan site for a fictional character from a book, movie or television series. It must respond to the following URLs (note that the URLs should still work if an extra trailing slash is added... `/about` and `/about/` should go to the same place):
+
+* `/` - a homepage that has an image and that uses a stylesheet
+* `/about` - a page that has an `h1` header somewhere in the markup
+* `/css/base.css` - the css that the homepage (and other pages optionally) should use
+* `/rando` - a page that displays a random image; this must be an html page with no client side JavaScript... the server will generate a random image url to be displayed
+* `/image1.jpg` 
+* `/image2.png`
+* `/image3.gif`
+* `/home` - should issue a permanent redirect (301) to `/`
+
+To create your site:
+
+1. Bring in your module and create a new `App` object: 
+    <pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+var app = new App();
+2. Add routes as necessary... 
+    <pre><code data-trim contenteditable>app.get('/', function(req, res) {
+    // ... do stuff here
+});
+3. Use any mechanism you'd like to send back a response (you can use `sendFile` and read files from `public`, you can just use `send` to send back strings of html, etc.) ... obviously, for some, like images, you'll have to use specific methods
+4. Bind to a port and host with `listen`:
+    <pre><code data-trim contenteditable>app.listen(8080, '127.0.0.1');
 </code></pre>
 
 
-#### (10 points) Palindrome
+Check your work
 
-<code>Palindrome</code> objects will support all of the same methods that <code>MutableString</code> does (hey - this sounds like _inheritance_). However, there are three major differences:
+1. use curl to check status codes and headers... 
+2. check the pages in your browser, make sure everything renders fine with/without leading and trailing slashes
+3. make sure your redirect actually causes your browser to redirect the right way (that is, it should coerce the browser into making another request)
+4. remember to check 404's
+5. make sure that your application is logging request/response info to the console
 
-* the constructor will throw an exception if the string passed in is not the same forward and backwards (not symmetric)
-    * <code>var p = new Palindrome("nope!")</code> - throw an exception
-* <code>set</code> will throw an exception if setting all of the indexes to the characters breaks the symmetry of the palindrome (and no characters will be set)
-    <pre><code data-trim contenteditable>var p = new Palindrome("racecar");
-p.set(-1, "t"); // throws an exception
-</code></pre>    
-* <code>concat</code> will throw an exception if adding the string breaks the symmetry of the palindrome (and nothing will be added)
-    <pre><code data-trim contenteditable>var p = new Palindrome("racecar");
-p.concat("s"); // throws an exception
-</code></pre>    
+Here's an example of how it might all work:
 
-#### (5 points) Testing Your Module
+![pic alt](../resources/img/hw03-04-fansite.gif)
 
-Import the module that you created... 
-
-<pre><code data-trim contenteditable>var stringy = require('./stringy.js');
-var MutableString = stringy.MutableString;
-var Palindrome = stringy.Palindrome;
-</code></pre>
-
-And run these tests:
-
-<pre><code data-trim contenteditable>
-console.log("testing MutableString constructor\n-----");
-var s = new MutableString("hello");
-console.log(s.toString());
-
-console.log("\ntesting charAt\n-----");
-console.log(s.charAt(4));
-console.log(s.charAt(-1));
-console.log(s.charAt(-5));
-console.log(s.charAt(-7));
-console.log(s.charAt(7));
-
-console.log("\ntesting toCharArray\n-----");
-console.log(s.toCharArray());
-
-console.log("\ntesting concat\n-----");
-s.concat(" world!");
-console.log(s.toString());
-
-console.log("\ntesting set\n-----");
-s.set(0, 'c');
-console.log(s.toString());
-s.set(-1, '?');
-console.log(s.toString());
-s.set(-100, 'X');
-console.log(s.toString());
-s.set(-1, 'd', -2, 'e', -3, 'k');
-console.log(s.toString());
-s.set(0, 'b', -100, 'X', -101, 'Y', 4, 's', 5 );
-console.log(s.toString());
-
-
-console.log("\ntesting Palindrome constructor\n-----");
-var p1 = new Palindrome('minim');
-console.log(p1.toString());
-
-console.log("\ntesting charAt\n-----");
-console.log(p1.charAt(0));
-console.log(p1.charAt(-1));
-
-console.log("\ntesting set\n-----");
-p1.set(1, 'a', 2, 'd', 3, 'a');
-console.log(p1.toString());
-
-console.log("\ntesting set with exception\n-----");
-try {
-  p1.set(0, 1);
-} catch(e) {
-  console.log('exception caught: ' + e.message);
-}
-
-console.log("\ntesting toCharArray\n-----");
-console.log(p1.toCharArray());
-
-console.log("\ntesting concat\n-----");
-p1.concat('imadam');
-console.log(p1.toString());
-
-console.log("\ntesting concat exception:\n-----");
-try {
-  p1.concat('!');
-} catch(e) {
-  console.log('exception caught: ' + e.message);
-}
-
-console.log("\ntesting constructor exception\n-----");
-try {
-  var p2 = new Palindrome('car');
-} catch(e) {
-  console.log('Exception caught: ' + e.message);
-}
-</code></pre>
-
-The resulting output should be:
-
-<pre><code data-trim contenteditable>
-testing MutableString constructor
------
-hello
-
-testing charAt
------
-o
-o
-h
-undefined
-undefined
-
-testing toCharArray
------
-[ 'h', 'e', 'l', 'l', 'o' ]
-
-testing concat
------
-hello world!
-
-testing set
------
-cello world!
-cello world?
-cello world?
-cello worked
-bells worked
-
-testing Palindrome constructor
------
-minim
-
-testing charAt
------
-m
-m
-
-testing set
------
-madam
-
-testing set with exception
------
-exception caught: Result from set is not symmetric
-
-testing toCharArray
------
-[ 'm', 'a', 'd', 'a', 'm' ]
-
-testing concat
------
-madamimadam
-
-testing concat exception:
------
-exception caught: Result from concatentation is not symmetric
-
-testing constructor exception
------
-Exception caught: Palindrome not symmetric
-</code></pre>
-
-## Part 2 - Demo Site
-
-Create a small demo site using node's <code>http</code> module. Use the <code>fs</code> module to serve static files.
-
-Note that this part of the assignment is based off of slides from __class 7__ and Chapter 2 - __Getting Started With Node__ from {{ site.book_web }}.
-
-### Web Server and Routing
-
-* (12 points) The site should respond to the following urls with the specified status code, content-type and body:
-	* <code>/</code> - __homepage__
-		* <code>200</code>
-		* <code>text/html</code>
-		* body from <code>./public/index.html</code>
-	* <code>/home</code> - __homepage__
-		* <code>200</code>
-		* <code>text/html</code>
-		* body from <code>./public/index.html</code>
-	* <code>/about</code> - __about page__
-		* <code>200</code>
-		* <code>text/html</code>
-		* body from <code>./public/about.html</code>
-	* <code>/me</code>  - __about page (redirect)__
-		* <code>301</code>
-		* this should redirect to <code>/about</code>
-		* do this by setting an appropriate response header 
-		* __(you'll need to do some research to find out which header you should set)__
-			* __TRY USING  <code>curl</code> or Chrome's web developer tools while making a request to google.com (no www)__
-			* what status code does it give back?
-			* what body does it give back (if any)?
-			* does it include any additional headers? (hint: __it does, and it's important!__)
-			* use the above information to craft an appropriate response
-			* __don't just send back the same template as about__ ... instead, just send back the response code and appropriate header
-	* <code>/img/image1.png</code> - __image1__
-		* <code>200</code>
-		* <code>image/png</code>
-		* body from <code>./public/img/image1.png</code>
-	* <code>/img/image2.png</code> - __image2__
-		* <code>200</code>
-		* <code>image/png</code>
-		* body from <code>./public/img/image2.png</code>
-	* <code>/css/base.css</code> - __stylesheet__
-		* <code>200</code> 
-		* this is a stylesheet, so set your content-type appropriately
-		* __(do some research to find the right content-type)__
-		* contents of file should come from <code>./public/css/base.css</code>
-	* <code>[any other url]</code> - __page not found__
-		* <code>404</code> 
-		* <code>text/html</code> 
-		* body from <code>/public/404.html</code>
-	* <code>[server error]</code>
-		* if a static file can't be loaded...
-		* respond with a 500
-* (2 points) __Every url should respond to any casing__ (for example both <code>ABOUT</code> and <code>about</code> should work)
-* (2 points) __Every url should work with or without a trailing slash__ (for example both <code>about</code> and <code>about/</code> should work)
-
-### (3 points)Static File Content
-
-* The contents of the static files are as follows:
-	* __index.html__ 
-		* a heading (an h1) that says: <code>Home</code>
-		* a paragraph with any text (whatever text you like)
-		* an image named image1.png (whatever image you like)
-	* __about.html__ 
-		* a heading (an h1) that says: <code>About</code>
-		* a paragraph with any text (whatever text you like)
-		* an image named image2.png (whatever image you like)
-	* both pages should use the __base.css__ stylesheet:
-		* sets the body font to 1.5em
-		* center aligns everything
-		* sets the font to sans-serif
-		* sets the background to light gray (#aaaaaa)
-* See some example screen shots below:
-
-![screen 1](../resources/img/hw3-demo-home.png)
-
-![screen 2](../resources/img//hw3-demo-about.png)
-
-### (3 points) Logging
-
-* __log every request to the console__
-* a log line should consist of:
-	* the date and time of the request (do research on the __Date__ object and its __toLocaleString__ method)
-	* the request method (GET, POST, etc.)
-	* the url requested (for example, <code>/about</code>)
-	* the status code of the response (for example, <code>200</code>)
-* __Here's an example of the format to follow:__ &rarr;
-
-<pre><code data-trim contenteditable>Tue Sep 28 2015 23:02:37 GMT-0400 (EDT) GET / 200 OK
-Tue Sep 28 2015 23:02:37 GMT-0400 (EDT) GET /img/image1.png 200 OK
-Tue Sep 28 2015 23:02:43 GMT-0400 (EDT) GET /doesnotexist 404 Not Found
-Tue Sep 28 2015 23:03:10 GMT-0400 (EDT) GET /me 301 Moved Permanently
-Tue Sep 28 2015 23:03:10 GMT-0400 (EDT) GET /about 200 OK
-Tue Sep 28 2015 23:03:10 GMT-0400 (EDT) GET /img/image2.png 200 OK
-</code></pre>
-
-### (4 points) Testing Your Site
-
-* Create a file called __output.txt__
-* __Use curl -I to run the following requests__ ... copy and paste the output (it should only be the headers) to your output.txt file 
-	* <code>/</code>
-	* <code>/about</code>
-	* <code>/ABOUT</code>
-	* <code>/about/</code>
-	* <code>/me</code>
-	* <code>/css/base.css</code>
-	* <code>/img/image1.png</code>
-
-
-## Part 3 - Browser Test Page
-
-Create a small site using Express. The site will only have two pages... the index page which will show all of the headers that a browser requested... and an about page.
-
-The index page will display all of the headers that the browser sent to the server.
-
-Note that this part of the assignment is based off of slides from __class 8__ and Chapter 3 - __Saving Time With Express__ from {{ site.book_web }}.
-
-### (5 points) Project Setup Requirements
-
-* Create a <code>package.json</code> by running <code>npm init</code> in your project directory. You can use the default answers to all of the questions
-* Install your web framework, <code>express</code> and your templating library, <code>express3-handlebars</code> using the <code>--save</code> flag to save your dependencies
-* For example: <code>npm install --save express</code> 
-* Make sure you do this in your project's root directory
-* You should see a <code>node_modules</code> directory
-* Ignore it using .gitignore
-
-### (4 points) Web Server and Routing
-
-The site should respond to the following urls with the specified views (the path is relative to your project's root directory):
-
-* <code>/</code> - __browser test page / index__
-	* <code>views/index.handlebars</code>
-* <code>/about</code> - __about__
-	* <code>views/about.handlebars</code>
-* <code>[any other url]</code> - __404__
-	* explicitly send back a <code>404</code>
-	* <code>views/404.handlebars</code>
-
-### (7 points) Content
-
-* __all of your views should be in a directory called <code>views</code> in the root of your project directory__
-* all of the views should be based off of a layout 
-	* this layout is <code>main.handlebars</code>
-	* which should be located in <code>views/layouts</code>
-	* it should contain all of the surrounding tags - (html, head, body, etc.) 
-	* as well as links to both of the other pages <code>/</code> and <code>about</code>
-* the about page should contain 
-	* a single heading that says <code>About</code>
-	* some text in a paragraph tag underneath
-* the index page should contain
-	* a single heading that says <code>Browser Test Page</code>
-	* within a <code>pre</code> tag, all of the headers that were sent as part of the browser's request
-	* you can do this by: 
-		* handing the headers to over to the view (as part of the the 2nd argument passed into <code>res.render()</code>)
-		* in your view, using the each helper to iterate over the <code>headers</code> object
-		* [see the docs on the each helper](http://handlebarsjs.com/builtin_helpers.html)
-	* an example of the contents of the index page, as well as some screens:
-
-<pre><code data-trim contenteditable>host: localhost:3000
-connection: keep-alive
-accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36
-referer: http://localhost:3000/about
-accept-encoding: gzip,deflate,sdch
-accept-language: en-US,en;q=0.8
-</code></pre>
-
-<div markdown="block" class="img">
-![screen 1](../resources/img/hw3-test-index.png)
-</div>
-
-<div markdown="block" class="img">
-![screen 1](../resources/img/hw3-test-about.png)
-</div>
 
 
 </div>
