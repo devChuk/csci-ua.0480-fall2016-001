@@ -51,7 +51,7 @@ Your framework, called `miniWeb`, will be built off of node's `net` module. It'l
 You can use the objects that you create to write simple web applications. Here are some example of how you might use your mini web framework. Again, __you are making the library / objects / module__ that makes the following possible:
 
 * Create a new web application
-    <pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+    <pre><code data-trim contenteditable>var App = require('./miniWeb.js').App;
 var app = new App();
 </code></pre>
 * Serve the contents of the file in `$PROJECT_ROOT/html/index.html` when a request for `/` is received
@@ -263,6 +263,14 @@ res.sendFile('/css/base.css');
 8. `toString()` - returns a string representation of this response object that can serve as a valid http response
     * no arguments
     * returns a string, a valid http response
+    * when adding a short description for status codes, use these descriptions:
+        * `200` - `OK`
+        * `404` - `Not Found`
+        * `500` - `Internal Server Error`
+        * `400` - `Bad Request`
+        * `301` - `Moved Permanently`
+        * `302` - `Found`
+        * `303` - `See Other`
     * example usage:
         <pre><code data-trim contenteditable>res.setHeader('Content-Type': 'text/plain');
 res.statusCode = 404;
@@ -287,7 +295,7 @@ The app object represents a web application. It's responsible for:
 
 Number 2 and 3 are determined by the user that is writing a web application with this framework. That is, they specify what routes are present ... and what to do when that route is matched by writing code. For example, a hello world application could be written as follows (this is what someone using your web framework would write):
 
-<pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+<pre><code data-trim contenteditable>var App = require('./miniWeb.js').App;
 var app = new App();
 
 app.get('/hello', function(req, res) {
@@ -301,11 +309,11 @@ app.listen(8080, '127.0.0.1');
 
 `App()` - creates a new App object and sets the connection callback function to `this.handleConnection` which you'll implement below ... additionally, initializes its routes to empty object (see Properties section). Example usage of constructor:
 
-<pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+<pre><code data-trim contenteditable>var App = require('./miniWeb.js').App;
 var app = new App();
 </code></pre>
 
-Note that when you import the module, you can set a variable directly to it that serves as a constructor. This is done by `module.exports = App;` within the module itself.
+Note that when you import the module, you can set a variable directly to an exported object by using dot notation. In the example above, pull out the `App` constructor.
 
 The `App` object itself represents both a web server and the web application running on that server. Consequently, it'll hold an instance of a `Server` object from node's `net` module. See [the slides](../slides/06/sockets.html#/2) or the [node documentation](https://nodejs.org/api/net.html#net_class_net_server).
 
@@ -430,20 +438,24 @@ In this section, you'll fully implement a `Request` object. You'll then conditio
 1. In `evenWarmer.js`, copy over your code to create a simple server, and make modifications to it so that it parses the request into a request object.
     * The request object should follow the [specifications for the `Request` object above](#request).
     * Implement all of the properties specified, and the single `toString` method.
-2. In your previous code, `sock.on('data', someCallback)` calls `someCallback` when the socket receives data... and that callback takes a single argument, the binary data that the client sent. Pass that data to your `Request` constructor to create a `Request` object
-3. Once you have the http request encapsulated by a `Request` object... use a simple conditional to:
+2. Export the object using `module.exports`, and try running the tests in test/request-response-test.js
+    * make sure that `mocha` is installed globally (try running `which mocha`, if it isn't installed, use `npm install -g mocha`
+    * install dev dependencies to run tests: npm install --save-dev chai sinon mocha-sinon (you can ignore any unmet peer dependency warnings)
+    * `mocha test/request-response-test.js`
+3. In your previous code, `sock.on('data', someCallback)` calls `someCallback` when the socket receives data... and that callback takes a single argument, the binary data that the client sent. Pass that data to your `Request` constructor to create a `Request` object
+4. Once you have the http request encapsulated by a `Request` object... use a simple conditional to:
     1. Check if the `Request` object's path is `/` ... if so, display your hello world page.
     2. Check if the `Request` object's path is `/foo.css` ... if so, send back a document with content type `text/css` containing `h2 {color: red;}`.
     3. If it's neither `/` or `/foo.css`, then send back a `404`, content type 'text/plain', and a body of `uh oh... 404 page not found!`.
-4. Make sure to close the connection once you've written your http response by using `sock.end()`
-3. Run your server and check all 3 of these paths using both curl and your browser.
+5. Make sure to close the connection once you've written your http response by using `sock.end()`
+6. Run your server and check all 3 of these paths using both curl and your browser.
     * You should see a `200` for `/` and `/foo.css`, along with the appropriate `Content-Type` header, and the body.
     * You should see a `404` for everything else.
-4. Finally, to see how everything works together, modify the html that `/` sends back:
+7. Finally, to see how everything works together, modify the html that `/` sends back:
     * Above hello world, include your style sheet using a `link` tag in your response for `/`...
     * Also above hello world, but below your link tag, add an `h2` tag that contains the text, 'this is a red header!'
     * When you point your browser at `localhost:8080', you should now see a red header above your hello world text.
-5. It should look something like <br> ![pic alt](../resources/img/hw03-02-evenWarmer-01-request.gif)
+8. It should look something like <br> ![pic alt](../resources/img/hw03-02-evenWarmer-01-request.gif)
 
 ### And now, for our `Response` object
 
@@ -452,19 +464,22 @@ Instead of issuing `write` calls to the `socket` object, you'll wrap the `socket
 1. Create a `Response` object based on the [specifications for the `Response` object above](#response).
     * You can skip `sendFile` for now
     * It may be useful to keep an object that maps status codes to short descriptions ({"200": "OK", "404": "Not Found"})
-2. To send back a response, remove your calls to `sock.write` and use a new `Response` object instead.
-3. Again, within the callback that you pass to `sock.on('data', someCallback)` and after you create a `Request` object, create a `Response` object....
+2. You can run unit tests as you work, as usual, by adding the object to `module.exports`, and running the tests in test/request-response-test.js
+    * again ... `mocha test/request-response-test.js`
+    * __not all methods are tested__ by the unit tests
+3. To see your `Response` object at work, remove your calls to `sock.write` / `sock.end` and use a new `Response` object instead.
+4. Again, within the callback that you pass to `sock.on('data', someCallback)` and after you create a `Request` object, create a `Response` object....
     * Pass in the `sock` object that's in scope (that is the socket object that `on` was called on)
     * For example:
         <pre><code data-trim contenteditable> sock.on('data', function(binaryData) {
   var res = new Response(sock);
   // ...
 }
-4. Replace every call to `sock.write` with:
+5. Replace every call to `sock.write` / `sock.end` with:
     * A call to your `Response` object's `setHeader` method to set the content type: `res.setHeader(...)`
     * A call to your `Response` object's `send` method to send the response back with the appropriate body: `res.send(200, ...);`
     * A call to your `Response` object's `end` method to close the connection
-5. Everything should still work as it did previously, so try using curl and your browser to request `/`, `/foo.css`, and any other page to trigger a 404
+6. Everything should still work as it did previously, so try using curl and your browser to request `/`, `/foo.css`, and any other page to trigger a 404
 
 <br>
 
@@ -660,7 +675,7 @@ Now you'll start writing your module, `miniWeb.js`.
 1. Copy everything from `evenWarmer.js` to `miniWeb.js`
 2. Use the [specifications for the `App` object above](#app)
 3. Go through your code and check for places that may cause 500 errors (for example, if the `err` object exists when handling a file read, send back a 500 as a response... or if the framework user tries to send a file that has an extension that is not recognized, that should also be a 500)
-4. Export your `App` constructor: `module.exports = App`
+4. Export `App` along with `Require` and `Response`
 
 ## Part 4 - Using your Module!
 
@@ -678,7 +693,7 @@ Create a small site using your framework. In a file called `fansite.js` create a
 To create your site:
 
 1. Bring in your module and create a new `App` object: 
-    <pre><code data-trim contenteditable>var App = require('./miniWeb.js');
+    <pre><code data-trim contenteditable>var App = require('./miniWeb.js').App;
 var app = new App();
 2. Add routes as necessary... 
     <pre><code data-trim contenteditable>app.get('/', function(req, res) {
