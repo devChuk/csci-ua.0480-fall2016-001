@@ -7,7 +7,7 @@ title: CSCI-UA.0480 - Homework #3
 	<div class="panel-heading">Homework #3</div>
 	<div class="panel-body" markdown="block">
 
-# Creating a Tiny Web Framework, __Due Sunday, Oct 2nd, by 11PM__
+# Creating a Tiny Web Framework, __Due Tuesday, Oct 4th, by 11PM__
 
 ## Overview
 
@@ -55,7 +55,8 @@ You can use the objects that you create to write simple web applications. Here a
 var app = new App();
 </code></pre>
 * Serve the contents of the file in `$PROJECT_ROOT/html/index.html` when a request for `/` is received
-    <pre><code data-trim contenteditable>app.get('/', function(req, res) {
+    * here's the code that you would use:
+        <pre><code data-trim contenteditable>app.get('/', function(req, res) {
     res.sendFile('/html/index.html');
 });
 </code></pre>
@@ -658,7 +659,7 @@ var filePath =  publicRoot + fileName;
 
 Now try adding a path to display:
 
-1. an html file that's located in your `$PROJECT_ROOT/public/html/` folder called `test.html`
+1. an html file that's located in your `$PROJECT_ROOT/public/html/` folder called `test.html` 
 2. an image that's in located in your `$PROJECT_ROOT/public/img/` folder called `bmo1.gif`
 
 To do this:
@@ -667,6 +668,8 @@ To do this:
 2. Use `sendFile` to send the appropriate file relative to `public`
 3. Remember that the path of the request doesn't have to match the path of the actual file being read
 4. Here's what it'll all look like together: <br> ![pic alt](../resources/img/hw03-03-evenWarmer-response.gif)
+5. `bmo1.gif` should be present
+6. you'll have to write your own `test.html`
 
 ## Part 3 - Converting to App Object
 

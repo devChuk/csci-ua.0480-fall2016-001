@@ -23,7 +23,7 @@ In-Class Programming Activity
 
 * [Creating an HTTP Request object, and a Poll](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSe2mqmcuD_bhT_XFqDpXTbdBUTIvfIOTtqepiQ_dTWhIICyaA/viewform)
 
-Due Sunday, 10/02, by 11pm
+Due Tuesday, 10/04, by 11pm
 
 * [Homework #3](homework/03.html) 
 
