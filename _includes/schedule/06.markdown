@@ -15,8 +15,6 @@
 {% endcomment %}
 </td>
 	<td markdown="block">
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 6 - The Secret Life of Objects
-* [{{ site.book_js }}]({{ site.book_js_link }}) <br> Chapter 8 - Bugs and Error Handling 
 </td>
 	<td markdown="block">
 In-Class Programming Activity

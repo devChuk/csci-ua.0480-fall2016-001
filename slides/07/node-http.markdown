@@ -12,12 +12,36 @@ title: "Node's HTTP Module"
 </section>
 
 <section markdown="block">
+## A Step Back
+
+__What's the internet?__ &rarr; <span class="fragment"> a global network of networks</span>
+
+__What's the underlying protocol that computer's on the internet use to communicate?__ &rarr; <span class="fragment">TCP/IP</span>
+
+__What's the world wide web?__ &rarr; <span class="fragment"> a bunch of documents connected by hyperlinks ... that are retrievable by url</span>
+
+__What protocol is the web based on?__ &rarr; <span class="fragment"> HTTP</span>
+
+<span class="fragment">The web is a service built on top of the internet. HTTP is a protocol built on top of TCP/IP (TCP/IP handles the connection, sending/routing/transmitting of data, etc. ... while HTTP is the message).</span>
+
+</section>
+
+<section markdown="block">
+## A TCP/IP Server &rarr; Web Server
+
+So... previously, we made a simple web server using nothing more than the `net` module. The TCP/IP part was taken care of by the module, but we had to build http on top of it. __That meant:__ &rarr;
+
+* {:.fragment} parsing a request
+* {:.fragment} manually writing a response back
+* {:.fragment} NOT FUN!
+
+</section>
+<section markdown="block">
 ## The HTTP Module
 
-__First... what's this HTTP module all about?__ &rarr;
+Sooo... let's use another module that takes care of the http bits for us. __The built-in HTTP module gives us:__ &rarr;
 
-
-[From the docs, the http module](http://nodejs.org/api/http.html#http_http) is
+[(From the docs, on the http module)](http://nodejs.org/api/http.html#http_http) is
 
 * a low-level API for creating HTTP
 	* __servers__

@@ -1,9 +1,20 @@
 	<td markdown="block">
+* [About Class #7, Homework, Quizzes, Survey Results](slides/07/meta.html)
+* [HTTP Summary](slides/07/http-summary.html)
+* [Sockets Review](slides/07/sockets-review.html)
 * [Node's HTTP Module](slides/07/node-http.html)
+* [Project Setup](slides/07/setup.html)
+* [Express](slides/07/express.html)
+
+Probably for Next Class?
+
+* [Static Sites, Remote Server](slides/07/static.html)
+* [Express Request and Response](slides/07/request-response.html)
+* [Templating](slides/07/templating.html)
+* [Reviewing Get](slides/07/review-get.html)
+* [Middleware](slides/07/middleware.html)
 </td>
 	<td markdown="block">
-* {{ site.book_web }} <br> Chapter 1 - Introducing Express
-* {{ site.book_web }} <br> Chapter 2 - Getting Started With Node
 </td>
 	<td markdown="block">
 
