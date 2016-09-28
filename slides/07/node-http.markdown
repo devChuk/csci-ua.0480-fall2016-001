@@ -33,7 +33,14 @@ So... previously, we made a simple web server using nothing more than the `net` 
 
 * {:.fragment} parsing a request
 * {:.fragment} manually writing a response back
-* {:.fragment} NOT FUN!
+
+<br>
+Also, it had a lot of shortcomings:
+{:.fragment}
+
+* {:.fragment} trailing slashes, casing
+* {:.fragment} html as strings!?
+* {:.fragment} etc. (NOT FUN!)
 
 </section>
 <section markdown="block">
@@ -269,7 +276,7 @@ Some useful properties and methods that a <code>ServerResponse</code> object has
 <section markdown="block">
 ## A Web Server in Node (Revisited)
 
-__Let's try writing our own web server!__ &rarr;
+__Let's try writing our own web server, with help from the http module!__ &rarr;
 
 * bring in the http module
 * create a web server object and listen on port 3000... use the callback below
