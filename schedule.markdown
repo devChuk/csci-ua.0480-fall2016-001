@@ -90,10 +90,10 @@ nav-state: schedule
 <!-- ------------ --><a name="07"></a>
 <tr><td>7</td><td><strong>Sep 27</strong><br>Tue</td>
 <td markdown="block">
-* Creating a "Framework"
-* Cookies
-* Sessions
-* Forms
+* A Simple Web Server Continued / Our "Framework"
+* Routing
+* Node HTTP Module
+
 </td>
 {% include schedule/07.markdown %}
 </tr>
@@ -116,7 +116,9 @@ nav-state: schedule
 <tr><td>9</td><td><strong>Oct 04</strong><br>Tue</td>
 <td markdown="block">
 * Web Framework Continued
-* Forms, Sessions, etc. Revisited
+* Cookies
+* Sessions
+* Forms
 * Middleware
 * Templating
 

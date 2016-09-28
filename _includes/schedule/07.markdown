@@ -2,17 +2,10 @@
 * [About Class #7, Homework, Quizzes, Survey Results](slides/07/meta.html)
 * [HTTP Summary](slides/07/http-summary.html)
 * [Sockets Review](slides/07/sockets-review.html)
+* Live Coding Demo: [Routing / Dispatching](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples)
 * [Node's HTTP Module](slides/07/node-http.html)
-* [Project Setup](slides/07/setup.html)
-* [Express](slides/07/express.html)
+* Live Coding Demo: [Binding Methods](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples)
 
-Probably for Next Class?
-
-* [Static Sites, Remote Server](slides/07/static.html)
-* [Express Request and Response](slides/07/request-response.html)
-* [Templating](slides/07/templating.html)
-* [Reviewing Get](slides/07/review-get.html)
-* [Middleware](slides/07/middleware.html)
 </td>
 	<td markdown="block">
 </td>
