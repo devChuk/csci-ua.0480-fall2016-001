@@ -302,13 +302,13 @@ __What do you think your browser does with this data? Why might the response cod
 <section markdown="block">
 ## Browser Behavior Continued
 
-__What happened when you requested the index page from your demo.js app? How many actual requests did it turn out to be... why?__
+__What happened when you requested the homepage from the homework demo? How many actual requests did it turn out to be... why?__
 
 * there were actually three requests
 	* the initial request for the index page
-	* the request for styles.css
-	* the request for image1.png
-* the initial request that as made had determined that the resource had associated images and css
+	* the request for css
+	* the request for an image
+    * the initial request that as made had determined that the resource had associated images and css
 	* consequently, the browser requested an image
 	* ... as well as css
 	* __we can check out the additional requests in Chrome__ &rarr;
@@ -623,13 +623,4 @@ __We've seen <code>send</code> and <code>render</code> before.__ __A couple of o
 * <code>res.json(json)</code>, <code>res.json(status, json)</code> - sends json back as a response with an optional status code
 * you can still do stuff like manually set headers, or specify media type, but this functionality is usually for special cases
 
-</section>
-<section markdown="block">
-## More Request and Response
-
-__Check out Chapter 6 in {{ site.book_web }}:__ &rarr;
-
-* there are summaries from page 57 through 60
-* there are more properties and methods available for <code>request</code> and <code>response</code> objects (a lot more!)
-* we'll go over them as they come up...
 </section>

@@ -5,16 +5,16 @@
 * Quick Review of HTTP Module
 * [Project Setup](slides/08/setup.html)
 * [Express](slides/08/express.html)
-* [Static Sites, Remote Server](slides/08/static.html)
 * [Express Request and Response](slides/08/request-response.html)
 * [Templating](slides/08/templating.html)
 * [Reviewing Get](slides/08/review-get.html)
 * [Middleware](slides/08/middleware.html)
+
+{% comment %}
+* [Static Sites, Remote Server](slides/08/static.html)
+{% endcomment %}
 </td>
 	<td markdown="block">
-* {{ site.book_web }} <br> Chapter 2 - Getting Started With Node
-* {{ site.book_web }} <br> Chapter 3 - Saving Time With Express
-* [{{ site.book_js }}]({{ site.book_js_url }}) <br> Chapter 20 - Node (up to streams)
 </td>
 	<td markdown="block">
 

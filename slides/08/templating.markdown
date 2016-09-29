@@ -53,13 +53,6 @@ __Using a templating engine that's decoupled from your application's logic is us
 <section markdown="block">
 ## Installation
 
-Following the book? (thumbs up!)
-
-<pre><code data-trim contenteditable>
-npm install express-handlebars --save
-</code></pre>
-
-However... the official __express generator__ (cli app that creates some scaffolding for you) uses another module:
 
 <pre><code data-trim contenteditable>
 npm install hbs --save
@@ -75,35 +68,19 @@ Using hbs:
 app.set('view engine', 'hbs');
 </code></pre>
 
-Using Express handlebars
-
-<pre><code data-trim contenteditable>
-var handlebars = require('express-handlebars')
-	.create({defaultLayout:'main'});
-
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
-</code></pre>
 </section>
 
 <section markdown="block">
 ## Locations and Names
 
-__Note that the directory structure is slightly different depending on what library to use.__ &rarr;
 
-hbs
+__hbs directory structure__ &rarr;
 
 <pre><code data-trim contenteditable>
 views/layout.hbs
 views/index.hbs
 </code></pre>
 
-express-handlebars
-
-<pre><code data-trim contenteditable>
-views/layout/main.handlebars
-views/index.hbs
-</code></pre>
 
 </section>
 <section markdown="block">
@@ -234,7 +211,7 @@ By the way, if you see something like:
 Expecting 'ID', 'DATA', got 'INVALID'
 </code></pre>
 
-You probably have spaces in your <code>{{ #helper }}</code>.
+You probably have spaces in your <code>{{"{{ #helper "}}}}</code>.
 </section>
 
 <section markdown="block">

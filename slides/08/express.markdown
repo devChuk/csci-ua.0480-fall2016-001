@@ -61,7 +61,6 @@ We created a callback function to handle requests. __What were the two arguments
 
 * a Request object (we named this <code>req</code>)
 * a Response object (we named this <code>res</code>)
-</code></pre>
 {:.fragment}
 
 <br>
@@ -99,6 +98,7 @@ We used it to send back the response headers and body. __What were two methods t
 res.writehead(200, {'content-type':'text/plain'});
 res.end('hello');
 </code></pre>
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -186,6 +186,8 @@ function handleRequest(req, res) {
 
 <section markdown="block">
 # That Wasn't So Bad
+
+### (At least it was better than the net module, right?)
 </section>
 
 <section markdown="block">
@@ -504,7 +506,7 @@ To do this, we'll need a way to
 
 There are many templating solutions that we can use, both on the server side and the client side.
 
-* __jade__ comes with express, and it has a meta language for writing html!
+* __jade/pug__ comes with express, and it has a meta language for writing html!
 * __handlebars__ is based off of a basic templating language called mustache
 
 </section>
@@ -520,28 +522,19 @@ There are many templating solutions that we can use, both on the server side and
 First, install the express handlebars module: 
 
 <pre><code data-trim contenteditable>
-npm install express-handlebars --save
+npm install hbs --save
 </code></pre>
+<br>
 
-* {:.fragment} note that there's another version originally built for Express 3 called <code>express3-handlebars</code>
-* {:.fragment} it's deprecated, so just use <code>express-handlebars</code> instead
-
-
-</section>
-<section markdown="block">
-## Views and Templating
-
-Bring in handlebars for templating.
+And in your code, bring in handlebars for templating:
 
 <pre><code data-trim contenteditable>
-var handlebars = require('express-handlebars') 
-	.create({ defaultLayout:'main' });
-
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
 </code></pre>
+<br>
 
 Render a template!
+
 <pre><code data-trim contenteditable>
 res.render('index', {{ "greeting":"HELLLOOOO" }});
 </code></pre>
@@ -551,7 +544,9 @@ res.render('index', {{ "greeting":"HELLLOOOO" }});
 <section markdown="block">
 ## Layouts
 
-In <code>views/layouts/main.handlebars</code> ...
+In <code>views/layout.hbs</code> ...
+
+(Notice 3 curly braces!)
 
 <pre><code data-trim contenteditable>
 <!-- surrounding html -->
@@ -563,7 +558,7 @@ In <code>views/layouts/main.handlebars</code> ...
 <section markdown="block">
 ## Templates
 
-In <code>views/viewname.handlebars</code> ... drop in your content
+In <code>views/viewname.hbs</code> ... drop in your content
 
 <pre><code data-trim contenteditable>
 {{ "{{ greeting " }}}} world!
