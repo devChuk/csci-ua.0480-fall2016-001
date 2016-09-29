@@ -12,10 +12,9 @@ title: "Project Setup"
 <section markdown="block">
 ## Topics
 
-* package.json
-* --save and --save-dev
-* linting
-* .gitignore
+* generating your own `package.json`
+* why are we using `--save` vs `--save-dev`?
+* linting / `jshint` 
 </section>
 
 <section markdown="block">
@@ -23,11 +22,11 @@ title: "Project Setup"
 
 __package.json__ is a file that contains metadata about your project. It tells <code>npm</code> 
 
-* how to install your project
-* how it's published (if it's a public project)
-* how it's used as a module
-* how to retrieve its dependencies
-* etc.
+* {:.fragment} how to __install__ your project
+* {:.fragment} how it's __published__ (if it's a public project)
+* {:.fragment} how it's used as a __module__
+* {:.fragment} how to retrieve its __dependencies__
+* {:.fragment} etc.
 <br>
 
 <br>
@@ -35,12 +34,12 @@ There's a [very comprehensive page](https://www.npmjs.org/doc/files/package.json
 </section>
 
 <section markdown="block">
-## package.json Continued
+## package.json for Dependencies
 
 ### We're using it mainly for dependency management.
 
 * a lot of the data in <code>package.json</code> is used for specifying how your code is imported into another file (what name to use, what the license is, etc.).
-* we mostly care about the fact that it helps us download all of our project's dependencies along with their versions
+* we mostly care about the fact that it helps us __download all of our project's dependencies at the correct versions__ 
 * instead of installing dependencies manually, one-by-one, we can just <code>npm install .</code>
 
 </section>

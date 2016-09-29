@@ -2,6 +2,7 @@
 {% comment %}
 * [About Class #8](slides/08/meta.html)
 {% endcomment %}
+* Quick Review of HTTP Module
 * [Project Setup](slides/08/setup.html)
 * [Express](slides/08/express.html)
 * [Static Sites, Remote Server](slides/08/static.html)

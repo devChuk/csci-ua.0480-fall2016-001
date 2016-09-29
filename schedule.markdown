@@ -106,9 +106,7 @@ nav-state: schedule
 * Web Framework
 * Project Layout
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/08.markdown %}
-{% endcomment %}
 </tr>
 
 
