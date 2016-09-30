@@ -8,6 +8,16 @@
 
 </td>
 	<td markdown="block">
+
+* [Node docs on net module](https://nodejs.org/api/net.html)
+
+(Same as Previous) 
+
+* [Let's build a Web Server (in Python, but useful for our class) Parts 1 through 3](https://ruslanspivak.com/lsbaws-part1/)
+* [MDN HTTP Overview (check the links to headers, status codes, etc. as well](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+* [Tangled Web - Chapter 3  -  Hypertext Transfer Protocol (available online via NYU Library)](https://getit.library.nyu.edu/go/9409104)
+* [MDN on Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+* nczonline articles on [Cookies](https://www.nczonline.net/blog/2009/05/05/http-cookies-explained/) and [Cokies and Security](https://www.nczonline.net/blog/2009/05/12/cookies-and-security/)
 </td>
 	<td markdown="block">
 
