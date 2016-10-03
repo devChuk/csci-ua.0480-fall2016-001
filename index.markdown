@@ -91,7 +91,7 @@ Expect about __one quiz__ every __week or two__:
     * Exceptions:
         1. illness, with documentation
         2. religious observance
-        3. technical issues (broken computer, github down, etc.), with documentation
+        3. technical issues (NYU Classes down, Quiz not Appearing, etc.), with documentation
 * Please read the [page on academic integrity](http://www.cs.nyu.edu/webapps/content/academic/undergrad/academic_integrity)
 
 </div>
@@ -144,5 +144,19 @@ Expect about __one homework__ every __week or two__:
   </div><!-- end col -->
 
   <div class="col-md-6">
+    <div class="panel panel-default">
+<a name="Tutoring"></a>
+<div class="panel-heading">Tutoring</div>
+<div class="panel-body" markdown="block">
+There is a __tutor available__ for the course. The tutoring schedule is as follows:
+
+* __Tuesday__: 3:30pm - 5:00pm, WWH 412
+* __Wednesday__: 
+    * 3:30pm - 5:00pm, WWH 412 
+    * 5:00pm to 7:00pm Room TBD  
+* __Thursday__: 3:00pm - 5:00pm, WWH 412
+
+</div>
+    </div>
   </div><!-- end col -->
 </div><!-- end row -->

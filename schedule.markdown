@@ -3,6 +3,10 @@ layout: default
 nav-state: schedule
 ---
 
+<div id="quick-links">
+<h3><a href="index.html#tutoring">Tutoring</a> | <a href="index.html#hw-policy">Homework Policy</a> | <a href="index.html#quiz-policy">Quiz Policy</a></h3>
+</div>
+
 <table class="table table-striped table-hover">
 <thead>
 <tr>

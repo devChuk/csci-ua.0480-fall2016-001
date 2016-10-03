@@ -43,6 +43,7 @@
 @panel_title_background: @navy_blue;
 @panel_background: @gray;
 @panel_border: @dark_gray;
+@highlight: @yellow;
 body {
 	font-size: 18px;
 	// background-color: @yellow;
@@ -141,4 +142,15 @@ strong {
 	li li {
 			display: none;
 	}
+}
+
+#quick-links {
+	text-align: center;
+	padding: 0.5em;
+}
+
+#quick-links > h3 > a {
+	display: inline-block;
+	padding: 0.25em;
+	background-color: @highlight;
 }
