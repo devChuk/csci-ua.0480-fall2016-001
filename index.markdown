@@ -153,7 +153,7 @@ There is a __tutor available__ for the course. The tutoring schedule is as follo
 * __Tuesday__: 3:30pm - 5:00pm, WWH 412
 * __Wednesday__: 
     * 3:30pm - 5:00pm, WWH 412 
-    * 5:00pm to 7:00pm Room TBD  
+    * 5:00pm to 7:00pm, also WWH 412
 * __Thursday__: 3:00pm - 5:00pm, WWH 412
 
 </div>
