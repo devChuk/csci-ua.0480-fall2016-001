@@ -493,12 +493,16 @@ app.use(express.static(publicPath));
 <section markdown="block">
 ## Generating / Rendering HTML
 
-Instead of serving flat HTML files, we want to serve __dynamic content__. That is, our web application will be generating html on-the-fly.
+Serving flat HTML files is nice and all, but __is it adequate for building all _sorts_ of web applications__? &rarr;
 
-To do this, we'll need a way to 
+Well, we want to serve __dynamic content__. That is, our web application will be generating html on-the-fly.  
+{:.fragment}
 
-* create templates that content can be dropped into
-* ...and render those templates into an html document (or whatever format your application requires)
+__To do this, we'll need a way to:__ &rarr; 
+{:.fragment}
+
+1. {:.fragment} create templates that content can be dropped into
+2. {:.fragment} ...and render those templates into an html document (or whatever format your application requires)
 </section>
 
 <section markdown="block">
@@ -507,12 +511,19 @@ To do this, we'll need a way to
 There are many templating solutions that we can use, both on the server side and the client side.
 
 * __jade/pug__ comes with express, and it has a meta language for writing html!
+    * terse syntax based on indentation (no closing tags!)
+    * _very_ quick to write, but you have to learn a lot more new syntax
 * __handlebars__ is based off of a basic templating language called mustache
+    * it's basically just html
+    * with some special _tokens_ for inserting data
+
 
 </section>
 
 <section markdown="block">
 # We'll be using handlebars.
+
+(slightly less to learn ... but __definitely feel free to use jade/pug instead__)
 
 </section>
 

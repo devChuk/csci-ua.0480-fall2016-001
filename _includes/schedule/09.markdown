@@ -3,8 +3,13 @@
 * [About Class #9](slides/09/meta.html)
 {% endcomment %}
 
-* [Express Continued (from previous class)](slides/08/express.html#/23)
-* [Express Request and Response](slides/09/request-response.html)
+* Review [Previous Class](slides/08/express.html#/26)
+* [Templating](slides/09/templating.html)
+* [Express Request and Response](slides/09/request-response.html) (start [With Web Server/Web App](slides/09/request-response.html#/7))
+* [Reviewing Get](slides/09/review-get.html)
+* [Middleware](slides/09/middleware.html)
+* [Forms](slides/09/forms.html)
+* [Sessions and Cookies](slides/09/sessions.html)
 
 <!-- 
 * [Forms](slides/09/forms-2.markdown)

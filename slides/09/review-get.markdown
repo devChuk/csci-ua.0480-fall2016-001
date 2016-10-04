@@ -77,6 +77,7 @@ In order to access the data passed along in the data string, just look at __<cod
 
 </section>
 
+{% comment %}
 <section markdown="block">
 ## Let's Try Some Handlebars Again.
 
@@ -119,9 +120,9 @@ mkdir -p views/layouts
 </code></pre>
 {:.fragment}
 </section>
-
 <section markdown="block">
 ## The Actual Application Code...
+
 
 __Bring in the module, make 'main' the default layout file:__ &rarr;
 <pre><code data-trim contenteditable>
@@ -145,20 +146,26 @@ app.set('view engine', 'handlebars');
 </code></pre>
 {:.fragment}
 
+</section>
+{% endcomment %}
+
+<section markdown="block">
+## A Quick Application
+
 __Define a route, call render... and pass it some context:__ &rarr;
+
 {:.fragment}
 <pre><code data-trim contenteditable>
 app.get('/', function(req, res) {
 	res.render('index', {'items':[1, 2, 3, 4, 5, 6]});
 });
 </code></pre>
-{:.fragment}
 </section>
 
 <section markdown="block">
 ## Create Your Templates and Layouts
 
-__Create your surrounding html in <code>views/layouts/main.handlebars</code> (don't forget <code>{{{body}}}</code>):__ &rarr;
+__Create your surrounding html in <code>views/layout.hbs</code> (don't forget <code>{{{body}}}</code>):__ &rarr;
 
 <pre><code data-trim contenteditable>
 &lt;!doctype html&gt;

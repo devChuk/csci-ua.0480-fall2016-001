@@ -12,6 +12,33 @@ title: "About Class #9"
 </section>
 
 <section markdown="block">
+## 
+
+* express basics
+    * demo: routes
+    * demo: using sendFile
+    * demo: serving static files
+    * global variables vs variables in functions
+* request and response objects properties and methods
+    * demo: use get and set, logging headers 
+* templating
+    * demo: iterate over list of things
+* what is post about?
+    * bodyparser
+    * demo: guessing game
+    * iterate: prg
+* briefly about middleware
+    * applications?
+    * demo: logging
+    * demo: injecting data into req or res, like:
+        * adding a header to the response
+        * if content type text/html, replace body with....
+* cookies / sessions
+* homework
+* onresponse module
+
+</section>
+<section markdown="block">
 ## Topics
 
 * Finish Out Intro to Express

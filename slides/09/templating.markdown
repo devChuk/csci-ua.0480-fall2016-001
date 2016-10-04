@@ -42,37 +42,28 @@ __Why bother using templating? We were able to emit html directly by using <code
 
 __Using a templating engine that's decoupled from your application's logic is useful because:__ &rarr;
 
-* constructing html manually is easy for small pages, but quickly gets complicated as more markup gets written
-* it can be much more difficult to spot malformed html!
-* changes to your applications logic can be tangled with changes to your presentation (and vice versa), having some separation gives you at least a chance of avoiding unwanted side-effects
-* having separate templates allows isolation of work... a designer or front-end developer can work on the templates, while a backend developer can work on the application logic
-* most templating engines are featureful... providing conveniences such as automatic character escaping (why is this important? __Let's check out a _bad_ form.__)
+* {:.fragment} constructing html manually is easy for small pages, but quickly gets complicated as more markup gets written
+* {:.fragment} it can be much more difficult to spot malformed html!
+* {:.fragment} changes to your applications logic can be tangled with changes to your presentation (and vice versa), having some separation gives you at least a chance of avoiding unwanted side-effects
+* {:.fragment} having separate templates allows isolation of work... a designer or front-end developer can work on the templates, while a backend developer can work on the application logic
+* {:.fragment} most templating engines are featureful... providing conveniences such as automatic character escaping (why is this important? __Let's check out a _bad_ form.__)
 </section>
 
 
 <section markdown="block">
-## Installation
+## Installation and Setup
 
+Install:
 
 <pre><code data-trim contenteditable>
 npm install hbs --save
 </code></pre>
-</section>
-<section markdown="block">
-## Setup
 
-Using hbs:
+Configure using [app.set (see other configurations you can set)](http://expressjs.com/en/api.html#app.set)
 
 <pre><code data-trim contenteditable>
-// super simple
 app.set('view engine', 'hbs');
 </code></pre>
-
-</section>
-
-<section markdown="block">
-## Locations and Names
-
 
 __hbs directory structure__ &rarr;
 
@@ -80,13 +71,12 @@ __hbs directory structure__ &rarr;
 views/layout.hbs
 views/index.hbs
 </code></pre>
-
-
 </section>
+
 <section markdown="block">
 ## Context Objects
 
-When a template is rendered using <code>res.render</code>, there are two arguments. __What are they?__ &rarr;
+__When a template is rendered using <code>res.render</code>, there are two arguments.__ &rarr;
 
 The _view_ or _template_ to render... and the _context object_.
 {:.fragment}
@@ -128,8 +118,9 @@ Handlebars actually has some basic facilities for:
 <section markdown="block">
 ## Block Expressions / Helpers
 
-"Block expressions allow you to define helpers that will invoke a section of your template with a different context than the current"
+__From the handlebars docs__ 
 
+> Block expressions allow you to define helpers that will invoke a section of your template with a different context than the current
 
 * {:.fragment} ...errr ... basically, that means __you'll be able to add control structures to your templates, like conditionals and iteration.__
 * {:.fragment} use double curly braces, but prefix your helper with a hash... and make sure you close it at the end
@@ -138,7 +129,7 @@ Handlebars actually has some basic facilities for:
 </section>
 
 <section markdown="block">
-## Arrays Example
+## Looping Over Arrays Example
 
 The <code>#each</code> helper:
 
@@ -177,7 +168,7 @@ app.get('/templating-objects', function(req, res) {
 });
 </code></pre>
 
-__In your view:__ &rarr;
+__In your view, use `this` to get the value:__ &rarr;
 
 <pre><code data-trim contenteditable>
 &lt;ul&gt;
@@ -187,6 +178,58 @@ __In your view:__ &rarr;
 &lt;/ul&gt;
 </code></pre>
 </section>
+
+<section markdown="block">
+## Objects Continued
+
+Assuming this context object (cat is an object):
+
+<pre><code data-trim contenteditable>
+{cat: {name:'bill furry', lives:9}};
+</code></pre>
+
+If you want both the key and the value, use `@key` and `this` &rarr;
+
+<pre><code data-trim contenteditable>
+&lt;ul&gt;
+{{"{{#each cat"}}}}
+&lt;li&gt;{{"{{@key"}}}}, {{"{{this"}}}}&lt;/li&gt;
+{{"{{/each"}}}}
+&lt;/ul&gt;
+</code></pre>
+</section>
+
+<section markdown="block">
+## Dealing with an Array of Objects
+
+Assuming this context object (points is an Array of objects):
+
+<pre><code data-trim contenteditable>
+{points: [{x:1, y:2, z:3}, {x:21, y:34, z:55}]}
+</code></pre>
+
+Use dot notation to access properties:
+
+<pre><code data-trim contenteditable>
+&lt;ul&gt;
+{{"{{#each points"}}}}
+&lt;li&gt;{{"{{this"}}}}, {{"{{this.x"}}}}, {{"{{this.y"}}}}, {{"{{this.z"}}}} &lt;/li&gt;
+{{"{{/each"}}}}
+&lt;/ul&gt;
+</code></pre>
+
+Or just the property name!
+
+<pre><code data-trim contenteditable>
+&lt;ul&gt;
+{{"{{#each points"}}}}
+&lt;li&gt;{{"{{x"}}}}, {{"{{y"}}}}, {{"{{z"}}}}&lt;/li&gt;
+{{"{{/each"}}}}
+&lt;/ul&gt;
+</code></pre>
+</section>
+
+
 
 <section markdown="block">
 ## Conditionals

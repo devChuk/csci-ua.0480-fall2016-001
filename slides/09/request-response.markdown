@@ -280,16 +280,19 @@ __When your browser receives a response, it looks at...__ &rarr;
 <br> 
 It uses the above three items to determine what to do next...
 
+{% comment %}
 * perhaps display content
 * retrieve additional resources
 * go to a different page
+{:.fragment}
+{% endcomment %}
 
 </section>
 
 <section markdown="block">
 ## Browser Behavior
 
-__What do you think your browser does with this data? Why might the response code or headers be important? What are some examples of how they influence your browser's behavior?__ &rarr;
+What do you think your browser does with this data? Why might the response code or headers be important? __What are some examples of how response code, headers, or body influence your browser's behavior?__ &rarr;
 
 * the __response code__ may tell the browser that a page has permanently moved (301) ... 
 	* so the browser should automatically go to the next url 
@@ -302,15 +305,16 @@ __What do you think your browser does with this data? Why might the response cod
 <section markdown="block">
 ## Browser Behavior Continued
 
-__What happened when you requested the homepage from the homework demo? How many actual requests did it turn out to be... why?__
+__What happened when you requested the homepage from your homework? How many actual requests did it turn out to be... why?__
 
-* there were actually three requests
+* there were actually at least three requests
 	* the initial request for the index page
 	* the request for css
 	* the request for an image
+    * maybe even a request for the favicon
     * the initial request that as made had determined that the resource had associated images and css
-	* consequently, the browser requested an image
-	* ... as well as css
+	    * consequently, the browser requested an image
+	    * ... as well as css
 	* __we can check out the additional requests in Chrome__ &rarr;
 {:.fragment}
 </section>
@@ -362,14 +366,11 @@ Our usual setup, with an extra bit for dealing with request bodies.
 <pre><code data-trim contenteditable>
 var express = require('express');
 var bodyParser = require('body-parser');
-var handlebars = require('express-handlebars')
-	.create({defaultLayout:'main'});
 
 var port = 3000;
 var app = express();
 
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
 </code></pre>
 </section>
 
@@ -621,6 +622,6 @@ __We've seen <code>send</code> and <code>render</code> before.__ __A couple of o
 * <code>res.render(view, [locals], callback)</code> - render a view using the locals object - the property names of the object are variables in the template
 * <code>res.redirect([status], url)</code> - redirect to a specific page using an optional status (the default is 302)
 * <code>res.json(json)</code>, <code>res.json(status, json)</code> - sends json back as a response with an optional status code
-* you can still do stuff like manually set headers, or specify media type, but this functionality is usually for special cases
+* <code>res.set(name, val)</code> - you can still do stuff like manually set headers, or specify media type, but this functionality is usually for special cases 
 
 </section>
