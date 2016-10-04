@@ -7,7 +7,9 @@ title: CSCI-UA.0480 - Homework #3
 	<div class="panel-heading">Homework #3</div>
 	<div class="panel-body" markdown="block">
 
-# Creating a Tiny Web Framework, __Due Tuesday, Oct 4th, by 11PM__
+# Creating a Tiny Web Framework, __Due <strike>Tuesday, Oct 4th</strike> Wednesday, Oct 5th, by 11PM__ 
+
+(due date extended one day, coding starts at part 1)
 
 ## Overview
 
@@ -39,8 +41,9 @@ You will be given access to a private repository on GitHub. It will contain:
 * Commit multiple times throughout your development process.
 * Make at least 3 separate commits - (for example, one option may be to make one commit per part in the homework).
 
+## Skim Part 0, Start Coding with Part 1
 
-## Part 0 - `miniWeb` - Framework Overview
+## Part 0 - `miniWeb` - Framework Overview 
 
 Your framework, called `miniWeb`, will be built off of node's `net` module. It'll use the `net` module to create a TCP server that will allow connections from clients. The code that you'll write will handle an incoming http request from a client by parsing the http request, determining what do based on the request, and finally sending back an http response. You'll do this by minimally creating these objects (you can create more objects, but these 3 must be present):
 
@@ -412,7 +415,7 @@ Use the following process to do this:
 
 1. Check out the [slides on the `net` module for some prep](../slides/06/sockets.html#/10), paying close attention to the [the last slide](../slides/06/sockets.html#/10).
 2. Build off of the last example by modifying the echo server code to...
-3. Write back a valid http request (you can write a string directly instead of using a `Buffer`):
+3. Write back a valid http response (you can write a string directly instead of using a `Buffer`):
     * [see the slides on http](../slides/05/web.html#/18)
     * [and an example response](../slides/05/web.html#/22)
 4. Close the connection after a `write` with `sock.end`.
