@@ -157,9 +157,10 @@ More about __GET__:
 * __GET__ requests usually don't have a body
 * the data in a __GET__ request is in the __query string__ part of the URL 
 * __query strings__ are URL encoded (also known as [percent encoded](http://en.wikipedia.org/wiki/Percent-encoding).
-* any characters that have special meaning in a URL are replaced with a numeric reference
-* for example, spaces are replaced with %20
-* <code>http://localhost:3000/?value=this%20is%20url%20encoded</code>
+* any characters that have special meaning in a URL are replaced with a numeric reference prefixed by %
+* [it's slightly more complicated than that](http://stackoverflow.com/questions/1634271/url-encoding-the-space-character-or-20), with form submissions causing spaces to be substituted by +
+* spaces in a url: <code>http://localhost:3000/this%20is%20url%20encoded</code>
+* spaces in a query string after form submission: <code>http://localhost:3000/?value=also+url+encoded</code>
 
 </section>
 
@@ -343,16 +344,17 @@ The __request object__ is usually the first argument passed to a callback.
 
 __Originally from node's <code>http</code> module:__
 
-* <code>req.url</code> - path and querystring (no protocol, port, or domain)
-* <code>req.headers</code> - object with request headers as property names and header values as property values
-* <code>req.method</code> - request method (POST, GET, PUT, etc.)
+* {:.fragment} <code>req.url</code> - path and querystring (no protocol, port, or domain)
+* {:.fragment} <code>req.headers</code> - object with request headers as property names and header values as property values
+* {:.fragment} <code>req.method</code> - request method (POST, GET, PUT, etc.)
 
 <br>
 __Added by Express:__
+{:.fragment}
 
-* <code>req.path</code> - request path (without protocol, host, port, or querystring)
-* <code>req.query</code> - an object containing query string parameters
-* <code>req.body</code> - an object containing POST parameters (requires middleware to make available)
+* {:.fragment} <code>req.path</code> - request path (without protocol, host, port, or querystring)
+* {:.fragment} <code>req.query</code> - an object containing query string parameters
+* {:.fragment} <code>req.body</code> - an object containing POST parameters (requires middleware to make available)
 
 <br>
 __We'll also learn about <code>req.route</code> and <code>req.params</code> later in class.__
@@ -618,10 +620,11 @@ The __response object__ is usually the second parameter passed to a callback. It
 
 __We've seen <code>send</code> and <code>render</code> before.__ __A couple of others that we're likely to use are <code>json</code> and <code>redirect</code>.__ &rarr;
 
-* <code>res.send(body)</code>, <code>res.send(status, body)</code> - sends a response back to the client with an optional status code (the default is 200)
-* <code>res.render(view, [locals], callback)</code> - render a view using the locals object - the property names of the object are variables in the template
-* <code>res.redirect([status], url)</code> - redirect to a specific page using an optional status (the default is 302)
-* <code>res.json(json)</code>, <code>res.json(status, json)</code> - sends json back as a response with an optional status code
-* <code>res.set(name, val)</code> - you can still do stuff like manually set headers, or specify media type, but this functionality is usually for special cases 
+* {:.fragment} <code>res.status(status)</code> - sends response with <code>status</code> code back, can be chained with <code>send</code>: <code>res.status(200).send('hello')</code>
+* {:.fragment} <code>res.send(body)</code>, <code>res.send(status, body)</code> - sends a response back to the client with an optional status code (the default is 200)
+* {:.fragment} <code>res.render(view, [locals], callback)</code> - render a view using the locals object - the property names of the object are variables in the template
+* {:.fragment} <code>res.redirect([status], url)</code> - redirect to a specific page using an optional status (the default is 302)
+* {:.fragment} <code>res.json(json)</code>, <code>res.json(status, json)</code> - sends json back as a response with an optional status code
+* {:.fragment} <code>res.set(name, val)</code> - you can still do stuff like manually set headers, or specify media type, but this functionality is usually for special cases 
 
 </section>

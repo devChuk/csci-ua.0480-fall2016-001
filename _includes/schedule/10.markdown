@@ -1,10 +1,11 @@
 	<td markdown="block">
 
-* [Templating](slides/10/templating.html)
-* [Reviewing Get](slides/10/review-get.html)
-* [Middleware](slides/10/middleware.html)
+* Review Middleware
+* Review [Response and Request Objects / Along with Templating](slides/09/request-response.html#7)
+* [More About Get](slides/10/review-get.html)
 * [Forms](slides/10/forms.html)
 * [Sessions and Cookies](slides/10/sessions.html)
+* Homework #4 Demo
 
 <!-- 
 * [Maybe Static Sites, Remote Server](slides/08/static.html)
@@ -16,9 +17,6 @@
 </td>
 	<td markdown="block">
 
-* {{site.book_web}} - Chapter 8 - Form Handling
-* {{site.book_web}} - Chapter 9 - Cookies and Sessions
-* {{site.book_web}} - Chapter 10 - Middleware
 
 <!--
 * Chapter 
@@ -27,8 +25,10 @@
 </td>
 	<td markdown="block">
 
-{% comment %}
 Due October 13th
+
+Homework #4 to be posted
+{% comment %}
 
 * [Homework #4](homework/04.html)
 {% endcomment %}

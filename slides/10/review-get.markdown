@@ -27,18 +27,19 @@ Data is passed through the url, in the __query string__.
 </section>
 
 <section markdown="block">
-## About the Query String / Encoding
+## Query String & Encoding
 
 __Is the query string encoded in any way?__ &rarr;
 
 * query strings are URL encoded (also called percent encoded)
 * numbers and letters are characters that __do not have a special meaning in URL__, and they don't have to be encoded
 * however, there numeric references for characters with special meaning 
-* they're prefixed with a % ... <code>%20</code> is a space
+* they're prefixed with a % ... what characters do you think need this substitution?
 * __what other characters do you think are encoded?__ &rarr;
 	* {:.fragment} <code>%26</code> - ampersand, <code>%2F</code> - forward slash, <code>%40</code> - at symbol
 	* {:.fragment} and of course, a percent sign itself %25. what would _double urlencoding_ <code>&</code> be?
-	* {:.fragment} <code>%2526</code>
+	* {:.fragment} <code>%2525</code>
+    * {:.fragment} space is special in that it _should_ be %20, but it's +
 {:.fragment}
 </section>
 
@@ -85,8 +86,8 @@ __What were the steps to use handlebars templates.__ &rarr;
 
 * install <code>express-handlebars</code>
 * create directories using the following naming convention (your app will automatically look here for emplates and layouts):
-	* views go in <code>views</code>
-	* layouts go in <code>views/layouts</code>
+	* views go in <code>views/\*.hbs</code>
+	* layout goes in <code>views/layout.hbs</code>
 * require the module
 * some setup (specifying handlebars as the view engine)
 * create your route and use res.render 
@@ -154,12 +155,12 @@ app.set('view engine', 'handlebars');
 
 __Define a route, call render... and pass it some context:__ &rarr;
 
-{:.fragment}
 <pre><code data-trim contenteditable>
 app.get('/', function(req, res) {
 	res.render('index', {'items':[1, 2, 3, 4, 5, 6]});
 });
 </code></pre>
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -219,23 +220,44 @@ res.render('index', {'items':context});
 <section markdown="block">
 ## We Can Do the Same for Basketball Stats!
 
-__Create a global stats variable (_don't really do this_, we'll find better data stores later) using data from [homework 2](../../homework/02.html).__ &rarr;
-
-__In your route's callback function, create a similar filter, but for minimum threes made:__ &rarr;
+__Create a global stats variable (_don't really do this_, we'll find better data stores later) using data from the higher order functions slides.__ &rarr;
 
 <pre><code data-trim contenteditable>
-var minThrees = req.query.minThrees || 0;
-var context = stats.filter(function(player) {
-	return player.threesMade >= minThrees;
+var stats = [
+{"lastName":"Duncan", "team":"Spurs", "FGM":5, "FGA":10},
+{"lastName":"Parker", "team":"Spurs", "FGM":7, "FGA":18},
+{"lastName":"Ginobili", "team":"Spurs", "FGM":6, "FGA":11},
+{"lastName":"James", "team":"Heat", "FGM":10, "FGA":21},
+{"lastName":"Wade", "team":"Heat", "FGM":4, "FGA":12},
+{"lastName":"Bosh", "team":"Heat", "FGM":6, "FGA":14}
+];
+</code></pre>
+
+</section>
+<section markdown="block">
+## Basketball Continued
+
+__In your route's callback function, create a similar filter, but for minimum field goals made:__ &rarr;
+
+<pre><code data-trim contenteditable>
+var minFgm = req.query.minFgm || 0;
+var filteredPlayers = stats.filter(function(player) {
+	return player.fgm >= +minFgm;
 });
-res.render('index', {'items':context});
+res.render('index', {'players':filteredPlayers});
 </code></pre>
 
 __In the view.__ &rarr;
 
 <pre><code data-trim contenteditable>
-{{"{{#each items"}}}}
-<li>{{"{{name"}}}} - {{"{{threesMade"}}}} three pointers </li>
+{{"{{#each players"}}}}
+<li>{{"{{lastName"}}}} - {{"{{FGM"}}}} field goals made </li>
 {{"{{/each"}}}}
+</code></pre>
+
+__Use this query string.__ &rarr;
+
+<pre><code data-trim contenteditable>
+?minFgm=3
 </code></pre>
 </section>

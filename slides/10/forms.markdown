@@ -31,7 +31,7 @@ Note that __POST__ is not any more secure than __GET__ ....
 <section markdown="block">
 ## Sending Data
 
-__So far... we know two ways of making our browser send data to the server:__ &rarr;
+__So far... we know two ways that the user can make a browser send a request to the server:__ &rarr;
 
 * entering it in the URL bar
 * __or submitting in through a form__
@@ -81,8 +81,9 @@ To handle data in the request body, you'll need to:
 * make sure you've used npm to install <code>body-parser</code>
 * require body-parser
 * __add the appropriate routes... what will they be?__ &rarr;
-	* {:.fragment} (at minimum, you'll need an <code>app.get</code>)
-	* {:.fragment} the route handling the __POST__ can use request.body.property-name
+	* {:.fragment} you'll need an <code>app.get</code> to handle requesting the original form
+	* {:.fragment} and a route to handle the post (the route handling the __POST__ can use request.body.property-name)
+    * {:.fragment} you may want another route for a success page, or send back to the original form
 </section>
 
 <section markdown="block">
@@ -133,7 +134,7 @@ We'll create a global variable to _store_ our data. Definitely not conventional;
 
 <pre><code data-trim contenteditable>
 // oops, a global... ok for now...
-myName = '';
+var myName = '';
 </code></pre>
 <pre><code data-trim contenteditable>
 app.get('/', function(req, res) {
@@ -172,16 +173,26 @@ Enter your name: <input type='text' name="myName">
 <section markdown="block">
 ## Some Other Exercises
 
-Let's try to implement the following... &rarr;
 
-* a mad libs form...
-	* display lyrics to your favorite song
-	* replace 4 words by words submitted through a form
-* a number guessing game...
-	* your app keeps a secret number
-	* your form will submit a number... 
-		* if it matches the secret number redirect to a win page
-		* if it doesn't match, get the form again for another chance to guess
+__keeping track of cat names__ (from our previous demo)
+
+* display a list of cat names
+* have a form that allows you to add a cat name
+* a global Array of names is useful for this
+
+<br>
+__a mad libs form...__
+
+* display lyrics to your favorite song
+* replace 4 words by words submitted through a form
+
+<br>
+__a number guessing game...__
+
+* your app keeps a secret number
+* your form will submit a number... 
+    * if it matches the secret number redirect to a win page
+    * if it doesn't match, get the form again for another chance to guess
 </section>
 
 
