@@ -7,82 +7,227 @@ title: CSCI-UA.0480 - Homework #4
 	<div class="panel-heading">Homework #4</div>
 	<div class="panel-body" markdown="block">
 
-# Express - Static Files, Forms, Sessions __Due Monday, March 7th, by 11PM__
+# Express - Static Files, Forms, and Templating __Due Oct 13th__, by 11PM
 
 ## Overview
 
 ### Description
 
-Create a site the collects and displays complaints about the New York City subway. Call it: "The Complaining Commuter". In this homework you'll be working with:
+Create two small sites:
+
+1. a site that generates a _hand_ of playing cards called _Give Me a Hand_
+2. a bird watching site called _The Busy Birder_
+
+You'll explore the following concepts along the way:
 
 * serving static files
-* middleware
-* handling forms, both GET and POST
-* sessions
+* templating
+* handling forms
 
-You'll be creating 3 pages:
+For __Give Me a Hand__, your application will only be one page:
 
-* __home__ - <code>/</code>: displays a list of all of the complaints submitted on the site; can be filtered by subway line
-* __complain__ - <code>/complain</code>: a page that allows a user to submit a new complaint
-* __stats__ - <code>/stats</code>: displays the number of times the user has submitted a complaint during this browsing session
+* __hand__ - <code>/hand</code>: a page that displays a hand of cards
 
-### Example Interaction
+For __The busy Birder__, you'll be creating 3 pages (2 of them allow form submission):
 
-<div markdown="block" class="img">
-![interaction](../resources/img/hw04_01_example_interaction.gif)
-</div>
+* __home__ - <code>/</code>: the first page on the site; links to the list and settings pages
+* __list__ - <code>/birds</code>: lists __all__ of the birds seen so far, as well as the number of times they've been seen. also allows submission of bird sighting (by anyone!)
+* __settings__ - <code>/settings</code>: controls the minimum number of birds seen on the list page using GET
+
+
 
 ### Submission Process
 
-1. You will be given access to a private repository on GitHub
-2. The final version of your assignment should be in GitHub
-3. __Push__ your changes to the homework repository on GitHub by the due date.
+You will be given access to a private repository on GitHub. It will contain: 
 
-### (3 points) Make at Least 4 Commits
+1. stub source files in the `src` directory
+2. a `.jshintrc`
+
+* __Push__ your changes to the homework repository on GitHub.
+* Commits later than the deadline will not be included in grading
+
+### (4 points) Make at Least 4 Commits
 
 * Commit multiple times throughout your development process.
-* Make at least 3 separate commits - (for example, one option may be to make one commit per part in the homework).
+* Make at least 4 separate commits - (for example, one option may be to make one commit per part in the homework).
 
 ## Part 1 - Setup
 
+Because we're creating two express apps in a single repository, the directory layout will be a little different from what we've seen before. Both projects will share the same `package.json`, `node_modules`, `.gitignore` and `.jshintrc`, but they'll each have their own `public` and `views` folders within their own directory in `src`. When you're __done with all of the directions__, you should have a folder structure that looks similar to this:
+
+* `/` (project root)
+    * `package.json`
+    * `node_modules`
+    * `.gitignore`
+    * `.jshintrc`
+    * `/src`
+        * `/handy`
+            * `app.js`
+            * `public`
+                * `img`
+                * `css`
+            * `views`
+                * `layout.hbs`
+        * `/birder`
+            * `app.js`
+            * `public`
+                * `img`
+                * `css`
+            * `views`
+                * `layout.hbs`
+
 ### (2 points) Installing Dependencies
 
-* create a <code>package.json</code>
-* __install__ the following __dependencies__ (make sure you use the <code>--save</code> option), and __no others__:
-	* <code>body-parser</code>
+* create a <code>package.json</code> (you can use `npm init` to do this) in the root directory of your project:
+* __install__ the following __dependencies__ (make sure you use the <code>--save</code> option):
 	* <code>express</code>
 	* <code>hbs</code>
-	* <code>express-session</code>
-
+	* <code>body-parser</code> (this is used for busy-birder only)
 
 ### (2 points) .gitignore
 
-* create a <code>.gitignore</code>
+* create a <code>.gitignore</code> file in the root directory of your project
 * ignore the following files:
 	* <code>node_modules</code>
-	* any other files that aren't relevant to the project... for example
-        * <code>.DS_Store</code> if you're on OSX
-        * <code>.swp</code> if you use vim as your editor
+	* any other files that are not part of your project... for example:
+        * <code>DS_Store</code> (if you're on OSX)
+	    * <code>*.swp</code> (if you're using vim)
+
+### (1 point) Configure jshint
+
+Create a `.jshintrc` file based on the previous project's `.jshintrc` in the root directory of your project
+
+* it's ok to have long lines
+* however, at minimum, make sure that the following is still caught:
+    * undeclared variables
+    * `==` vs `===`
+    * missing semicolons 
+
+
+## Part 2 - Give Me a Hand!
+
+In `/src/handy/app.js`, create an Express application that generates a random hand of playing cards (that is, something that simulates a set of randomly drawn cards from a shuffled deck). We'll follow these steps to create our app:
+
+1. Create a page that displays cards
+2. Add a query string variable so that the number of cards displayed can be controlled by the query string
+3. Add a form that allows the user to set the query string variable
+4. Style the site
+
+
+### Display Cards on a Page
+
+* create a basic express application in <code>src/handy/app.js</code>
+* check out the [slides on Express](../slides/08/express.html) for a refresher on how to do this
+* set up handlebars - [check out these slides on templating](../slides/10/templating.html#/)
+	* get and config setup
+	* create the appropriate directory structure and templates:  
+		* `src/handy/views` to hold your templates
+		* `src/handy/views/layout.hbs` for "common" markup
+		* `src/handy/views/whatever_name_you_want.hbs` for your template that displays actual cards
+* in your <code>views/layout.hbs</code>, drop in the surrounding html that will go on every page
+	* don't forget <code>body</code>, surrounded by triple curly braces!
+* add a route that handles requests to `/hand`
+* in that route, generate a deck of cards, shuffle the deck, and get 5 cards from the shuffled deck
+    * you can represent this anyway you like, like...
+        * an `Array` of `objects`
+        * creating constructors for `Card` and `Deck`
         * etc.
+    * however, do not hand code every card! (use `for` or `forEach` to generate a deck)
+    * when you shuffle, make sure your shuffle is not _computationally expensive_ (that is, make sure it's an algorithm that doesn't have a chance of running a long time)
+    * each card must have a __value__  (A, 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K), and a suit (&hearts;, &diams;, &clubs;, &spades;)
+        * you can represent a suite using the following [html entities](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) `&hearts;`, `&diams;`, `&clubs;`, and `&spades`;
+        * __however, to display these html entities in a template, you'll have to use triple curly braces instead of the normal double__
+            * (this means that the variable is _not escaped_, so the html entities can be treated as html entities!)
+            * for example: `{{"{{{&hearts;"}}}}}`
+* pass the 5 cards as the context to your template within your route for `/hand`
+* create a template for displaying cards (call this whatever you want... just make sure that the `hbs` file matches the name you pass into `render`):
+* __put the cards in an unordered list (a `<ul>`)__
+* __each card should be in its own list item (`<li>`)__
+* __each list item should consist of a value and a suit as specified above__
+* __test your page - every time the page is visisted, a different set of 5 cards should be drawn!__
 
-## Part 2 - Homepage and Static Files
+### Query String
 
-### (3 points) Enabling Static Files
+Modify your application so that the number of cards drawn from the deck can be controlled by a query string parameter called `cards`.
 
-First, let's make sure you can serve up static content, like css and images.
+* check out the [slides on GET](../slides/10/review-get.html) before proceeding
+* modify your route for `/hand` so that you can append a query string variable to it, `cards`
+* use this to determine how many cards to display
+* for example `localhost:3000/hand?cards=3` would show only 3 cards
+* __however, if no query string is present, default to 5 cards__
+* test your application by adding `?cards=2` to the url!
+	
+### Create a Form
 
-* create the following directory structure in your project's root directory
+Now... add a form to your page so that the user doesn't have to manipulate the url to set the number of cards drawn. Instead, they will just enter it in a text input field.
+
+* [skim through the slides on forms](../slides/10/forms.html)
+* [or read the form element documentation on mdn](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form#The_<form>_element) along with this [lengthy article on using forms](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form)
+* create a form in the template that you render for `/hand`
+    * the method should be `GET`
+    * the action can be left as empty string (the form will submit to the same url that it's on)
+* add a text input field (`<input type="text" ...>`)
+    * make sure to set the name attribute to `cards`
+* add a submit button (`<input type="submit" ... >`)
+* the resulting page should look like this:
+
+![plain no css](../resources/img/hw04-hand-01-plain.gif)
+
+
+### Enabling Static Files and Styling Your Site
+
+Finally, add some css to the site so that your cards sort of look like cards. Only minimal styling is necessary to demonstrate that:
+
+1. you've enabled static files
+1. you can load an external stylesheet
+
+
+* create the following directory structure in `src/handy` 
 	* <code>public</code>
 	* <code>public/css</code>
 	* <code>public/img</code>
 * add a blank css file in <code>public/css/base.css</code>
-* add a subway related image in <code>public/img/subway.jpg</code>
+* add the appropriate requires and middleware to enable static file serving:
+	* check out the [slides on serving static files with Express](../slides/08/express.html#/29)
+* test that the css file works
+	* for example, try to curl <code>http://localhost:3000/css/base.css</code>
+	* or go that url in your browser
+* finally pull in your <code>base.css</code> stylesheet in your `layout.hbs` with a `link` tag
+
+Below is an example of some simple styling (maybe use `display: inline-block`, constrain the width and height, etc.) 
+
+![simple](../resources/img/hw04-hand-02-simple.gif)
+
+<br>
+Of course, you can style it as much as you want. If you want to go all out, feel free to:
+
+1. add additional markup (but you __have__ to keep the unordered list and list items)
+2. use any css features you like... the version below uses:
+    * `rounded corners`
+    * `css transforms`
+    * `drop shadows`
+    * `flex box`
+
+![extra](../resources/img/hw04-hand-03-extra.gif)
+
+## Part 3 - Busy Birder - Homepage and Static Files
+
+
+### (3 points) Enabling Static Files
+
+First, lets make sure we can serve up static content, like css and images.
+
+* create the following directory structure in your `src/birder` directory
+	* <code>public</code>
+	* <code>public/css</code>
+	* <code>public/img</code>
+* add a blank css file in <code>public/css/base.css</code>
+* add an in image of a bird in<code>public/img/bird.png</code>
 * create a basic express application called <code>app.js</code>; you don't have to define any routes yet...
 * just add the appropriate requires and middleware to enable static file serving:
-	* check out the [slides on serving static files with Express](http://foureyes.github.io/csci-ua.0480-spring2016-010/slides/08/express.html#/29)
-	* or see page 26 in Chapter 3 of {{ site.book_web }}
+	* check out the [slides on serving static files with Express](../slides/08/express.html#/29)
 * test that both the css files and image work
-	* for example, try to curl <code>http://localhost:3000/img/subway.jpg</code>
+	* for example, try to curl <code>http://localhost:3000/img/bird.png</code>
 	* or go that url in your browser
 
 
@@ -90,228 +235,188 @@ First, let's make sure you can serve up static content, like css and images.
 
 Now that static files are set, create a homepage.
 
-* for the home page, your app should accept <code>GET</code> requests on the path, <code>/</code>
-* set up handlebars - [these slides](http://foureyes.github.io/csci-ua.0480-spring2016-010/slides/10/templating.html#/5) may help... (it's just one line!)
+* the homepage should field <code>GET</code> requests on the path, <code>/</code>
+	
+* set up handlebars - [these slides](../slides/10/templating.html#/) may help
 	* get all the requirements and config setup
-	* create the appropriate views folder, along with an initial layout file:
+	* create the appropriate views/templates and layout 
 		* <code>views</code>
-        * <code>views/layout.hbs</code>
-* in your <code>layout.hbs</code>, drop in the surrounding html that will go on every page
+		* <code>views/layout.hbs</code>
+* in your <code>views/layout.hbs</code>, drop in the surrounding html that will go on every page
 	* pull in your <code>base.css</code> stylesheet
-	* include a header containing both your <code>subway.jpg</code> image and the title of your site, __The Complaining Commuter__
-    * additionally, add a footer that links to all 3 pages in your site:
-	    * a link to the home / list of complaints page (/)
-	    * a link to __a page to add a complaint__ page (/complain)
-	    * a link to a __stats__ page (/stats)
+	* include an <code>h1</code> on every page... the header on every page should say __The Busy Birder__
 	* don't forget <code>body</code>, surrounded by triple curly braces!
-* in your template for your homepage (you can name this template whatever you want... just make sure you can pull it up later), add the following:
-	* an <code>h3</code> header that says "Complaints List"
-* create the appropriate route so that a <code>GET</code> request pulls up the rendered template
-* add some css to change some styles, (for example change the color of the text, change the font, etc.)
+* in your template for your homepage (call this whatever you want... just make sure you can pull it up later), add the following:
+	* an <code>h3</code> header with some welcome text
+	* an image of a bird
+	* a link to a _settings_ page (settings)
+	* a link to _list of birds_ page (birds)
+* create the appropriate route so that a <code>GET</code> request pulls up the page
+* add some css to change background color, font color and font family
 
-Here's an example of what the page could look like (you don't have to use the same exact styles, but add enough styles so that you can see that the style sheet is integrated correctly):
+
+Here's an example of what the page could look like (you don't have to use the same exact styles, but add enough styles so that you can see that it's being pulled up correctly):
 
 <div markdown="block" class="img">
-![png](../resources/img/hw04_02_home.png)
+![homepage](../resources/img/hw4-home.png)
 </div>
 
 
+## The Bird List Page and Bird Submission Form
 
-## Part 3 - List of Complaints, Filtering List of Complaints
+The bird list page will list names of birds along with the number of times they've been seen. By default, this list will start with some content:
 
-The homepage should also have a list of all of the complaints submitted to the site. By default, this list will start with the following content:
+* 3 x Bald Eagle
+* 7 x Yellow Billed Duck
+* 4 x Great Cormorant
 
-* G - The person sitting next to me was eating hard-boiled eggs in the subway car (???!!!)
-* F - There was a possum loose on the platform
-* A - The train was an hour late!, A Line
+This page will also allow you to submit the name of a bird that you saw. This will either:
 
-These complaints can be filtered so that your application only shows complaints for a particular subway line.
+* increment the quantity of birds seen if there's a bird with the same name already on the list
+* add a new name to the list, with a quantity of one
+
+## Part 4 - List of Bird Sightings
 
 ### (3 points) Middleware and Logging
 
-First, get some logging together so that you can troubleshoot. Log out the request that you receive, including the request's query string and body.
+First, get some logging together so that you can troubleshoot. Log out the request that you receive, including the request's body.
 
 * require the <code>body-parser</code> middleware and use it; this will allow you to access the content of the request's body
 * set up some logging using your own middleware function; it should include
-	* the request __method__,  __path__
-    * followed by the contents of the request's query string
-	* followed by the contents of the request __body__
+	* the request method and path
+	* followed by the contents of the request body
+* maintain a list of birds (can be a global variable, you can use whatever data structure you want)
 
-### (6 points) Complaint List
+### (6 points) Bird List
 
-Now for some actual content. This page will display the complaints and the subway line associated with the complaint.
+Now for some actual content. This page will display the names of birds and the number of times they've been seen.
 
 __Bootstrap the list with some data.__
 
-* store all of the complaint data in a global Array of objects... 
+* store all of the birdwatching data in a global Array of objects... 
 * each object has two properties:
-	* the _actual_ complaint (just text)
-	* the subway line
+	* a bird's name
+	* the number of times they've been seen
 * it should start off with:
-    * G - The person sitting next to me was eating hard-boiled eggs in the subway car (???!!!)
-    * F - There was a possum loose on the platform
-    * A - The train was an hour late!
-* (storing this data in a global variable isn't typical, of course, but we'll have to store the data _somewhere_ for now!)
+	* 3 x Bald Eagle
+	* 7 x Yellow Billed Duck
+	* 4 x Great Cormorant
+* (This isn't really good practice, but we'll have to store the data _somewhere_ for now!)
 
 __Create the actual page...__
 
-{% comment %}
 * the list page should field <code>GET</code> requests on the path, <code>/birds</code>
-{% endcomment %}
-
-* modify your route for your home page (<code>/</code>) so that you render the template with the correct context object (that is, the list of complaints to display)
-* in the template, you can iterate through the list of complaints using the <code>#each</code> helper
-* __display the complaints in reverse order__ - the last element on the list should be on top
-* put each complaint/subway line pair in a list item (<code>li</code>)
-* additionally, make the subway line a different style (such as a different font-weight or background-color or ... any other style that's different from the complaint)
+* set up the template and routes appropriately; remember to render the template with the correct context
+* in the template, you can iterate through the list of birds using the <code>#each</code> helper
+* put each quantity/name pair in a list item (<code>li</code>)
+* additionally, make the quantity a different color than the name
+* add a link to a _settings_ page (settings)
+* finally, and an <code>h3</code> header with text indicating that this is the _bird sightings_ page
 
 __Test your page.__
 
 * it should look a little like the image below
-* again, the styles don't have to match exactly - just add enough styling to distinguish between the subway line and the actual message
 * (ignore the form for now... you'll set that up next)
 
 <div markdown="block" class="img">
-![list](../resources/img/hw04_03_list.png)
+![list](../resources/img/hw4-list.png)
 </div>
 
-### (7 points) Filter by Subway Line
+### (8 points) Bird Form
 
-__Once you have your list of complaints working... add a form that allows you to filter by subway line.__ &rarr;
+__Once it's working, create a form...__
 
-* create a form in your <code>index.hbs</code> template
-    * the form should issue a <code>GET</code> request
-    * the request should go to the same URL that it's on (still home, <code>/</code>)
-    * the form should also have a text field and a submit button
-    * __remember to give you text field a name!__
-* on the server side, modify your route for your home page (<code>/</code>) so that it sends filtered data if the form is submitted
-    * how does your route know if the form was submitted?
-    * how does the route extract the data from the <code>GET</code> request / form submission?
-    * find some way to filter the data
-    * send that data to the template
-    * if the filter submitted is blank or if there is no filter, display all of the complaints
-* __here's what the filter interaction should look like:__ 
-
-<div markdown="block" class="img">
-![filter](../resources/img/hw04_04_filter.gif)
-</div>
-
-__The log should look something like this:__
-
-<code>GET</code> the home page
-
-<pre><code data-trim contenteditable>GET /
-=====
-req.query: {}
-req.body: {}
-</code></pre>
-
-<code>GET</code> to submit your filter
-<pre><code data-trim contenteditable>GET /
-=====
-req.query: { filter: 'G' }
-req.body: {}
-</code></pre>
-
-
-## Part 4 - Adding a Complaint
-
-### (9 points) Create a Complaint Form
-
-* in __app.js__ create a new route handler and template for <code>/complain</code>
-    * add a form in your template
-	* it should have 2 <code>inputs</code> (choose whatever form elements you like, they can both be text if you want to keep things simple) - with appropriate name attributes... you'll see that name in the request body!
-        * the text of the complaint
-        * ...and the subway line
+* for a quick refresher on forms, check out:
+    * [these slide](../slides/10/forms.html)
+    * [the form element documentation on mdn](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form#The_<form>_element), and a [lengthy article on using forms](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form)
+* add a form beneath the list of birds
+	* it should have a text <code>input</code>(name it appropriately... you'll see that name in the request body!)
 	* ...as well as a submit <code>input</code>
 * the form's method should be <code>POST</code>
-* the action should be empty string <code>""</code> or <code>/complain</code> (it's <code>POST</code>ing to itself)
-* modify __app.js__ again... by adding a new route so that it accepts <code>POST</code> requests on <code>/complain</code> 
+* the action should be empty string <code>""</code> or <code>birds</code> (it's <code>POST</code>ing to itself)
+* modify __app.js__... add a route so that it accepts <code>POST</code> requests on <code>/birds</code> 
 	* in your callback function for this route...
-	* create an object for this new complaint (with the actual complaint text and the subway line) and add it to your global list of complaint objects
-	* ...after that, redirect to home <code>/</code> with a <code>GET</code> request
-* __here's what the filter interaction should look like:__ 
-
-
-<div markdown="block" class="img">
-![add](../resources/img/hw04_05_add.gif)
-</div>
-
-The logs should look something like this for the POST, Redirect and GET:
+	* use the bird name that was passed in from the form (it should be in the request's body)...
+	* to search the current list of birds for an entry with the same name as what is the request's body
+	* if it exists, add one to it
+	* if it doesn't, create an object for it, with quantity one, and add it to the list
+	* ...after that, redirect back to <code>/birds</code> with a <code>GET</code> request
+* the log should look something like this:
 
 <code>GET</code> the list page.
 
-<pre><code data-trim contenteditable>GET /complain
+<pre><code data-trim contenteditable>GET /birds
 =====
-req.query: {}
 req.body: {}
 </code></pre>
 
 <code>POST</code> the form (notice the body).
 
-<pre><code data-trim contenteditable>POST /complain
+<pre><code data-trim contenteditable>POST /birds
 =====
-req.query: {}
-req.body: { complaint: 'Blah blah blah!', line: 'Q' }
+req.body: { name: 'Ostrich', add: 'Add Another Bird' }
 </code></pre>
 
-<code>GET</code> the home page (/)... 
+<code>GET</code> the list page again.
 
-<pre><code data-trim contenteditable>GET /
+<pre><code data-trim contenteditable>GET /birds
 =====
-req.query: {}
 req.body: {}
 </code></pre>
 
 
-## Part 5 - Stats Page / Using a Session Value
-
-Create a page that shows how many complaints that a user has submitted __during their browsing session__.
-
-### (6 points) Session Setup
-
-__First, setup and configure sessions:__
-
-* bring in the session module by requiring <code>express-session</code>
-* set up a some options for your session:
-
-<pre><code data-trim contenteditable>
-var sessionOptions = {
-	secret: 'secret cookie thang',
-	resave: true,
-	saveUninitialized: true
-};
-</code></pre>
-
-* then use those options for session handling middleware: <code>app.use(session(sessionOptions));</code>
-
-__Modify your add route (<code>/complain</code>) so that every time a user adds a new complaint, it's counted in their session.__ 
-
-* in the add (<code>/complain</code>) route, count how many times a person has complained for their session by adding a property to the <code>req.session</code> object
-* increment the count if there's already a value there
-* otherwise, the count should start at 0
+## Part 5 - Settings Page, Filtering With GET
 
 
-### (5 points) The Stats Page
+This feature will allow users to filter the birds on the homepage based on number of sightings. For example, if the threshold is set to 4, only birds that have been sighted 4 times or more will show up on the list. 
+
+1. Modify your list (`/birds`) route so that it only displays birds that have been sighted for a minimum number of times __if it receives the value, `minBirds` in the query string__. 
+    * create a new list based off of the query string parameter as the threshold (you can just loop or use a higher order function if your birds are in a list)
+    * pass this to your list template for <code>/birds</code> rather than the unfiltered version
+2. Add logging so that the query string object is shown in the console
 
 
-* create a route handler for <code>/stats</code>
-* create a template for it
-* display the session variable that represents the current count of the user's complaint submssions
+### (8 points) The Settings Page
+
+__Create a form to set the minumum value.__
+
+* the settings page should field <code>GET</code> requests on the path, <code>/settings</code>
+* add a link to a _list_ page (birds)
+* add an <code>h3</code> header with text indicating that this is the _settings_ page
+* add a form to your settings page
+	* it should have a text <code>input</code>(name it appropriately... you'll see that name in the request body!)
+	* ...as well as a submit <code>input</code>
+* the form's method should be <code>GET</code>
+* the action should be empty string <code>"/birds"</code> (it's sending you back to the list of birds)
 * the page should look like:
 
 <div markdown="block" class="img">
-![stats](../resources/img/hw04_06_stats.gif)
+![settings](../resources/img/hw4-settings.png)
 </div>
 
-__Test the session management.__
+__The log should look something like this:__
 
-* open your app with one browser... and add some complaints
-* the stats page should show the count of complaints
-* open your app in another browser or in private browsing / incognito mode
-* check that the count is 0 for this other browser session
-* (and of course, make sure that the previous count in your other session was maintained)
+<code>GET</code> the settings page.
+<pre><code data-trim contenteditable>
+GET /settings
+=====
+req.body: {}
+req.query.minVal: undefined
+</code></pre>
 
+<code>GET</code> the list page to show the filtered results
+<pre><code data-trim contenteditable>
+GET /birds
+=====
+req.body: {}
+req.query.minVal: 2
+</code></pre>
+
+Everything together may look like this:
+
+<div markdown="block" class="img">
+![the busy birder](../resources/img/hw4-the-busy-birder.gif)
+</div>
 
 </div>
 

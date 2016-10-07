@@ -28,9 +28,7 @@
 Due October 13th
 
 Homework #4 to be posted
-{% comment %}
 
 * [Homework #4](homework/04.html)
-{% endcomment %}
 
 </td>
