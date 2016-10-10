@@ -25,9 +25,7 @@
 </td>
 	<td markdown="block">
 
-Due October 13th
-
-Homework #4 to be posted
+Due  October 13th, 11PM
 
 * [Homework #4](homework/04.html)
 

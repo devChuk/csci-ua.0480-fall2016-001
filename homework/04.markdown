@@ -90,7 +90,7 @@ Because we're creating two express apps in a single repository, the directory la
 * ignore the following files:
 	* <code>node_modules</code>
 	* any other files that are not part of your project... for example:
-        * <code>DS_Store</code> (if you're on OSX)
+        * <code>.DS_Store</code> (if you're on OSX)
 	    * <code>*.swp</code> (if you're using vim)
 
 ### (1 point) Configure jshint
@@ -118,7 +118,7 @@ In `/src/handy/app.js`, create an Express application that generates a random ha
 
 * create a basic express application in <code>src/handy/app.js</code>
 * check out the [slides on Express](../slides/08/express.html) for a refresher on how to do this
-* set up handlebars - [check out these slides on templating](../slides/10/templating.html#/)
+* set up handlebars - [check out these slides on templating](../slides/09/templating.html#/)
 	* get and config setup
 	* create the appropriate directory structure and templates:  
 		* `src/handy/views` to hold your templates
@@ -134,7 +134,7 @@ In `/src/handy/app.js`, create an Express application that generates a random ha
         * etc.
     * however, do not hand code every card! (use `for` or `forEach` to generate a deck)
     * when you shuffle, make sure your shuffle is not _computationally expensive_ (that is, make sure it's an algorithm that doesn't have a chance of running a long time)
-    * each card must have a __value__  (A, 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K), and a suit (&hearts;, &diams;, &clubs;, &spades;)
+    * each card must have a __value__  (A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K), and a suit (&hearts;, &diams;, &clubs;, &spades;)
         * you can represent a suite using the following [html entities](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) `&hearts;`, `&diams;`, `&clubs;`, and `&spades`;
         * __however, to display these html entities in a template, you'll have to use triple curly braces instead of the normal double__
             * (this means that the variable is _not escaped_, so the html entities can be treated as html entities!)
@@ -237,7 +237,7 @@ Now that static files are set, create a homepage.
 
 * the homepage should field <code>GET</code> requests on the path, <code>/</code>
 	
-* set up handlebars - [these slides](../slides/10/templating.html#/) may help
+* set up handlebars - [these slides](../slides/09/templating.html#/) may help
 	* get all the requirements and config setup
 	* create the appropriate views/templates and layout 
 		* <code>views</code>
