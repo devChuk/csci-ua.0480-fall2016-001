@@ -1,15 +1,11 @@
 	<td markdown="block">
+* [Sessions and Cookies from Previous Class](slides/10/sessions.html)
 * [Project Layout and Scaffolding](slides/11/scaffolding.html)
 * [Forms Revisited](slides/11/forms-revisited.html)
 * [Mongo DB](slides/11/mongo.html)
 
 </td>
 	<td markdown="block">
-
-Forms and Sessions (Again)
-
-* {{site.book_web}} - Chapter 8 - Form Handling
-* {{site.book_web}} - Chapter 9 - Cookies and Sessions
 
 MongoDB
 
@@ -26,7 +22,9 @@ Mongoose
 </td>
 	<td markdown="block">
 
+{% comment %}
 Due Mar 7th (Mon)
 
 * [Homework #04](homework/04.html)
+{% endcomment %}
 </td>
