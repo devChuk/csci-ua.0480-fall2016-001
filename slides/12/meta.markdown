@@ -14,20 +14,20 @@ title: "About Class #12"
 <section markdown="block">
 ## Topics
 
-* Homework
-* Midterm coming up in a week!
+* Any Last Minute Homework Questions?
+* Midterm coming up in a week 
 * MongoDB
-* (maybe???) Mongoose
+* Mongoose
 </section>
 
 <section markdown="block">
 ## Midterm
 
-* coming up next week, Thursday, March 10th
+* coming up next week, Thursday, October 20th
 * (see schedule)
 * in-class review on Tuesday
 * sample questions posted 
-    * [midterm practice](../../resources/handouts/midterm/midterm_1_practice.pdf)
-    * [midterm practice solutions](../../resources/handouts/midterm/midterm_1_practice_solutions.pdf)
+    * [midterm practice](../../resources/handouts/midterm_1/midterm_1_practice.pdf)
+    * [midterm practice solutions](../../resources/handouts/midterm_1/midterm_1_practice_solutions.pdf)
 </section>
 

@@ -14,7 +14,7 @@ title: "MongoDB"
 <section markdown="block">
 ## So You Want to Persist Data
 
-In our guessing game, __where will did we store our data__? &rarr;
+In our homework and class examples, __where did we store our data__? &rarr;
 
 * {:.fragment} in a global variable in our Express application
 * {:.fragment} __and where does that application live?__ &rarr;
@@ -46,13 +46,14 @@ __We'll be using a database in this part of the class...__
 <section markdown="block">
 ## SO MANY DATABASES
 
-The main way we'll be categorizing databases are:
+__We can categorize databases as:__ &rarr;
 
 * relational
 * nosql (also _non-relational_)
+{:.fragment}
 
 <br>
-nosql databases can be further categorized by the data model they use:
+__nosql databases can be further categorized by the data model they use:__ &rarr;
 {:.fragment}
 
 * {:.fragment} key-value
@@ -66,11 +67,12 @@ nosql databases can be further categorized by the data model they use:
 
 So, the following slides include high level overviews of different kinds of databases.
 
-* I'm going to use broad generalizations
-* but there are _always_ exceptions
-* for example:
-	* although PostgreSQL is considered a relational databases, it has a built-in data type for key-value storage!
-	* many document stores can be used as key-value stores
+* I'm going to use __broad generalizations__
+* __but there are _always_ exceptions__ &rarr;
+* {:.fragment} for example:
+	* {:.fragment} although PostgreSQL is considered a relational databases, it has a built-in data type for key-value storage!
+	* {:.fragment} many document stores can be used as key-value stores
+	* {:.fragment} some document stores are also relational!
 
 </section>
 
@@ -79,7 +81,7 @@ So, the following slides include high level overviews of different kinds of data
 
 __Relational databases__ organize data in a collection of tables (relations).  __Can you describe characterstics of a relational database?__ &rarr;
 
-* {:.fragment} each table has named columns... with the actual data that populates the table in rows separate rows
+* {:.fragment} each table has named columns... with the actual data that populates the table in separate rows
 * {:.fragment} each table row has __primary key__ that:
 	* {:.fragment} uniquely identifies that row 
 	* {:.fragment} allows data in one table to be _related_ to data in another (via _foreign key_ relationships)
@@ -93,8 +95,8 @@ __Regarding additional relational database features...__ &rarr;
 
 * {:.fragment} relational databases are typically pretty rigid:
 	* {:.fragment} highly structured
-	* {:.fragment} you have to define what columns (as well as their types) are in a table before inserting rowss
-	* {:.fragment} has a lot of features to retain _data integrity_ (such user defined data constraints, foreign keys, etc.)
+	* {:.fragment} you have to define the columns and the types of columns before inserting rows
+	* {:.fragment} has a lot of features for maintaining  _data integrity_ (such user defined data constraints, foreign keys, etc.)
 * {:.fragment} some relational databases guarantee that transactions (or changes in the database) are reliable 
 * {:.fragment} see [ACID compliance](https://en.wikipedia.org/wiki/ACID) - Atomicity, Consistency, Isolation, Durability
 * {:.fragment} [this database consultant has a pretty good write-up on relational databases](http://r937.com/relational.html)
@@ -102,7 +104,17 @@ __Regarding additional relational database features...__ &rarr;
 </section>
 
 <section markdown="block">
-## Maybe a Quick Demo of Designing a Data Model for a Relational Database
+## Aside on ACID
+
+* __Atomicity__ - each _transaction_ / (series of operations in a transaction) is all or nothing 
+* __Consistency__ - every _transaction_ ensures that the resulting database state is valid (goes from one valid state to another)
+* __Isolation__ - a failed _transaction_ should have no effect on other transactions (even if the transactions are concurrent)
+* __Durability__ - once a _transaction_ / operation is done, the results will remain persistent even through crash, power loss, etc.
+
+</section>
+
+<section markdown="block">
+## Quick Demo of Designing a Data Model for a Relational Database
 
 Maybe we want to store these fields:
 
@@ -129,7 +141,10 @@ __What are some examples of relational databases?__ &rarr;
 * {:.fragment} Microsoft SQL Server
 
 <br>
-These are all great choices for storing highly structured data, and are in common usage for conventional web applications. However, there's a bit of a learning curve, and some are difficult to set up.
+These are all great choices for storing highly structured data, related data.
+{:.fragment}
+
+They are all in common usage for conventional web applications. However, there's a bit of a learning curve, and some are difficult to set up.
 {:.fragment}
 
 </section>
@@ -228,9 +243,11 @@ Some use cases for document stores include:
 
 We're using MongoDB. Not for all of the reasons we previously mentioned, though... __We're using it because...__ &rarr;
 
-* {:.fragment} it uses a JSON like data structure (we know JSON)
-* {:.fragment} it's query language is JavaScript (we know JavaScript syntax)
+* {:.fragment} it uses a __JSON__ like data structure (we know JSON)
+* {:.fragment} it's __query language is JavaScript__ (we know JavaScript syntax)
 * {:.fragment} it's not very rigid when it comes to dealing with data (we don't have to be so precise/exacting)
+* {:.fragment} it's fairly straightforward to set up, usually with __little / no configuration required__ 
+* {:.fragment} (to the point where the default installation doesn't even require a username/password to connect to the database -- wait, that's not so good!?)
 
 <br>
 All this can pretty much be summed up by saying that __it's easy to use__! (As an aside, I'm a bit biased to using relational databases, specifically Postgres)
@@ -266,7 +283,7 @@ A couple of terms to remember (yay, definitions again!)
 <section markdown="block">
 ## Data Types
 
-Although MongoDB doesn't require you to pre-define the types of values that your documents will have, it does have data types. These types __are inferred from the value__. These are some of the available types:
+Although MongoDB doesn't require you to pre-define the types of values that your documents will have, it does have data types. These types __are inferred from the value__. Some available types include:
 
 
 * __string__ - an empty string or an ordered sequence characters
@@ -277,7 +294,7 @@ Although MongoDB doesn't require you to pre-define the types of values that your
 * __Object ID__ every MongoDB object or document must have an Object ID which is unique
 
 <br>
-A little more about Object ID: a 12-byte binary value which has a very rare chance of getting duplicated; consists of a 4-byte timestamp (seconds since epoch), a 3-byte machine id, a 2-byte process id, and a 3-byte counter
+More about __Object ID__: a 12-byte binary value which has a very rare chance of duplication; consists of a 4-byte timestamp (seconds since epoch), a 3-byte machine id, a 2-byte process id, and a 3-byte counter
 
 </section>
 
@@ -382,7 +399,7 @@ Both map objects in your application to their counterparts in your database (tab
 <section markdown="block">
 # A Quick Example of Storing Cat Names!
 
-Let's use MongoDB and Mongoose to store a list of cat names.
+Let's use MongoDB and Mongoose to store our classic list of cat names.
 </section>
 
 <section markdown="block">

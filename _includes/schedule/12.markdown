@@ -1,9 +1,6 @@
 	<td markdown="block">
 
-{% comment %}
 * [About Class #12](slides/12/meta.html)
-{% endcomment %}
-
 * [Mongo DB (From Previous Class)](slides/11/mongo.html)
 * Example Data (from CSCI-UA.60)
 	* [book fields](resources/data/books_fields.txt)
