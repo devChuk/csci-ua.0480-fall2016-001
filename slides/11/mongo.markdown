@@ -347,14 +347,55 @@ This drops you into the MongoDB shell (yay... more shell). You can issue command
 <section markdown="block">
 ## CRUD!?
 
-(C)reate, (R)ead, (U)pdate, and (D)elete operations:
+__(C)reate, (R)ead, (U)pdate, and (D)elete operations:__ &rarr;
 
-* db.[collection].insert
+* {:.fragment} db.[collection].insert(obj)
 	* <code>db.Person.insert({'first':'bob', 'last':'bob'})</code>
-* db.[collection].find
-* db.[collection].update
+* {:.fragment} db.[collection].find(queryObj)
+	* <code>db.Person.find({'last':'bob'})</code>
+	* <code>db.Person.find() // finds all!</code>
+* {:.fragment} db.[collection].update(queryObj, queryObj)
 	* <code>db.Person.update({'first':'foo'}, {$set: {'last':'bar'}})</code>
-* db.[collection].remove
+* {:.fragment} db.[collection].remove(queryObj)
+	* <code>db.Person.remove({'last':'bob'})</code>
+
+<br>
+Where `queryObj` is a name value pair that represents the property you're searching on... with a value that matches the value you specify
+{:.fragment}
+</section>
+
+<section markdown="block">
+## More Examples
+
+__As prep for the next part, some insert and finds (with a test for greater than!)__ &rarr;
+
+Inserting, finding all, then finding by exact number of lives:
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+> db.Cat.insert({name:'foo', lives:9})
+WriteResult({ "nInserted" : 1 })
+> db.Cat.find()
+{ "_id" : ObjectId("57ff86a14639d0fd263f87a0"), "name" : "foo", "lives" : 9 }
+> db.Cat.find({lives:9})
+{ "_id" : ObjectId("57ff86a14639d0fd263f87a0"), "name" : "foo", "lives" : 9 }
+</code></pre>
+{:.fragment}
+
+Inserting more, then using greater than!
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+> db.Cat.insert({name:'bar', lives:2})
+WriteResult({ "nInserted" : 1 })
+> db.Cat.insert({name:'qux', lives:5})
+WriteResult({ "nInserted" : 1 })
+> db.Cat.find({lives: {$gt: 4}})
+{ "_id" : ObjectId("57ff86a14639d0fd263f87a0"), "name" : "foo", "lives" : 9 }
+{ "_id" : ObjectId("57ff86c14639d0fd263f87a2"), "name" : "qux", "lives" : 5 }
+</code></pre>
+{:.fragment}
+
 </section>
 
 <section markdown="block">
