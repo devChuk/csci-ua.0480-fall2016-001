@@ -365,7 +365,7 @@ You already know how to do most of this, but here's a rough sketch of some of th
 ## (30 points) Part 6 - Extra Credit
 
 * create another page, `/mymovies`,  showing all of the movies that have been added by the user during their session (it can be as simple as an unordered list)
-* you must use the `express-session` middleware to do this ([see the relevant slides](slides/10/sessions.html#/17))
+* you must use the `express-session` middleware to do this ([see the relevant slides](../slides/10/sessions.html#/17))
 * make sure you link to `/mymovies` from both of the existing pages so that the graders can see that you've implemented this feature
 
 <a name="examples"></a>

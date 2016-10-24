@@ -3,9 +3,7 @@
 * Exam Grades by Thursday
 * Homework 
 * Final Project
-* Evaluation
 * Review Databases (see class 11 and 12)
-* [in class examples to be posted on github](https://github.com/jversoza/ait-spring-16-examples)
 
 (Maybe)
 

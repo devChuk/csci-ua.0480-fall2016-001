@@ -217,24 +217,23 @@ MIDTERM
 <tr><td>15</td><td><strong>Oct 25</strong><br>Tue</td>
 <td markdown="block">
 
-* Authentication Review
-* Authentication Library
+* URL Parameters
+* Finishing Database
+* Validation
 
 {% comment %}
 * validation comes from next class?
 {% endcomment %}
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/15.markdown %}
-{% endcomment %}
 </tr>
 
 
 <!-- ------------ --><a name="16"></a>
 <tr><td>16</td><td><strong>Oct 27</strong><br>Thu</td>
 <td markdown="block">
-* HTML Primer, JavaScript and the Browser
-* The Document Object Model
+* Authentication
+* Authentication Library
 
 </td>
 <td></td><td></td><td></td>{% comment %}
@@ -246,10 +245,9 @@ MIDTERM
 <!-- ------------ --><a name="17"></a>
 <tr><td>17</td><td><strong>Nov 01</strong><br>Tue</td>
 <td markdown="block">
+* HTML Primer, JavaScript and the Browser
+* The Document Object Model
 * Manipulating Elements
-* Timers
-* Events
-* CSS
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/17.markdown %}
@@ -260,8 +258,15 @@ MIDTERM
 <!-- ------------ --><a name="18"></a>
 <tr><td>18</td><td><strong>Nov 03 </strong><br>Thu</td>
 <td markdown="block">
+
+* Timers
+* Events
+* CSS
+
+{% comment %}
 * Events Revisited
 * CSS Revisited
+{% endcomment %}
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/18.markdown %}
