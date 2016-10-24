@@ -1,6 +1,6 @@
 	<td markdown="block">
 
-* Exam Grades by Thursday
+* Maybe Exam Grades
 * Homework 
 * Final Project
 * Review Databases (see class 11 and 12)
@@ -29,7 +29,4 @@
 </td>
 	<td markdown="block">
 
-Due Mar 29th (Tue)
-
-* [Homework #05](homework/05.html)
 </td>
