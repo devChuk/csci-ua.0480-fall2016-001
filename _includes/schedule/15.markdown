@@ -7,10 +7,7 @@
 * [Parameters from URLs](slides/15/params.html)
 * [Mongoose](slides/15/mongoose.html)
 * [Validation](slides/15/validation.html)
-
-{% comment %}
 * [Authentication](slides/15/auth.html)
-{% endcomment %}
 
 <!-- 
 * [](slides//.html)
@@ -18,11 +15,34 @@
 -->
 </td>
 	<td markdown="block">
-<!--
-* Chapter 
-* Chapter 
--->
+MongoDB
+
+[Data Modeling Intro](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
+[Data Model Design](https://docs.mongodb.com/v3.2/core/data-model-design/)
+[Modeling Relationships / Examples](https://docs.mongodb.com/v3.2/applications/data-models-relationships/)
+
+Mongoose
+
+[Embedded Documents - Sub Docs](http://mongoosejs.com/docs/subdocs.html) 
+[Document References - Mongoose Population](http://mongoosejs.com/docs/populate.html) 
+
+Passport Examples
+
+* [PassportJS Documentation](http://passportjs.org/docs)
+* [From passport-local-mongoose](https://github.com/saintedlama/passport-local-mongoose/tree/master/examples/login)
+* [From mherman.org](http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/#.VjGSOq6rSRs)
+* [From scotch.io](http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local)
+
+Password Hashing
+
+* [NIST - Recommendation for Password-Based Key Derivation](http://csrc.nist.gov/publications/nistpubs/800-132/nist-sp800-132.pdf)
+* [How to securely hash passwords](http://security.stackexchange.com/questions/211/how-to-securely-hash-passwords)              
+* [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
+
 </td>
 	<td markdown="block">
+
+* 12/2 - [Final Project](final-project.html)
+    * 11/2 - First milestone
 
 </td>

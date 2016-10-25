@@ -221,7 +221,7 @@ Prototype With Some Implemented Functionality (10 points total)
 
 <a name="milestone3">
 
-### Date TBD Milestone 3
+### Date TBD - Milestone 3
 
 {% comment %}
 1. attempt to deploy your code to i6 by following [these instructions](homework/deploy.html)
