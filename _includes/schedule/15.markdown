@@ -1,12 +1,8 @@
 	<td markdown="block">
 
-* Maybe Exam Grades
-* Homework 
-* Final Project
+* Exam Grades by Thursday
+* [Final Project](final-project.html)
 * Review Databases (see class 11 and 12)
-
-(Maybe)
-
 * [Routers, and Project/Directory Layout](slides/15/layout.html)
 * [Parameters from URLs](slides/15/params.html)
 * [Mongoose](slides/15/mongoose.html)

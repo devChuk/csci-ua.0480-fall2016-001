@@ -27,7 +27,7 @@ pre {
 	<div class="panel-heading">Final Project</div>
 	<div class="panel-body" markdown="block">
 
-# __Final Project, Due Sat, Dec 3rd at 11pm__
+# __Final Project, Due Friday, Dec 2nd at 11pm__
 
 ## Overview 
 
@@ -245,7 +245,7 @@ Prototype With Some Implemented Functionality (10 points total)
 
 <a name="milestone4">
 
-### __12/3__ - Final Project Complete and Code is fully  _Deployed_ 
+### __12/2__ - Final Project Complete and Code is fully  _Deployed_ 
 
 {% comment %}
 * __(extended from Fri, 5/6 to Sun, 5/8)__ to allow some time over the weekend to finish up project
