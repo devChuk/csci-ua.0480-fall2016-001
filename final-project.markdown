@@ -27,9 +27,7 @@ pre {
 	<div class="panel-heading">Final Project</div>
 	<div class="panel-body" markdown="block">
 
-# __Final Project, Due Sun, May 8th at 11pm__
-
-(extended from May 6th)
+# __Final Project, Due Sat, Dec 3rd at 11pm__
 
 ## Overview 
 
@@ -39,63 +37,96 @@ Create a web application using Express and MongoDB.
 
 ## Project Requirements
 
-* Write project documentation / specifications
-* Use Express and MongoDB (or other database with permission)
-* Have at least __5 route handers__ (do not count login/register gets and posts if you're implementing auth)
-* Have _around_ __4 Mongoose Schemas__  (or other database abstraction library/module)
-* Have at least 3 forms (do not count login/register gets and posts if you're implementing auth): 
-	* Minimally, __one of the forms must submit data using JavaScript (ajax)__
-	* Ensure that __server side validation occurs__
-	* Additionally, __validation errors should be propagated back to the front end__
-* Use at least 2 of any of the following (can be the same): Constructors, Object.create, Prototypes, map, reduce, filter, forEach
-* __Additional Research Requirements__ (see below)
-* Project deployment
-* __Do not allow user generated content to be displayed directly (allow the default handlebars behavior that converts HTML entities)__
+### Requirements
 
+* You must use Express and MongoDB (or other server-side framework and database with permission)
+* You must write your own code, with annotations/references added for any code sourced from books, online tutorials, etc.
+
+### Scoring Rubric
+
+* (30 points) minimum 3 x forms or ajax interactions (__excluding login__)
+* (9 points) minimum 3 x any of the following (can be the same): 
+    * original Constructors (that is, a constructor you've written yourself), including methods added to prototype
+    * Object.create (where prototype matters)
+    * es6 classes 
+    * original higher order functions or these built-in higher order functions on the Array object: map, reduce, filter
+* (8 points) minimum 2 x mongoose schemas
+* (10 points) stability / security
+    * simple validation on user input to prevent application from crashing
+    * doesn't allow user input to be displayed unescaped directly on page
+    * pages that require authentication cannot be accessed without authentication
+    * data specified as private to a user cannot be viewed by another user
+    * etc.
+* (5 points) _originality_ 
+    * is not mostly based on existing homework
+    * majority of code is not from online tutorial
+* (30 points) 3 x milestones: 
+    * requirements and model
+    * deploy and partial implementation
+    * nearly finished
+* (8 points) worth of research topics; see below
+
+
+{% comment %}
+* provide api end points
+* what data is authenticated
+* urls of where data
+{% endcomment %}
 
 ## Additional Requirements, Your Choice
 
-Choose at least __6 points__ worth of these following topics (research and implementation). __This list may change slightly (added items, adjustments to points) as project ideas come in.__ 
+Choose at least __12 points__ worth of these following topics (research and implementation). __This list may change slightly (added items, adjustments to points) as project ideas come in.__ 
 
-* (2 points) Unit testing with JavaScript
+* (4 points) Unit testing with JavaScript
 	* [Jasmine](http://jasmine.github.io/)
 	* [Mocha](https://github.com/mochajs/mocha)
 	* Any others found through research
-    * (You'll have to specify how to run tests or show screen capture of tests)
-* (3 points) Automated functional testing for all of your routes using any of the following:
+    * Minimally 4 tests
+    * You'll have to link to testing code in repository
+    * ... And either specify how to run tests or show screen capture of tests)
+* (6 points) Automated functional testing for all of your routes using any of the following:
 	* [PhantomJS](http://phantomjs.org/) - headless browser testing
 	* [Selenium](http://www.seleniumhq.org/)
+    * Minimally 4 tests
+    * You'll have to linke to testing code in repository
 	* Any others found through research
-    * (You'll have to specify how to run tests or show screen capture of tests)
-* (2 points) Configuration management
+    * You'll have to link to testing code in repository
+    * ... And either specify how to run tests or show screen capture of tests)
+* (4 points) Configuration management
 	* [nconf](https://github.com/flatiron/nconf)
 	* [Node convict](https://github.com/mozilla/node-convict)
 	* Any others found through research
-* (1 point) Use [grunt](http://gruntjs.com/), [gulp](http://gulpjs.com/), or even make (!) to automate any of the following ... must be used in combination with one or more of the other requirements, such as:
-    * (1 point) Integrate JSHint / JSLint into your workflow
+* (4 points) Use [grunt](http://gruntjs.com/), [gulp](http://gulpjs.com/), webpack or even make (!) to automate any of the following ... must be used in combination with one or more of the other requirements, such as:
+    * (2 points) Integrate JSHint / JSLint into your workflow
         * Must be used __with build tool__ (see above requirement on Grunt or Gulp
         * Must have have .jshint configuration file
         * Must run on entire codebase __outside of <code>node_modules</code>
-    * (1 point) Concatenation and minification of CSS  and JavaScript files
+    * (2 points) Concatenation and minification of CSS  and JavaScript files
         * Must be used __with build tool__ (see above requirement on Grunt or Gulp
         * (Only client side files!)
-    * (1 points) Use a CSS preprocesser
+    * (2 points) Use a CSS preprocesser
 	    * [Sass](http://sass-lang.com/)
 	    * [Less](http://lesscss.org/)
 	    * [Myth](http://www.myth.io/)
-* (3 points) Integrate user authentication
+* (6 points) Integrate user authentication
 	* Minimally, implement sign up and registration
 	* Or implement sign in with provider, such as FB Connect, Google, etc. (which could be worth more points)
-* (3 points) Use a different database and database abstraction layer (!)
-* (2 points) Perform client side form validation using a JavaScript __library__
-    * using html5 form elements with attributes as contraints does not count
-    * alerting errors also does not count; errors must be integrated into the DOM
-* (1 point) Use a CSS framework throughout your site, use a reasonable of customization of the framework (don't just use stock Bootstrap - minimally configure a theme):
+* (4 points) Perform client side form validation using custom JavaScript or JavaScript __library__
+    * errors must be integrated into the DOM 
+    * the following will not receive full credit:
+        * using form elements with attributes as constraints 
+        * displaying errors with `alert`
+* (2 points) Use a CSS framework throughout your site, use a reasonable of customization of the framework (don't just use stock Bootstrap - minimally configure a theme):
 	* [Bootstrap](http://getbootstrap.com/)
 	* [Foundation](http://foundation.zurb.com/)
-* (1 point) Use a __server-side__ JavaScript library or module that we did not cover in class (not including any from other requirements) - 1 point per library, maximum of 2
-* (1 point) Use a __client-side__ JavaScript library or module that we did not cover in class (not including any from other requirements) - 1 point per library, maximum of 2
-* (2 points) Per external API used (you can convince me that this is worth more points for a more complex API)
+* (1 - 6 points) Use a __server-side__ JavaScript library or module that we did not cover in class (not including any from other requirements) 
+    * assign a point value to the library or module that you're using based on amount of effort and/or code required for integration
+* (1 - 6 points) Use a __client-side__ JavaScript library or module that we did not cover in class (not including any from other requirements)
+    * assign a point value to the library or module that you're using based on amount of effort and/or code required for integration
+    * for example, angular 2 or d3 might be 6 points, while google maps might be 1 point
+* (1 - 6 points) Per external API used 
+    * assign a point value to the library or module that you're using based on amount of effort and/or code required for integration
+    * for example, angular 2 might be 6 points, while google maps might be 1 point
 
 <a name="milestone1"></a>
 
@@ -103,9 +134,9 @@ Choose at least __6 points__ worth of these following topics (research and imple
 
 <a name="proposal"></a>
 
-### __4/5__ - Milestone 1 - Requirements / Specifications and Data Model 
+### __11/2__ - Milestone 1 - Requirements / Specifications and Data Model 
 
-[Check out sample documentation](https://github.com/nyu-csci-ua-0480-010-spring-2016/jversoza-final-project)
+[Check out sample documentation](https://github.com/nyu-csci-ua-0480-001-fall-2016/final-project-example)
 
 * Documentation
 	* Submit electronically through a supplied GitHub repository
@@ -133,9 +164,9 @@ Choose at least __6 points__ worth of these following topics (research and imple
 		* List of research topics
 		* A brief description of concept (3 or 4 sentence each)
 			* What is it?
-			* Any theoretical underpinnings worth mentioning?
 			* Why use it?
 			* List of possible candidate modules or solutions
+            * Points for research topic (based on specifications above)
 * Code
 	* A skeleton express app
 		* Start populating your package.json with required modules
@@ -149,7 +180,10 @@ Choose at least __6 points__ worth of these following topics (research and imple
 <br>
 <br>
 
-### Date 4/22 - Milestone 2 - Prototype With Some Implemented Functionality (10 points total)
+### Date TBD - Milestone 2
+
+{% comment %}
+Prototype With Some Implemented Functionality (10 points total)
 
 1. (4 points) create at least 1 form that can add data to your database
 2. (3 points) have at least 1 page that reads data from your database
@@ -164,6 +198,7 @@ Choose at least __6 points__ worth of these following topics (research and imple
     * run <code>npm install</code> and <code>nodemon bin/www</code> 
     * and verify that your project works
     * (if your project is not _runnable_, you will not receive credit for this milestone)
+{% endcomment %}
 
 {% comment %} 
 * 1 or more forms and their corresponding route handlers
@@ -177,17 +212,18 @@ Choose at least __6 points__ worth of these following topics (research and imple
 	3. If you're unable to do this, please email me!
 * (If you're not using the technologies above, use your best judgement to determine what's an appropriate amount of progress)
 * Lastly, bring your laptop to class on Tuesday, the 24th so that we can try deploying a test node application!!! (and potentially deploying your prototype!)
-{% endcomment %} 
 
 <br>
 <br>
 <br>
 <br>
+{% endcomment %} 
 
 <a name="milestone3">
 
-### 5/3 - Milestone 3 - Refined Prototype and Attempt to Deploy
+### Date TBD Milestone 3
 
+{% comment %}
 1. attempt to deploy your code to i6 by following [these instructions](homework/deploy.html)
 2. use [this form to send me the urls](https://docs.google.com/a/nyu.edu/forms/d/112J7_jnQFozXiLUtHdRIxcCFnEomEMdCYbnNLX5AyrQ/viewform) of: 
     * two working forms in your __deployed__ application 
@@ -204,16 +240,19 @@ Choose at least __6 points__ worth of these following topics (research and imple
 <br>
 <br>
 <br>
+{% endcomment %}
 
 
-<a name="milestone5">
+<a name="milestone4">
 
-### __5/8__ - Final Project Complete - Code is  _Deployed_ 
+### __12/3__ - Final Project Complete and Code is fully  _Deployed_ 
 
+{% comment %}
 * __(extended from Fri, 5/6 to Sun, 5/8)__ to allow some time over the weekend to finish up project
 * late submissions accepted within __24 (Mon, 5/9) hours with 10% penalty__ applied to this last milestone (regardless of previous lates)
 * day after final exam submissions accepted with significant penalty (-25% of total possible points) upon email request
 * after that, no submissions will be accepted
+{% endcomment %}
 
 <br>
 <br>
@@ -226,8 +265,10 @@ Choose at least __6 points__ worth of these following topics (research and imple
 
 * A project portfolio site
 * Create a one-player game with a computer AI - allow logins, saved high scores, saved games
-	* Maybe something like Cookie Clicker ...
+	* Maybe a card game building off of handy (blackjack) 
+    * or something like Cookie Clicker ...
 	* or a Battleship clone
+	* or a platformer
 * Or... whatever you can come up with!
 {% endcomment %}
 </div>
