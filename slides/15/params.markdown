@@ -146,11 +146,17 @@ Here are a few examples of regular expressions using a <code>String</code>'s <co
 'swell'.match(/.ell/) // any character and ell
 'hello'.match(/^.ell/) // starts with any character and ell
 'swell'.match(/^.ell/) // starts with any character and ell
+</code></pre>
 
+<pre><code data-trim contenteditable>
 // these all demonstrate how to specify number of matches
-'hello'.match(/el\*/) // e, then 0 or more l's
+'hello'.match(/el*/) // e, then 0 or more l's
+'he'.match(/el*/) // e, then 0 or more l's
 'hello'.match(/el+/) // e, then 1 or more l's
+'he'.match(/el+/) // e, then 1 or more l's
+'helllllo'.match(/el+/) //  e, then 1 or more l's
 'hello'.match(/el{1,2}/) // e, then at least one l, at most 2 l's
+'helllllo'.match(/el{1,2}/) // e, then at least one l, at most 2 l's
 </code></pre>
 </section>
 <section markdown="block">

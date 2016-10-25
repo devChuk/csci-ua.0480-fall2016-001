@@ -62,6 +62,8 @@ In MongoDB
 __What's a schema, model... and object?__ &rarr;
 {:.fragment}
 
+<br>
+
 In Mongoose...
 {:.fragment}
 
@@ -73,9 +75,38 @@ In Mongoose...
 </section>
 
 <section markdown="block">
-## Schemas
+## Designing a Data Model
 
-A schemas is analogous to a collection. We create a schema with the <code>mongoose.Schema</code> constructor.
+Let's try designing movies. __What are some properties that a `Movie` should have?__ &rarr;
+
+* {:.fragment} title
+* {:.fragment} year
+* {:.fragment} director
+    * {:.fragment} maybe first name
+    * {:.fragment} maybe last name
+</section>
+
+<section markdown="block">
+## Embedded vs Reference
+
+So the director can be another document that:
+
+* just has a first name and last name in your movie document
+* is a separate document embedded in your movie document
+* is a separate document referenced by your movie document
+
+See [mongodb's docs](https://docs.mongodb.com/manual/core/data-modeling-introduction/) on data modeling.
+
+<br>
+
+__What are the advantages / disadvantages of each?__ 
+
+</section>
+
+<section markdown="block">
+## Back to Mongoose - Schemas
+
+A schema is analogous to a collection. We create a schema with the <code>mongoose.Schema</code> constructor.
 
 * the convention is that your schema's name will match a lowercase, plural colleciton in your database
 * the Schema constructor takes an object with keys as names of keys that the documents created from this schema will have
@@ -90,6 +121,8 @@ Once you have a schema, you can then register a model. A model is a constructor 
 Instance Methods
 
 * <code>save</code> (create a new document)
+
+<br>
 
 Static Methods
 
@@ -128,7 +161,9 @@ __Let's try creating a schema for a pizza and toppings.__ &rarr;
 	toppings: [{name:'mushroom', extra:true}, {name:'peppers'}]
 }
 </code></pre>
+{:.fragment}
 </section>
+
 
 <section markdown="block">
 ## Let's Start With Some Setup

@@ -3,7 +3,7 @@
 * Exam Grades by Thursday
 * [Final Project](final-project.html)
 * Review Databases (see class 11 and 12)
-* [Routers, and Project/Directory Layout](slides/15/layout.html)
+* [Routers, Project/Directory Layout, nodemon](slides/15/layout.html)
 * [Parameters from URLs](slides/15/params.html)
 * [Mongoose](slides/15/mongoose.html)
 * [Validation](slides/15/validation.html)

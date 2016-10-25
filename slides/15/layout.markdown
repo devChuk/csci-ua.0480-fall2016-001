@@ -138,3 +138,44 @@ Wherever you want! For small apps:
 {:.fragment}
 </section>
 
+<section markdown="block">
+## Running Your App
+
+If you generated your application with Express generator, then you can run your app by:
+
+<pre><code data-trim contenteditable>
+./bin/www
+</code></pre>
+
+(from within the project directory)
+
+
+
+</section>
+
+<section markdown="block">
+## Restarting Server on Code Changes
+
+If you're tired of restarting your application whenever you change some code, you can install nodemon ([see the docs](https://github.com/remy/nodemon/blob/master/README.md).
+
+__nodemon will run your application and watch for changes to files; when a change occurs, it restarts your application__ &rarr;
+
+To install:
+
+<pre><code data-trim contenteditable>
+npm install -g nodemon
+</code></pre>
+
+To run your application:
+
+<pre><code data-trim contenteditable>
+nodemon app.js
+nodemon ./bin/www
+</code></pre>
+
+To watch for specific extensions, add the -e flag
+<pre><code data-trim contenteditable>
+nodemon -e js,hbs
+</code></pre>
+
+</section>
