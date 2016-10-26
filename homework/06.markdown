@@ -7,7 +7,7 @@ title: CSCI-UA.0480 - Homework #6
 	<div class="panel-heading">Homework #6</div>
 	<div class="panel-body" markdown="block">
 
-# Image Posting Board - __Due Tuesday, April 12th, by 11PM__
+# Image Posting Board - __Due Thursday, November 3rd, by 11PM__
 
 ## Overview
 
@@ -74,7 +74,7 @@ The final version of your assignment should be in GitHub
 * __Push__ your changes to the homework repository on GitHub.
 * Add the URL of the repository to your assignment submission in NYU Classes.
 
-### (3 points) Make at Least 4 Commits
+### (3 points) Make at Least 3 Commits
 
 * Commit multiple times throughout your development process.
 * Make at least 3 separate commits - (for example, one option may be to make one commit per part in the homework).
@@ -95,7 +95,7 @@ Install both globally:
 
 Generate scaffolding (this will create a folder called grocery, along with app.js, a views directory, a public directory, etc.). Remember to use the <code>--hbs</code> flag to tell the generator that we'll be using handlebars:
 
-* <code>express --hbs grocery</code>
+* <code>express --hbs image-board</code>
 
 Install the dependencies that are required by the generated code:
 
@@ -104,18 +104,24 @@ Install the dependencies that are required by the generated code:
 Within the grocery directory, we'll be using a couple of tools to help with database access and creating _url slugs_:
 
 * <code>npm install --save mongoose</code>
-* <code></code>npm install --save mongoose-url-slugs</code>
+* `npm install --save mongoose-url-slugs`
+
+Of course, add your jshint configuration file:
+
+* `.jshintrc`
 
 Lastly, start your server in a different terminal window using __nodemon__ to automatically restart whenever a file changes:
 
 * <code>nodemon bin/www</code>
+* to explicity set extensions that nodemon will watch for:
+* `nodemon -e js,hbs bin/www`
 
 
 ## Part 2 - Installing MongoDB, Creating a Schema, Connecting to the Database
 
 ###  Install MongoDB
 
-* follow the [install instructions](http://docs.mongodb.org/manual/installation/) for your operating system
+* if you haven't already installed it, follow the [install instructions](http://docs.mongodb.org/manual/installation/) for your operating system
 * ensure that it is up and running by connecting to it using a commandline client:
 	* connect to the test database by typing in <code>mongo</code> (in any directory)
 	* you should be given a message with the version number of the Mongo shell
@@ -222,7 +228,7 @@ In this route handler, <code>POST /path/of/your/choosing</code>:
 
 * use your mongoose model for an image-post to create a new <code>ImagePost</code> instance
     * create a new <code>ImagePost</code> first, and just populate the title
-    * then... you can use <code>.push</code> to add each image
+    * then... you can use <code>.push</code> to add each image to the `images` property on your newly created `ImagePost` object
     * the initial form allows up to 3 images to be initially included in the <code>ImagePost</code>
     * if a url for an image is blank, don't add it to the list of images
     * since an <code>ImagePost</code> can have up to 3 images, it's a pain to check each url individually...
@@ -232,7 +238,7 @@ In this route handler, <code>POST /path/of/your/choosing</code>:
 // you can use a loop, and reference each property on body as:
 req.body['image-url-' + n]
 </code></pre>
-* ... and, of course, save it ([here's an example from our pizza demo](../slides/15/mongoose.html#/11))
+* ... and, of course, save it ([here's an example from our pizza demo](../slides/15/mongoose.html#/14))
 * this should create a single <code>ImagePost</code> with up to 3 embedded <code>Image</code>s in it
 * within your callback for save, redirect to <code>/image-posts</code> (only redirect page when we're sure the new list has been saved - that is, within the callback, if there are no errors)
 
@@ -337,8 +343,8 @@ __you'll have to handle this post, so...__
 * create a route handler to accept a <code>POST /path/of/your/choosing</code>... 
 * (depending on how you've structured your application this may need to go into a different router file than the one you used for list creation)
 * use one of these methods to add an image (assuming that you've embedded images into image-list in your schema):
-	* [findOneAndUpdate](../slides/15/mongoose.html#/15)
-	* [lots of callbacks](../slides/15/mongoose.html#/14)
+	* [findOneAndUpdate](../slides/15/mongoose.html#/18)
+	* [lots of callbacks](../slides/15/mongoose.html#/17)
 * in your last callback, redirect back to the original __image-post detail__ page
 * here's the example interaction:
 
@@ -373,7 +379,7 @@ __Finally, in your route handler, you'll have to remove all of the images that w
     * based on the slug, which comes through as:
     * a url param
     * ... or a hidden input
-* checkbox inputs comes in as an Array or a string
+* checkbox inputs come in as an Array or a string
     * ([see checkbox behavior in these slides](../slides/11/forms-revisited.html))
     * if there's only one image checked, the id comes in as a single string
     * otherwise, if you have more than one image checked, you'll have an array
@@ -391,13 +397,13 @@ __Finally, in your route handler, you'll have to remove all of the images that w
 
 ## Extra Credit
 
-Do one of the following for extra credit. Partial credit will be given.
+Do __one or two__ of the following for extra credit. Partial credit will be given.
 
 __If you're doing extra credit, add a REAMDE.md file that specifies which extra credit you'll be doing__ (otherwise, the graders won't check for it!):
 
-1. Validation and Error Messages (30 points)
-2. Referenced Documents (35 points)
-3. Authentication (35 points)
+1. Validation and Error Messages (25 points)
+2. Referenced Documents (30 points)
+3. Authentication (30 points)
 
 ### Validation and Error Messages
 
@@ -438,8 +444,8 @@ Add users to the site. Instead of showing all lists, when a user is logged in:
 
 #### Modify your existing code:
 
-* add a User schema; it should reference your list (see [example repository for user with images demo](https://github.com/jversoza/ait-spring-16-examples/blob/master/class16/user-image/db.js) - you'll need to be logged in to view)
-* integrate passport-local-mongoose (see [bare bones authentication demo](https://github.com/jversoza/ait-spring-16-examples/tree/master/class16/passport-demo))
+* add a User schema; it should reference your list (see [example repository for user with images demo](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/blob/master/class16/user-image/db.js) - you'll need to be logged in to view)
+* integrate passport-local-mongoose (see [bare bones authentication demo](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/tree/master/class16/passport-demo))
 
 
 </div>

@@ -134,7 +134,7 @@ Choose at least __12 points__ worth of these following topics (research and impl
 
 <a name="proposal"></a>
 
-### __11/2__ - Milestone 1 - Requirements / Specifications and Data Model 
+### __11/3__ - Milestone 1 - Requirements / Specifications and Data Model 
 
 [Check out sample documentation](https://github.com/nyu-csci-ua-0480-001-fall-2016/final-project-example)
 

@@ -236,9 +236,7 @@ MIDTERM
 * Authentication Library
 
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/16.markdown %}
-{% endcomment %}
 </tr>
 
 

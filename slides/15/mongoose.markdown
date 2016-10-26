@@ -89,11 +89,11 @@ Let's try designing movies. __What are some properties that a `Movie` should hav
 <section markdown="block">
 ## Embedded vs Reference
 
-So the director can be another document that:
+So the director can be:
 
-* just has a first name and last name in your movie document
-* is a separate document embedded in your movie document
-* is a separate document referenced by your movie document
+* just a first name and last name in your movie document
+* a separate document embedded in your movie document
+* a separate document referenced by your movie document
 
 See [mongodb's docs](https://docs.mongodb.com/manual/core/data-modeling-introduction/) on data modeling.
 

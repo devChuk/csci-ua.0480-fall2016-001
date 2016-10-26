@@ -1,10 +1,12 @@
 	<td markdown="block">
 
 {% comment %}
+NOTES
 * Go over the slides on [Mongoose](slides/15/mongoose.html) from the previous class
 * Go over the slides on [Validation](slides/15/validation.html) from the previous class
 {% endcomment %}
 
+{% comment %}
 * package.json, hw started?
 * review scaffolding, focusing on routes
 * go over the slides on [url parameters](slides/15/params.html) from the previous class
@@ -12,8 +14,10 @@
 * create a [unique](https://docs.mongodb.org/manual/tutorial/create-a-unique-index/) [index](https://docs.mongodb.org/manual/core/indexes-introduction/)?
 * check out mongoose ([see previous slides](slides/15/mongoose.html))
 * [Authentication](slides/16/auth.html)
+{% endcomment %}
 
 {% comment %}
+NOTES
 * [Mongoose](slides/15/mongoose.html)
 	* start with previous version w/ create
 		* review creating...
@@ -49,7 +53,6 @@
 </td>
 	<td markdown="block">
 
-* {{site.book_web}} - Chapter 18 - Security
 
 Passport Examples
 
@@ -65,7 +68,8 @@ Password Hashing
 * [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
 </td>
 	<td markdown="block">
-<!--
-* [](assignments/.html)
--->
+Due Thursday, November 3rd at 11PM
+
+* [Homework #06](assignments/06.html)
+
 </td>
