@@ -70,6 +70,6 @@ Password Hashing
 	<td markdown="block">
 Due Thursday, November 3rd at 11PM
 
-* [Homework #06](assignments/06.html)
+* [Homework #06](homework/06.html)
 
 </td>
