@@ -36,7 +36,6 @@ Solution Sets
 </td>
 	<td markdown="block">
 
-* Homework #6 to be posted
 
 {% comment %}
 * [Homework #6](homework/06.html)
