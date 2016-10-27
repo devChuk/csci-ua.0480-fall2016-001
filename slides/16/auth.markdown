@@ -53,6 +53,24 @@ If our site collects any _sensitive_ information from a user, __the communicatio
 	* keys for encryption (a parameter to an encryption algorithm) are exchanged, and are subsequently used to communicate through symmetric encryption
 
 </section>
+
+<section markdown="block">
+## Where do I Get My Cert?
+
+__You'll have to__: &rarr;
+
+* buy a cert from a Certificate Issuer, like digicert, geotrust, etc.
+* or use a cert from __Let's Encrypt__.
+
+<br>
+__Let's Encrypt__ is a free certificate authority backed by a non-profit.  Check out:
+
+* [letsencrypt-express](https://github.com/Daplie/letsencrypt-express), a node module for installing and renewing Let's Encrypt certs
+* ...and this [blog article](https://justinmccandless.com/post/setting-up-https-on-node-for-free-with-lets-encrypt/) for how to set everything up.
+
+
+</section>
+
 <section markdown="block">
 ## Using SSL/TLS
 
@@ -61,7 +79,7 @@ Security and encryption is beyond the scope of this class. However, you should k
 * check out chapter 18 on security in our book
 * basically, you have to obtain a certificate 
 	* create a _self-signed_ one (not suitable for production)
-	* buy from a certificate issuer, such as DigiCert, Comodo, etc.
+	* buy / get from a certificate issuer, such as DigiCert, Comodo, Let's Encrypt etc. 
 * ...and configure express to use it (notice that you have to explicitly call createServer, and that the options may vary depending on how you've obtained your cert - 
 [see relevant docs](http://expressjs.com/api.html#app.listen))
 
@@ -88,6 +106,7 @@ __Also, we can actually check out certs in our browser.__ &rarr;
 (try going to home.nyu.edu in chrome... and check on the padlock)
 {:.fragment}
 </section>
+
 
 
 
@@ -699,10 +718,10 @@ router.post('/login', function(req,res,next) {
 <section markdown="block">
 ## Canned Demos
 
-There are a couple of demos that I've created in the examples repository (__you need to be logged in to github to see these__): 
+There are a couple of demos that I've created in the [examples repository](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/tree/master/class16)  (__you need to be logged in to github to see these__): 
 
-* [A _bare minimum_ demo using passport-local-mongoose)](https://github.com/nyu-csci-ua-0480-002-fall-2015/examples/tree/master/class16/passport-demo)
-* [Another version that has more user specific features](https://github.com/nyu-csci-ua-0480-002-fall-2015/examples/tree/master/class16/user-image)
+* A _bare minimum_ demo using passport-local-mongoose
+* Another version that has more user specific features
 
 <br>
 The 2nd version allows a user to store image urls. 

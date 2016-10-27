@@ -247,9 +247,7 @@ MIDTERM
 * The Document Object Model
 * Manipulating Elements
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/17.markdown %}
-{% endcomment %}
 </tr>
 
 

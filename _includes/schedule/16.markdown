@@ -1,5 +1,9 @@
 	<td markdown="block">
 
+* Finish up [Mongoose](slides/15/mongoose.html) and [Validation](slides/15/validation.html) from previous class
+* Checkboxes?
+* [Authentication](slides/16/auth.html)
+
 {% comment %}
 NOTES
 * Go over the slides on [Mongoose](slides/15/mongoose.html) from the previous class

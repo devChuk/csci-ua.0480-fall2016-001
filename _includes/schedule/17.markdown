@@ -18,8 +18,10 @@ Slides
 
 Solution Sets
  
+{% comment %}
 * [Midterm Solutions](resources/handouts/midterm/midterm_coffee_solutions.pdf)
 * [Midterm Solutions (Alternate)](resources/handouts/midterm/midterm_nomoji_solutions.pdf )
+{% endcomment %}
 
 <!-- 
 * [](slides//.html)

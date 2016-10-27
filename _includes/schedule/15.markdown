@@ -7,7 +7,6 @@
 * [Parameters from URLs](slides/15/params.html)
 * [Mongoose](slides/15/mongoose.html)
 * [Validation](slides/15/validation.html)
-* [Authentication](slides/15/auth.html)
 
 <!-- 
 * [](slides//.html)
