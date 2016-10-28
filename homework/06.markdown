@@ -336,7 +336,7 @@ __First, add a form to create a new image in your image-post:__
 	* caption
 * __you'll have to let the server know which image-post you're adding this new image to__ ... and you can do this by:
     * having the slug in the url that you're posting to
-    * or by having a hidden input field that contains the slug [(check out the slides on revisiting forms)](../slides/11/forms-revisited.html)
+    * or by having a hidden input field that contains the slug [(check out the slides on revisiting forms)](../slides/11/forms-revisited.html#/16)
 
 __you'll have to handle this post, so...__
 

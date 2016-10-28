@@ -213,7 +213,7 @@ Of course, you can style it as much as you want. If you want to go all out, feel
 ## Part 3 - Busy Birder - Homepage and Static Files
 
 
-### (3 points) Enabling Static Files
+### (5 points) Enabling Static Files
 
 First, lets make sure we can serve up static content, like css and images.
 
@@ -231,7 +231,7 @@ First, lets make sure we can serve up static content, like css and images.
 	* or go that url in your browser
 
 
-### (4 points) Creating a Home Page
+### (5 points) Creating a Home Page
 
 Now that static files are set, create a homepage.
 
@@ -277,7 +277,7 @@ This page will also allow you to submit the name of a bird that you saw. This wi
 
 ## Part 4 - List of Bird Sightings
 
-### (3 points) Middleware and Logging
+### (6 points) Middleware and Logging
 
 First, get some logging together so that you can troubleshoot. Log out the request that you receive, including the request's body.
 
@@ -287,7 +287,7 @@ First, get some logging together so that you can troubleshoot. Log out the reque
 	* followed by the contents of the request body
 * maintain a list of birds (can be a global variable, you can use whatever data structure you want)
 
-### (6 points) Bird List
+### (8 points) Bird List
 
 Now for some actual content. This page will display the names of birds and the number of times they've been seen.
 
@@ -322,7 +322,7 @@ __Test your page.__
 ![list](../resources/img/hw4-list.png)
 </div>
 
-### (8 points) Bird Form
+### (12 points) Bird Form
 
 __Once it's working, create a form...__
 
@@ -376,7 +376,7 @@ This feature will allow users to filter the birds on the homepage based on numbe
 2. Add logging so that the query string object is shown in the console
 
 
-### (8 points) The Settings Page
+### (12 points) The Settings Page
 
 __Create a form to set the minumum value.__
 
