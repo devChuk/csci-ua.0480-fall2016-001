@@ -10,11 +10,11 @@ nav-state: assignments
 * [Homework #3](homework/03.html) 
 * [Homework #4](homework/04.html) 
 * [Homework #5](homework/05.html) 
-{% comment %}
 * [Homework #6](homework/06.html) 
+* [Final Project](final-project.html) 
+{% comment %}
 * [Homework #7](homework/07.html) 
 * [Homework #8](homework/08.html) 
-* [Final Project](final-project.html) 
 * [Final Project - Milestone #1](final-project.html#milestone1) 
 * [Final Project - Milestone #2](final-project.html#milestone2) 
 {% endcomment %}
