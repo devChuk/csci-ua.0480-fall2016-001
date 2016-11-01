@@ -24,6 +24,8 @@ __If you were tasked with writing a rendering engine for a browser, what kind of
 * some custom object?
 {:.fragment}
 
+<br>
+
 __Let's look at some ways of visualizing an HTML document__ &rarr;
 {:.fragment}
 
@@ -65,11 +67,11 @@ The __DOM__, or __Document Object Model__, is a standardized programming interfa
 <section markdown="block">
 ## DOM Continued
 
-Again, the DOM and the programming language are separate entities:
+Again, __the DOM and the programming language are separate entities__:
 
 * page content is stored in the DOM
 * which is manipulated by a programming language
-* the _actual_ API of a web page is the DOM + the programming language
+* the _actual_ __implemented__ DOM API of a web page is the DOM + the programming language
 
 <br>
 The DOM represents an HTML document as a group of nodes
@@ -85,7 +87,6 @@ As a point of comparison... there were built-in global objects that were accessi
 
 * <code>console</code>
 * <code>global</code>
-* <code>exports</code>
 * the <code>require</code> function
 * ...and others, like <code>process</code>, <code>module</code>, [etc.](http://nodejs.org/api/globals.html)
 {:.fragment}
@@ -223,7 +224,6 @@ __And... let's see what these look like.__ &rarr;
 * remember that <code>indexOf</code> returns -1 if the substring is not found
 
 
-</code></pre>
 </section>
 
 <section markdown="block">

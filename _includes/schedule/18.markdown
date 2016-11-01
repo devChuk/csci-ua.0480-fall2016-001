@@ -4,23 +4,17 @@
 * [](slides//.html)
 -->
 
+* go back over DOM slides
+* [Modifying and Adding Elements](slides/18/modifying-creating.html)
+* [Layout and Style](slides/18/layout-style.html)
+* [JavaScript Timers](slides/18/timers.html)
+* [Events](slides/18/events.html)
+* [CSS](slides/18/css.html)
+* [Selectors, JS and CSS](slides/18/js-css.html)
 
-To begin:
-
-* Midterm grades posted
-* [Final Project](final-project.html)
-* We still didn't do authentication...
 
 
-Stuff we should have gone over...
 
-* [HTML Primer, JavaScript and the Browser](slides/17/javascript-browser.html)
-* [The Document Object Model](slides/17/dom.html)
-* [DOM Continued](slides/17/dom-continued.html)
-
-We should look at these too...
-
-* [Attributes](slides/18/attributes.html)
 
 
 </td>
@@ -32,5 +26,12 @@ We should look at these too...
 
 </td>
 	<td markdown="block">
-* [Final Project](final-project.html)
+
+Due Thursday, November 10th
+
+Homework #7 - to be posted
+
+{% comment %}
+* [Homework #6](homework/06.html)
+{% endcomment %}
 </td>

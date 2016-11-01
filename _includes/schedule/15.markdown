@@ -1,6 +1,5 @@
 	<td markdown="block">
 
-* Exam Grades by Thursday
 * [Final Project](final-project.html)
 * Review Databases (see class 11 and 12)
 * [Routers, Project/Directory Layout, nodemon](slides/15/layout.html)

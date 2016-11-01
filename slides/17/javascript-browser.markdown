@@ -116,7 +116,7 @@ start tag                    end tag
 
 __What if you want your content to contain a literal less than sign... or some other special character?__ &rarr;
 
-Use an __HTML entity__. An __entity__ is a sequence of characters that represent special characters or characters that are not readily available on most keybaords... such as the less than sign, the ampersand, a space:
+Use an __HTML entity__. An __entity__ is a sequence of characters that represent a special characters that is not readily available on most keybaords... such as the less-than sign, an ampersand, a space:
 {:.fragment}
 
 * {:.fragment} HTML entities start with an ampersand, followed by a name, and end with a semicolon
@@ -260,7 +260,7 @@ Some scripts will actually change elements on the page!
 <section markdown="block">
 ## Fun with Malformed Markup
 
-For each of the code snippets below, __guess what markup the browser actually uses (that is, how does it interpreet the malformed markup)__ &rarr;
+For each of the code snippets below, __guess what markup the browser actually uses (that is, how does it interpret the malformed markup)__ &rarr;
 
 <pre><code data-trim contenteditable>
 No tags surrounding me!
@@ -307,7 +307,7 @@ Browsers are extremely forgiving when it comes to markup:
 <section markdown="block">
 ## JavaScript on the Client Side
 
-In order use JavaScript on the client side, you can use script tags:
+In order to use JavaScript on the client side, you can use script tags:
 
 <pre><code data-trim contenteditable>
 &lt;script src="main.js"&gt; &lt;/script&gt;
@@ -315,7 +315,7 @@ In order use JavaScript on the client side, you can use script tags:
 
 Note that:
 
-* in HTML5, you can now omit the type attribute; text/javascript is assumed
+* in HTML5, you can omit the type attribute; text/javascript is assumed
 * the <code>script</code> element requires a closing tag
 </section>
 <section markdown="block">
@@ -357,9 +357,9 @@ __do you think is the recommended method for integrating JavaScript code and why
 <section markdown="block">
 ## Using External JavaScript
 
-The most commonly accepted best practice for integrating JavaScript is using external JavaScript files. This is because external JavaScript files
+The most commonly accepted best practice for integrating JavaScript is using external JavaScript files. __This is because external JavaScript files__ &rarr;
 
-* {:.fragment} help separate content from style from functionality
+* {:.fragment} helps separate content and style from functionality
 * {:.fragment} encourage code reuse
 * {:.fragment} allows for caching of often used code resources
 
@@ -408,15 +408,14 @@ __What are some other things that we can do with our external JavaScript to make
 
 As we've discussed in the past, JavaScript is based on a standard called [ECMAScript](http://www.ecma-international.org/ecma-262/5.1/)
 
-* as of 2012, all modern browsers fully support ECMAScript 5.1
-* some modern browsers already support some features of an upcoming version of the standard, ECMAScript 6 (ES 6)
-	* some improvements include:
-	* additions to the standard library (for example, adding  Array methods like find() and fill())
-	* new objects, such as Set and Map
-    * syntactic sugar (for example class style definitions for inheritance)
-	* default parameters for functions (like Python keyword arguments)
-	* [and others](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
-* older browsers support at least ECMAScript 3  
+* {:.fragment} as of 2012, __all modern browsers fully support ECMAScript 5__
+* {:.fragment} many browsers already support the __majority of features of ECMAScript 6__ (ES6, ES2015, etc.) ... like:
+	* {:.fragment} additions to the standard library (for example, adding  Array methods like find() and fill())
+	* {:.fragment} new objects, such as Set and Map
+    * {:.fragment} syntactic sugar (for example class style definitions for inheritance, _fat arrow_ anonymous functions)
+	* {:.fragment} default parameters for functions (like Python keyword arguments)
+	* {:.fragment} [and others](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
+* {:.fragment} older browsers support at least ECMAScript 3  
 </section>
 
 <section markdown="block">
@@ -433,9 +432,11 @@ As we've discussed in the past, JavaScript is based on a standard called [ECMASc
 <section markdown="block">
 ## You're Lucky
 
-Consider yourself lucky to be developing for the web at a time when browsers conforming to standards has become the norm.
+Consider yourself lucky to be developing for the web at a time when __browsers conforming to standards__ has become the __norm__.
 
 * while there are still differences between browsers and how they render pages
-* it is much more pleasant to develop for the front-end on the web today than it was a few years ago
+* it is much more pleasant to develop for the front-end on the web today than it was than just a few years ago
+* (well, with the exception of JavaScript fatigue)
 * the latest versions of most mainstream browsers behave surprisingly uniformly
+{:.fragment}
 </section>

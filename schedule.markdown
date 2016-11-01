@@ -264,9 +264,7 @@ MIDTERM
 * CSS Revisited
 {% endcomment %}
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/18.markdown %}
-{% endcomment %}
 </tr>
 
 

@@ -11,17 +11,20 @@ Slides
 	* final projects
 	* midterm
 {% endcomment %}
-* see previous class on authentication
+
+
+* Quick authentication and SSL review
+* Midterm exam 
+* Homework extra credit
 * [HTML Primer, JavaScript and the Browser](slides/17/javascript-browser.html)
 * [The Document Object Model](slides/17/dom.html)
 * [DOM Continued](slides/17/dom-continued.html)
+* [Attributes](slides/17/attributes.html)
 
-Solution Sets
+Midterm Exam - Solution Sets
  
-{% comment %}
-* [Midterm Solutions](resources/handouts/midterm/midterm_coffee_solutions.pdf)
-* [Midterm Solutions (Alternate)](resources/handouts/midterm/midterm_nomoji_solutions.pdf )
-{% endcomment %}
+* [Midterm Solutions (Coffee)](resources/handouts/midterm/midterm_001_coffee_solutions.pdf)
+* [Midterm Solutions (Evergreen)](resources/handouts/midterm/midterm_001_evergreen_solutions.pdf )
 
 <!-- 
 * [](slides//.html)
@@ -30,6 +33,16 @@ Solution Sets
 -->
 </td>
 	<td markdown="block">
+
+* Midterm Exam Results
+    * grading software
+    * distribution / curve
+    * final
+* Homework extra credit
+    * late penalty counts for entire score
+    * can exceed 100 for a single homework
+    * but points only applied to total homework grade
+
 * {{site.book_js}} - Chapter 12 - JavaScript and the Browser
 * {{site.book_js}} - Chapter 13 - The Document Object Model
 * [HTML and CSS from shayhowe.com](http://learn.shayhowe.com/html-css/getting-to-know-html/)
@@ -37,7 +50,9 @@ Solution Sets
 	<td markdown="block">
 
 
-{% comment %}
-* [Homework #6](homework/06.html)
-{% endcomment %}
+In class activity
+
+* [Form to submit talksAbout function](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSdco44OeatQZ8JcA6ozTavVWQLT4oQHGQ3KKNMbgAr42ji20w/viewform)
+* [Instructions / slides](slides/17/dom.html#/14)
+
 </td>

@@ -3,6 +3,7 @@
 * Finish up [Mongoose](slides/15/mongoose.html) and [Validation](slides/15/validation.html) from previous class
 * Checkboxes?
 * [Authentication](slides/16/auth.html)
+* [High-Level Description of SSL/TLS](slides/16/ssl.html)
 
 {% comment %}
 NOTES
