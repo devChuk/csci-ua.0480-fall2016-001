@@ -93,15 +93,15 @@ Install both globally:
 * <code>npm install -g nodemon</code>
 * <code>npm install -g express-generator</code>
 
-Generate scaffolding (this will create a folder called grocery, along with app.js, a views directory, a public directory, etc.). Remember to use the <code>--hbs</code> flag to tell the generator that we'll be using handlebars:
+Generate scaffolding (this will create a folder called image-board, along with app.js, a views directory, a public directory, etc.). Remember to use the <code>--hbs</code> flag to tell the generator that we'll be using handlebars:
 
 * <code>express --hbs image-board</code>
 
 Install the dependencies that are required by the generated code:
 
-* <code>cd grocery && npm install</code>
+* <code>cd image-board && npm install</code>
 
-Within the grocery directory, we'll be using a couple of tools to help with database access and creating _url slugs_:
+Within the image-board directory, we'll be using a couple of tools to help with database access and creating _url slugs_:
 
 * <code>npm install --save mongoose</code>
 * `npm install --save mongoose-url-slugs`
