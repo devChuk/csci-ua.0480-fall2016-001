@@ -75,7 +75,7 @@ Create a web application using Express and MongoDB.
 
 ## Additional Requirements, Your Choice
 
-Choose at least __12 points__ worth of these following topics (research and implementation). __This list may change slightly (added items, adjustments to points) as project ideas come in.__ 
+Choose at least __8 points__ worth of these following topics (research and implementation). __This list may change slightly (added items, adjustments to points) as project ideas come in.__ 
 
 * (4 points) Unit testing with JavaScript
 	* [Jasmine](http://jasmine.github.io/)
