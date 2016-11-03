@@ -5,6 +5,9 @@
 -->
 
 * go back over DOM slides
+* [DOM Continued sample markup](code/dom-continued.html)
+* reminder re: final project - milestone 1
+* [Deployment on i6 (1st Draft)](homework/deploy.html)
 * [Modifying and Adding Elements](slides/18/modifying-creating.html)
 * [Layout and Style](slides/18/layout-style.html)
 * [JavaScript Timers](slides/18/timers.html)
@@ -29,7 +32,10 @@
 
 Due Thursday, November 10th
 
-Homework #7 - to be posted
+(both to be posted this evening)
+
+* Homework #7
+* Milestone #2 - Deployment and Form
 
 {% comment %}
 * [Homework #6](homework/06.html)
