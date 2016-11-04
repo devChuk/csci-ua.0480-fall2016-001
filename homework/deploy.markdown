@@ -30,9 +30,9 @@ section {
 
 ## Final Project Deployment
 
-These instructions detail deployment to i6. __If you'd like to deploy elsewhere (your own server, Heroku, GitHub Pages, etc.), please let me know by email / message via NYU Classes.__
+These instructions detail deployment to i6. __If you'd like to deploy elsewhere (your own server, Heroku, AWS, etc.), please let me know by email / message via NYU Classes.__ Heroku has been an option that students have used in the past because of the good [introductory documentation](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction), and [deployment tutorial](https://devcenter.heroku.com/articles/deploying-nodejs).
 
-Deployment involves the following steps:
+Deployment __to i6__ involves the following steps:
 
 1. Finding your assigned port numbers in NYU Classes
 2. Logging in to i6 and prepping your home directory
@@ -41,6 +41,7 @@ Deployment involves the following steps:
 5. Installing your project's dependencies
 6. Configuring your project
 7. Running your project as a daemon
+8. Reinstalling and/or redeploying
 
 
 ### Part 1: Finding your assigned port numbers in NYU Classes
@@ -110,7 +111,73 @@ mongo &lt;dbname&gt; --host class-mongodb.cims.nyu.edu -u &lt;username&gt; -p
 
 </section>
 
-### Part 4: Getting your project onto i6
+### Part 4: Using an external configuration file for your database
+
+<section markdown="block">
+Because the mongodb server you'll connect to from i6 requires user authentication, the string you pass in to `mongoose.connect` (your __database connection string__) will have to include the username and password you were given from the previous section, Part 3. The new connection string will have the following format:
+
+<pre><code data-trim contenteditable>mongodb://USERNAME:PASSWORD@class-mongodb.cims.nyu.edu/USERNAME
+</code></pre>
+
+Where:
+
+* `USERNAME` - is the username you used for logging it to i6
+* `PASSWORD` - is the password for __mongodb__ that you created from Part 3.
+
+However, you should not put these credentials directly into your `db.js` file, and they should not be in a file in version control (you may inadvertently disclose these credentials if your repository becomes public). One way to deal with this issue is to put your credential in an external file that is conditionally read:
+
+
+1. add a conditional to your database configuration code that...
+2. checks if an environment variable named `NODE_ENV` is set to `PRODUCTION`
+    * [read the excellent digital ocean summary regarding environment variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps)
+    * use [process.env.NAME_OF_VARIABLE] to access environment variables through node
+3. if the above is true, then read a file synchronously (blocking) by using [fs.readFileSync](https://nodejs.org/api/fs.html#fs_fs_readfilesync_file_options)
+4. the file that is read in will be a `json` file that's not in version control... that contains the database connection string for your application when deployed on i6
+
+(Note that this is a simple way of managing configuration, so if you plan on _actually_ deploying your app outside of this class, consider using a configuration / configuration management library, like [node-convict](https://github.com/mozilla/node-convict))
+
+__To add an external configuration file, follow these steps__ &rarr;
+
+1. add `config.json` to your `.gitignore` so that your credentials don't inadvertently get committed
+2. in `db.js` add the following code before `mongoose.connect`:
+    <pre><code data-trim contenteditable>// is the environment variable, NODE_ENV, set to PRODUCTION? 
+if (process.env.NODE_ENV == 'PRODUCTION') {
+    // if we're in PRODUCTION mode, then read the configration from a file
+    // use blocking file io to do this...
+    var fs = require('fs');
+    var path = require('path');
+    var fn = path.join(__dirname, 'config.json');
+    var data = fs.readFileSync(fn);
+
+    // our configuration file will be in json, so parse it and set the
+    // conenction string appropriately!
+    var conf = JSON.parse(data);
+    var dbconf = conf.dbconf;
+} else {
+    // if we're not in PRODUCTION mode, then use
+    dbconf = 'mongodb://localhost/YOUR_DATABASE_NAME_HERE';
+}
+</code></pre>
+3. when you use `mongoose.connect`, pass in `dbconf` as the argument instead of a hardcoded string
+4. you can test that everything works by:
+    * try running your application without any environment variables (just use `./bin/www`)
+        * ... and inserting data
+        * via your form
+        * (make sure the data persists)
+    * create a `config.json` that contains a connection string with a different database name
+        * the key should be `"dbconf"` (remember that json keys are double quoted)
+        * the value should be `"mongodb://localhost/SOME_OTHER_DATABASE_NAME"`
+    * then, run your application again, this time forcing your app to use the config file
+        * `NODE_ENV=PRODUCTION ./bin/www`
+    * the new database shouldn't have any data that you entered previously!
+    * __DO NOT COMMIT__ `config.json` (in fact, it should be in your `.gitignore` as the previous instructions specify)
+    * (you'll create a `config.json` on i6)
+5. commit and push your code
+
+
+</section>
+
+### Part 5: Getting your project onto i6
 
 <section markdown="block">
 
@@ -127,7 +194,7 @@ git clone https://github.com/nyu-csci-ua-0480-010-spring-2016/REPOSITORY_NAME</c
 
 </section>
 
-### Part 5: Installing your project's dependencies
+### Part 6: Installing your project's dependencies
 
 <section markdown="block">
 
@@ -137,64 +204,41 @@ Just like local development, you'll have to install your projects dependencies. 
 
 </section>
 
-### Part 6: Configuring your project
+### Part 7: Configuring your project
 
 <section markdown="block">
 
-Edit your <code>db.js</code> file on the server to modify the mongodb connection string. You can use a commandline text editor, like <code>nano</code>, <code>vim</code> or <code>emacs</code>. We'll use <code>nano</code> in these examples. 
+Create a <code>config.js</code> file on the server to add the `PRODUCTION` version of your mongodb connection string. You can use a commandline text editor, like <code>nano</code>, <code>vim</code> or <code>emacs</code>. We'll use <code>nano</code> in these examples (but you can use vim or emacs as well). 
 
-1. Open your file for editing by:
-
-	<pre><code>nano db.js</code></pre>
-
-2. Then modify your connection string so that it includes username and password (that you retrieved above):
-
-	<pre><code>mongoose.connect('mongodb://jversoza:my_password@class-mongodb.cims.nyu.edu/jversoza');</code></pre>
-
-3. __Typically, passwords should not be kept in files that are in your source code repository__ ... you _should_ minimally move the username and password out to another file that's not in version control, and construct the connection string based on the external file...
-
-4. Save it by <code>CONTROL+O</code> to _write out_ the file. Press <code>RETURN/ENTER</code> to accept the file name.
-
-5. Quit <code>nano</code> by <code>CONTROL+X</code>
-
-6. Test your application. Substitute <code>APP_PORT_NUMBER</code> with the port number you retrieved from Part 1.
-
+1. In your project directory, create and open your file by:
+    <br>
+    <pre><code>nano config.json</code></pre>
+2. Then add your connection string so that it includes username and password (that you retrieved above):
+	<br>
+    <pre><code>mongoose.connect('mongodb://jversoza:my_password@class-mongodb.cims.nyu.edu/jversoza');</code></pre>
+3. Save it by <code>CONTROL+O</code> to _write out_ the file. Press <code>RETURN/ENTER</code> to accept the file name.
+4. Quit <code>nano</code> by <code>CONTROL+X</code>
+5. Test your application. Substitute <code>APP_PORT_NUMBER</code> with the port number you retrieved from Part 1 and add the environment variable, `NODE_ENV`.
 	* Run <code>bin/www</code> or... if you didn't use express generator, use <code>node app.js</code>. __Don't use nodemon to run it.__
-
-		<pre><code>PORT=APP_PORT_NUMBER bin/www</code></pre>
-
+		<br>
+        <pre><code>PORT=APP_PORT_NUMBER NODE_ENV=PRODUCTION bin/www</code></pre>
 	* If it starts up fine, try connecting to it from your browser: 
-
+        <br>
 		<pre><code>http://i6.cims.nyu.edu:APP_PORT_NUMBER/</code></pre>
-
 6. Troubleshooting:
-
 	* If you see the following error 
-
+        <br>
 		<pre><code data-trim contenteditable>/home/net_id/opt/final-project/node_modules/mongoose/node_modules/mongodb/lib/server.js:235
         process.nextTick(function() { throw err; })
-                                            ^
 Error: connect ECONNREFUSED
     at errnoException (net.js:905:11)
     at Object.afterConnect [as oncomplete] (net.js:896:19)</code></pre>
-
 		You can't connect to your database; double check your mongoose connection string... and review part 3.
-
 	* If you see <code>Error: listen EADDRINUSE</code> ... the port you've been assigned is already in use. Either your application is already running or someone inadvertently is running there application on your port. Contact me if it's the latter.
 	
-7. (Optional) If you'd like to __reinstall__ or __redeploy__ your application (again, with <code>REPOSITORY_NAME</code> replaced with your repository name):
-
-	1. <code>rm -rf ~/opt/REPOSITORY_NAME</code>
-	2. go back to Part 5
-
-8. (Optional) If you'd like to be able to run <code>git pull</code> to update your code on the server, you could try:
-    1. ideally, you'd switch on <code>process.env.NODE_ENV</code> 
-    2. in your code, where <code>NODE_ENV</code> could store a value of "prod", "dev", "test", etc. ... and set an environment variable before running, as you do with <code>PORT</code> 
-    3. <code>PORT=10000 NODE_ENV=dev node app.js</code>
-
 </section>
 
-### Part 7: Running your project as a daemon
+### Part 8: Running your project as a daemon
 
 <section markdown="block">
 
@@ -208,7 +252,7 @@ npm install forever</code></pre>
 2. Run your app with <code>forever start</code>. Substitute <code>APP_PORT_NUMBER</code> with your actual port number. Note the <code>-o</code> and <code>-e</code> options; they specify where your application's output (debug and error output) should go.
 
 	<pre><code>cd ~/opt/final-project/
-export PORT=APP_PORT_NUMBER; ~/usr/local/lib/node_modules/.bin/forever -o ~/var/log/app.log -e ~/var/log/app_error.log start bin/www</code></pre>
+export PORT=APP_PORT_NUMBER; export NODE_ENV=PRODUCTION; ~/usr/local/lib/node_modules/.bin/forever -o ~/var/log/app.log -e ~/var/log/app_error.log start bin/www</code></pre>
 
 3. Check that everything started up fine by looking for the process id, and then checking the log files.
 
@@ -244,5 +288,18 @@ export PORT=APP_PORT_NUMBER; ~/usr/local/lib/node_modules/.bin/forever -o ~/var/
 
 </section>
 
+### Part 8: Reinstalling and/or redeploying
+<section markdown="block">
+
+1. If you'd like to __reinstall__  your application (again, with <code>REPOSITORY_NAME</code> replaced with your repository name):
+
+	1. <code>rm -rf ~/opt/REPOSITORY_NAME</code>
+	2. go back to Part 5
+
+2. If you'd like to simply __redeploy__ or __update__ your application, run <code>git pull</code> to update your code on the server:
+    1. `cd ~/opt/REPOSITORY_NAME`
+    2. `git pull`
+
+</section>
 </div>
 </div>
