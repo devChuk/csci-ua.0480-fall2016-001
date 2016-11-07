@@ -30,9 +30,9 @@
 </td>
 	<td markdown="block">
 
-Due Thursday, November 10th
+Due Thursday, November 15th
 
-(both to be posted this evening)
+(both to be posted Tuesday, 11/8)
 
 * Homework #7
 * Milestone #2 - Deployment and Form
