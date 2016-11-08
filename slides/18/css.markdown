@@ -59,7 +59,7 @@ An element that is <code>display:block</code>:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/3o7t0dzz/1/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/3o7t0dzz/1/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -73,7 +73,7 @@ An element that is <code>display:inline</code>
 * however (as we saw _in previous slides_) it can have a border, background... and even a margin and padding (though only horizontal margin and padding)
 
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/rdosf6ra/1/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/rdosf6ra/1/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -87,7 +87,7 @@ If an element is <code>display:none</code>:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/eyumt37L/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/eyumt37L/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 
@@ -101,7 +101,7 @@ If an element is <code>display:inline-block</code>:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/ds331u52/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/ds331u52/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 
@@ -147,7 +147,7 @@ So... <code>table</code>, <code>table-cell</code> and <code>table-row</code> are
 
 However, you can make any element behave like a table; __just add the appropriate display__ __(but _whyyyyy_?)__ &rarr;
 
-<iframe width="100%" height="350" src="http://jsfiddle.net/zu1f5req/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="https://jsfiddle.net/zu1f5req/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 Maybe there's an element that describes your content more accurately than <code>td</code>?
 {:.fragment}
@@ -210,7 +210,7 @@ __content-box__ is the default value for box-sizing. This box-model:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/e60z8oyq/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/e60z8oyq/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 
@@ -237,7 +237,7 @@ __content-box__ is the default value for box-sizing. This box-model:
 
 <br>
 
-<iframe width="100%" height="350" src="http://jsfiddle.net/25cmdru0/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="https://jsfiddle.net/25cmdru0/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 {:.fragment}
 </section>
 
@@ -251,7 +251,7 @@ If the value of the <code>border-box</code> property is set to __border-box__,
 
 <br>
 
-<iframe width="100%" height="350" src="http://jsfiddle.net/up46uvhg/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="https://jsfiddle.net/up46uvhg/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -309,7 +309,7 @@ An element with <code>position:relative</code> can be positioned relative to whe
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/njncjbf9/3/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/njncjbf9/3/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -349,7 +349,7 @@ An element with <code>position:fixed</code>:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/3qfjwp77/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/3qfjwp77/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 <section markdown="block">
 ## Absolute
@@ -363,7 +363,7 @@ An element with <code>position:absolute</code>:
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/cLsjgpsv/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/cLsjgpsv/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -376,7 +376,7 @@ __Let's talk through what's involved in creating this layout.__ &rarr;
 
 <br>
 
-<iframe width="100%" height="400" src="http://jsfiddle.net/gcggzpuj/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="400" src="https://jsfiddle.net/gcggzpuj/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -475,7 +475,7 @@ An __em__ is a dynamic sizing unit relative to font-size:
 
 <br>
 
-<iframe width="100%" height="350" src="http://jsfiddle.net/tjbw4jjj/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="350" src="https://jsfiddle.net/tjbw4jjj/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 <section markdown="block">
@@ -488,7 +488,7 @@ __rem__ represents the font-size of the root (<code>&lt;html&gt;</code>element).
 
 <br>
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/wqvnb39n/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/wqvnb39n/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 <section markdown="block">
@@ -508,7 +508,7 @@ __Why might using relative measurements be useful?__ &rarr;
 __Let's try upping the font size ... when we have them initially set to pixels.__ &rarr;
 {:.fragment}
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/eddmheor/2/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/eddmheor/2/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 {:.fragment}
 </section>
 <section markdown="block">
@@ -584,7 +584,7 @@ Some that you might be familiar with are:
 <br>
 This has a selector, <code>.highlight</code> that gives an element a yellow background, and a couple of ids that specify borders.
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/u9j2a58s/3/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/u9j2a58s/3/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -599,7 +599,7 @@ You can use both a tag name and class or id as your selector for increased speci
 __In the previous example, how could be modify the markup so that <code>div</code>s that are highlighted have a green background, while paragraphs that are highlighted stay with a yellow background?__ &rarr;
 
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/yx1m40vf/1/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/yx1m40vf/1/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 {:.fragment}
 </section>
 
@@ -622,7 +622,7 @@ You're not limited to <code>class</code> and <code>id</code> for attributes:
 
 A couple of examples using attributes other than class or id:
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/vLh2bjsj/1/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/vLh2bjsj/1/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -632,7 +632,7 @@ In some of the previous examples, you have noticed that there were several selec
 
 __Selector grouping__ allows multiple selectors to be defined for a single rule:
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/xLu3q2da/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/xLu3q2da/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -651,7 +651,7 @@ Relationships between elements can also be expressed with selectors! ([from the 
 
 This demonstrates the selection of elements based on their relationships:
 
-<iframe width="100%" height="400" src="http://jsfiddle.net/v41xqhwc/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="400" src="https://jsfiddle.net/v41xqhwc/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -679,7 +679,7 @@ __There are pseudo-classes for each of these states!__ &rarr;
 * <code>:visited</code> - visited link
 
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/gmot5jnL/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/gmot5jnL/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </section>
 
 <section markdown="block">
@@ -703,7 +703,7 @@ Some values that the content can be are
 
 Two examples, one with text... and the other with an image.
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/yw8et5b0/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/yw8et5b0/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 <section markdown="block">
@@ -729,7 +729,7 @@ Try out nth-child using the [nth-child tester from css-tricks](https://css-trick
 
 Or, check out the fiddle:
 
-<iframe width="100%" height="300" src="http://jsfiddle.net/bowcbxLe/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/bowcbxLe/embedded/css,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </section>
 <section markdown="block">
