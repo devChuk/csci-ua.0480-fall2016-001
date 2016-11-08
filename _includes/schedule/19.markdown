@@ -1,4 +1,9 @@
 	<td markdown="block">
+
+* See Previous Slides
+* [Ajax Part 1](slides/20/ajax.html)
+
+{% comment %}
 * homework
     * extra credit
 * final project
@@ -6,6 +11,7 @@
     * reference source material (tutorials)
     * (even if it's just slides or old homework!)
     * write your own code / academic integrity
+{% endcomment %}
 
 {% comment %}
 * clean up modifying and creating eleemnts
@@ -25,9 +31,6 @@
 </td>
 	<td markdown="block">
 
-In class activity
-
-* [Form to submit talksAbout function](https://docs.google.com/a/nyu.edu/forms/d/1bqPF8NaUAj1AtVwEcnWnEoaeriOU6MWRmTPpZ0BuGR0/viewform)
-* [Instructions / slides](slides/17/dom.html#/14)
+See previous class for milestone and assignment
 
 </td>

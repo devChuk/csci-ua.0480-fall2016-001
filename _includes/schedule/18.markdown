@@ -32,10 +32,8 @@
 
 Due Thursday, November 15th
 
-(both to be posted Tuesday, 11/8)
-
+* [Milestone #2 - Deployment and Form](final-project.html#milestone2)
 * Homework #7
-* Milestone #2 - Deployment and Form
 
 {% comment %}
 * [Homework #6](homework/06.html)

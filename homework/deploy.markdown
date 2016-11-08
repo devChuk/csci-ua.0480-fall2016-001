@@ -51,7 +51,7 @@ i6 is a shared server, so other students will be running their projects on it. C
 
 1. Log in to NYU Classes
 2. Go to <code>Assignments</code>
-3. Click on <code>Final Project Milestone 2</code>
+3. Click on <code>Milestone 2</code>
 4. Find your NetID in the table
 	* The port number listed is for your express application
 	* Write this number down... you'll use this in a later step

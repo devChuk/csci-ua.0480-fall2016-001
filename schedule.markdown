@@ -274,9 +274,7 @@ MIDTERM
 * AJAX
 * APIs
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/19.markdown %}
-{% endcomment %}
 </tr>
 
 <!-- ------------ --><a name="20"></a>
