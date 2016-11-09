@@ -30,12 +30,8 @@
 </td>
 	<td markdown="block">
 
-Due Thursday, November 15th
+Due Tuesday, November 15th
 
 * [Milestone #2 - Deployment and Form](final-project.html#milestone2)
-* Homework #7
-
-{% comment %}
-* [Homework #6](homework/06.html)
-{% endcomment %}
+* [Homework #5](homework/06.html)
 </td>
