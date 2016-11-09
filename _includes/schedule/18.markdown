@@ -33,5 +33,5 @@
 Due Tuesday, November 15th
 
 * [Milestone #2 - Deployment and Form](final-project.html#milestone2)
-* [Homework #5](homework/06.html)
+* [Homework #7](homework/07.html)
 </td>
