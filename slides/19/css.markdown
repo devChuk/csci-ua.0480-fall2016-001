@@ -640,10 +640,10 @@ __Selector grouping__ allows multiple selectors to be defined for a single rule:
 
 Relationships between elements can also be expressed with selectors! ([from the CSS selectors article on MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors)):
 
-* <code>A E</code> ...  Any E element that is a descendant of an A element (that is: a child, or a child of a child, etc.)
-* <code>A > E</code> ... Any E element that is a child of an A element
-* <code>E:first-child</code> ... Any E element that is the first child of its parent
-* <code>B + E</code> ... Any E element that is the next sibling of a B element (that is: the next child of the same parent)
+* <code>A E</code> ...  <span class="fragment">Any E element that is a descendant of an A element (that is: a child, or a child of a child, etc.)</span>
+* <code>A > E</code> ... <span class="fragment">Any E element that is a (direct) child of an A element</span>
+* <code>E:first-child</code> ... <span class="fragment">Any E element that is the first child of its parent</span>
+* <code>B + E</code> ... <span class="fragment">Any E element that is the next sibling of a B element (that is: the next child of the same parent)</span>
 </section>
 
 <section markdown="block">

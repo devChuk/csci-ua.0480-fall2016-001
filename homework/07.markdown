@@ -112,11 +112,11 @@ You will be given access to a private repository on GitHub.  The final version o
 
 * Use <code>addEventListener</code> to allow the button on the _title screen_ to be pressed
     * It should lead to the next _screen_, which will be contained within the `div` with id, `game`
-    * Check out the [slides on events](../slides/18/events.html#/)
+    * Check out the [slides on events](../slides/19/events.html#/)
     * Along with mdn's documentation on [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), [click](https://developer.mozilla.org/en-US/docs/Web/Events/click), and [DOMContentLoaded](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)
     * Remember, you'll need to put all of your DOM dependant JavaScript in a <code>DOMContentLoaded</code> listener
     * And, of course, you'll need to add a <code>click</code> event listener for your button 
-    * <code>document.querySelector</code> will also be very useful - see the [docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) or [slides](slides/18/js-css.html)!
+    * <code>document.querySelector</code> will also be very useful - see the [docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) or [slides](slides/19/js-css.html)!
     * Create and apply the appropriate classes to get rid of the _title screen_ (do this with styles, there's no need to remove the element) and show the _game screen_
 * Note that there's a form field in the _title screen_ ...
     * This field will allow the player to set the results of the dice rolls in the game (it's kind of like cheating / using loaded dice, but it's really for making it easier to test!)!

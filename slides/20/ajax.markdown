@@ -19,13 +19,12 @@ We've made a couple of dynamic, database driven web applications.
 
 __How did they work? What made the request? How was the response generated? What did the response consist of?__ &rarr;
 
-1. the browser would make some request based on url entered, a clicked link or a submitted form
-2. our Express application would respond to that request by:
+1. {:.fragment} the browser would make some request based on url entered, a clicked link or a submitted form
+2. {:.fragment} our Express application would respond to that request by:
 	1. getting or writing data to the database
 	2. using resulting data to fill out a template
 	3. sending back html in the response body
-3. the browser would render the resulting html page
-{:.fragment}
+3. {:.fragment} the browser would render the resulting html page
 </section>
 <section markdown="block">
 ## A High Level View
@@ -46,16 +45,16 @@ Let's make a quick diagram of how that all worked. __A run-of-the-mill database 
 __We've made _traditional_ web applications.__ 
 
 * the application itself is __mostly server-side__; the client side is usually just presentation
-* __it's typical for most interactions to result in another page being loaded entirely (or in the same page being refreshed__.
-* sometimes, you have to __wait a little bit__ for the next page to come through (bummer)
+* __it's typical for most interactions to result in another page being loaded entirely (or in the same page being refreshed)__.
+* sometimes, you have to __wait a little bit__ for the next page (bummer)
 * this is kind of expected behavior, though. After all, the web _is just_ a bunch of interconnected documents, right?
 
 <br>
 
-__How does this user experience differ from desktop and mobile apps?__ &rarr;
+__How does this user experience differ from _native_ desktop and mobile apps?__ &rarr;
 
 * generally speaking, desktop and mobile apps _seem more real time_
-* there's no waiting for a page to load after an interaction; it _just_ happens, right?
+* there's no waiting for a page to load; it _just_ happens
 {:.fragment}
 </section>
 
@@ -89,19 +88,15 @@ __This is possible using combination of client side technologies, commonly calle
 <section markdown="block">
 ## AJAX
 
-__Does anyone know what AJAX is (in the context of web development, of course)? (It was kind of a trendy web thing in the mid 2000's.)__ &rarr;
-
 __AJAX__ is short for asynchronous JavaScript and XML. It's basically a bunch of interrelated technologies and techniques used to create _asynchronous_ web applications:
-{:.fragment}
 
-* HTML and CSS for presentation
-* JS and access to the DOM to create dynamic user interfaces
-* JS and XMLHttpRequest to allow asynchronous data exchange between browser and server
-* Server side applications to allow reading and writing of data
-* JSON as a convenient and flexible data format
+1. {:.fragment} HTML and CSS for presentation
+2. {:.fragment} __JS__ and access to the __DOM__ to create dynamic user interfaces
+3. {:.fragment} __JS and XMLHttpRequest__ (or the new [fetch api](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)) to allow asynchronous data exchange between browser and server
+4. {:.fragment} __Server side applications__ to allow reading and writing of data
+5. {:.fragment} __JSON__ as a convenient and flexible data format
 	* {:.fragment} the XML part of the name is a misnomer, as the data format can be anything else, such as JSON or even HTML fragments!
 	* {:.fragment} sometimes you may run into other funny acronyms to accommodate this ([AJAJ](http://en.wikipedia.org/wiki/AJAJ) comes to mind)
-{:.fragment}
 
 </section>
 
@@ -124,12 +119,12 @@ __Let's draw out how all of these technologies may come together as a single pag
 
 When these technologies are combined, our client side web applications can make incremental updates to the user interface without reloading the entire page. Great!
 
-__We know most of these technologies. What's the one we're missing?__ &rarr;
+__We know most of these technologies. What's missing?__ &rarr;
 
 * {:.fragment} <strike>HTML and CSS</strike> (most of you already knew this coming into class, and we did a quick review)
 * {:.fragment} <strike>JavaScript and access to the DOM</strike> (we went over this _a lot_)
 * {:.fragment} <strike>Server side applications</strike> (Express)
-* {:.fragment} <strike>JSON</strike> (easy)
+* {:.fragment} <strike>JSON</strike> 
 * {:.fragment} however, we have yet to look at __XMLHttpRequest__ 
 </section>
 
@@ -147,7 +142,7 @@ Hey. So. __Remember that time when we actually used some Server Side Javascript 
 <section markdown="block">
 ## XMLHttpRequest
 
-In client-side JavaScript, there's a feature analagous to the request module. 
+In client-side JavaScript, there's a feature analogous to the request module. 
 
 __<code>XMLHttpRequest</code>__ is JavaScript object that allows browser based JavaScript to make http requests!
 
@@ -156,7 +151,11 @@ __<code>XMLHttpRequest</code>__ is JavaScript object that allows browser based J
 * a page can update just a part of the itself rather than reloading itself entirely
 
 <br>
-__THIS IS AMAZING!__
+__THIS IS AMAZING!__ (though the api is kind of terrible)
+
+<br>
+(Again, you can [check out the fetch api](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), for a newer, but less supported way of making background http requests)
+
 
 </section>
 
@@ -166,14 +165,14 @@ __THIS IS AMAZING!__
 We need a campfire. We don't have one. __But here it goes__: &rarr;
 
 * {:.fragment} __XMLHttpRequest__ was originally designed by Microsoft for Internet Explorer in the 1990's (crazy times, eh?) 
-* {:.fragment} XML (a robust, but [fairly heavy weight](http://c2.com/cgi/wiki?XmlSucks) markup-language / data exchange format) was en vogue at the time (__anyone familiar with it?__)
+* {:.fragment} XML (a robust, but [fairly _heavy_](http://c2.com/cgi/wiki?XmlSucks) markup-language / data exchange format) was en vogue at the time (__anyone familiar with it?__)
 * {:.fragment} so rather than just calling the object HttpRequest (which would have been totally accurate)
 * {:.fragment} XML was tacked on to the beginning of the name 
 	* {:.fragment} though... XML was a valid response format 
 	* {:.fragment} (as was JSON, HTML, etc.)
 * {:.fragment} it became so popular (because it allowed features such as type-ahead autocomplete) that it was adopted by Mozilla
 * {:.fragment} it's currently being standardized by the w3c
-* {:.fragment} also... what's going on with the [inconsistent casing](http://programmers.stackexchange.com/questions/157375/why-does-xmlhttprequest-not-seem-to-follow-a-naming-convention)? XMLHttpRequest?
+* {:.fragment} (also, what's going on with the [inconsistent casing](http://programmers.stackexchange.com/questions/157375/why-does-xmlhttprequest-not-seem-to-follow-a-naming-convention))? XMLHttpRequest?
 </section>
 
 <section markdown="block">
@@ -473,9 +472,9 @@ The two ideas that govern this are:
 
 The __same origin policy__ is a policy implemented by browsers that __restricts how a document, script or data from one _origin_ can interact with a document, script or data from _another origin_.__
 
-* it __permits__ scripts running on pages originating from the same site to access documents, scripts or data from each other 
-* but __prevents__ access to these resources if they are on different sites
-* this applies to XMLHttpRequests as well (we'll see an exception shortly)
+* it __permits scripts__ running on pages originating from the same site to access documents, scripts or data from each other 
+* but __prevents scripting__ access to these resources if they are on different sites
+* of course, because this is specification includes scripting access, it applies to XMLHttpRequests (we'll see an exception shortly)
 </section>
 
 <section markdown="block">
@@ -522,6 +521,7 @@ A hint from wikipedia: "This mechanism bears a particular significance for moder
 * from there I can:
 	* steal data
 	* possibly take actions by issuing POSTs
+	* (^^^ slightly more complicated than this, but...)
 	* YIKES!
 </section>
 
@@ -538,7 +538,7 @@ __Let's try a quick experiment with githubs public API.__ &rarr;
 <section markdown="block">
 ## GitHub API
 
-You can actually get info from a GitHub user through GitHubs api by using the following URL:
+You can actually get info from a GitHub user through [GitHub's api](https://developer.github.com/v3/) by using the following URL:
 
 <pre><code data-trim contenteditable>
 https://api.github.com/users/[a username]/repos
@@ -670,11 +670,8 @@ Yeah... wait a second. Those are different domains? __Aren't cross domain reques
 __Cross Origin Resource Sharing__ (CORS) is a mechanism that allows resources, such as JSON, fonts, etc. to be requested from a domain from a different origin.  From [mdn](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS):
 
 * it works by adding HTTP headers that allow servers to describe the set of origins that are permitted to read that information using a web browser
-	* for example, __Access-Control-Allow-Origin__ (a URL that specifies an allowed origin, or \* for all)
-* for HTTP request methods that can cause side-effects on user data (for example, POST), the specification mandates that browsers:
-	* "preflight" the request
-	* soliciting supported methods from the server with an HTTP OPTIONS request method, 
-	* and then, upon "approval" from the server, sending the actual request with the actual HTTP request method
+* for example, __Access-Control-Allow-Origin__ (a URL that specifies an allowed origin, or \* for all), is header that the server will set in the response
+* the browser will use that information to determine how to deal with cross domain requests
 </section>
 
 <section markdown="block">
@@ -690,12 +687,39 @@ __How do you think we were able to contact GitHub's api?__ &rarr;
 </section>
 
 <section markdown="block">
+## It's Up to the Browser (and the Server)
+
+__So... how does this work _behind_ the scenes.__ &rarr;
+
+* {:.fragment} for GETs and POSTs, the script _can actually_ make a cross domain request and get a response back (wait, what?)
+* {:.fragment} but the browser, at the network level, prevents access to the response from the script
+* {:.fragment} for other HTTP request methods (and maybe more _complicated_ GETs and POSTs), browsers will "preflight" the request by:
+	* soliciting supported methods from the server with an HTTP OPTIONS request method 
+	* and then, upon "approval" from the server, sending the actual intended request with the appropriate HTTP request method
+</section>
+
+<section markdown="block">
+## Back to CSRF
+
+Going to our example of cross-site request forgery, issuing a background POST via scripting ... to another domain seems like it'll work, because the request will actually go through!
+
+__Then... how is CSRF prevented, and how does SOP/CORS help in preventing CSRF__
+
+1. {:.fragment} one common method is to have token generated for each form that's a hidden input
+2. {:.fragment} this token is checked when the form is submitted... __but wait, this seems like we can circumvent it__ &rarr;
+3. {:.fragment} the 1st background request can read the form's token! ... __but can it?__ &rarr;
+4. {:.fragment} SOP prevents this from happening!
+5. {:.fragment} some resources: [CSRF prevention](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Prevention), [SOP vs CSRF](http://stackoverflow.com/questions/12823390/what-stops-someone-from-reading-csrf-tokens-in-form-inputs-with-js)
+
+</section>
+
+<section markdown="block">
 ## Whoah Neat. Cross Domain Totally Works.
 
 However, you may not always have access or contact with the server that's running the services. So, maybe they won't set the CORS headers for you. __What are some other options around cross domain requests?__ &rarr;
 
 * {:.fragment} create a proxy that requests the resource for you (server side), but is on your domain
-* {:.fragment} request the data server side and _cache_ the data; create a service that serves the cache data
+* {:.fragment} request the data server side and _cache_ the data; create a service that serves the cached data
 * {:.fragment} of course, these are all likely against terms of use
 * {:.fragment} (probably don't do this)
 * {:.fragment} also note that many apis have rate limits
@@ -710,7 +734,7 @@ Yes. __We can make our own APIs with Express__.
 The secret is:
 
 <pre><code data-trim contenteditable>
-response.json()
+res.json()
 </code></pre>
 
 This returns a json response of the object that is passed in.

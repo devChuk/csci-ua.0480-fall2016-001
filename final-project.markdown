@@ -134,7 +134,7 @@ Choose at least __8 points__ worth of these following topics (research and imple
 
 <a name="proposal"></a>
 
-### __11/3__ - Milestone 1 - Requirements / Specifications and Data Model 
+### __11/3__ - Milestone 1 - Requirements / Specifications and Data Model (10 points)
 
 [Check out sample documentation](https://github.com/nyu-csci-ua-0480-001-fall-2016/final-project-example)
 
@@ -180,7 +180,7 @@ Choose at least __8 points__ worth of these following topics (research and imple
 <br>
 <br>
 
-### 11/15 - Milestone 2 - Initial Deployment and First Form
+### 11/15 - Milestone 2 - Initial Deployment and First Form (10 points)
 
 1. attempt to deploy your code to i6 by following [these instructions](homework/deploy.html)
 2. use [this form to submit urls to your deployed site](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfgOqmYrFq_XE1P9On8RCrCzVBBlcISpEk7iTdDmkTOBOE5zQ/viewform)

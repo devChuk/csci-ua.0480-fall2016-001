@@ -3,6 +3,7 @@
 From Previous Class
 
 * [CSS](slides/19/css.html)
+* [Ajax Part 1](slides/20/ajax.html)
 
 
 <!-- 

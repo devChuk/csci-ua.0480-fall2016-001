@@ -7,13 +7,8 @@
 * go back over DOM slides
 * [DOM Continued sample markup](code/dom-continued.html)
 * reminder re: final project - milestone 1
-* [Deployment on i6 (1st Draft)](homework/deploy.html)
+* [Deployment on i6](homework/deploy.html)
 * [Modifying and Adding Elements](slides/18/modifying-creating.html)
-* [Layout and Style](slides/18/layout-style.html)
-* [JavaScript Timers](slides/18/timers.html)
-* [Events](slides/18/events.html)
-* [CSS](slides/18/css.html)
-* [Selectors, JS and CSS](slides/18/js-css.html)
 
 
 

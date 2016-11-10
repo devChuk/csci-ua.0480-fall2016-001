@@ -1,6 +1,12 @@
 	<td markdown="block">
+
+* [Ajax Part 2](slides/21/ajax-express.html)
+* [Promises](slides/21/promises.html)
+
+	{% comment %}
 * [Selectors, JS and CSS](slides/19/js-css.html)
 * [More About Events](slides/20/events-more.html)
+	{% endcomment %}
 
 	{% comment %}
 * [Flexbox, Grids](slides/20/flexbox.html)
@@ -20,8 +26,10 @@
 -->
 </td>
 	<td markdown="block">
+    {% comment %}
 Due Friday, April 22nd
 
 * [Project 2 Milestone ](final-project.html#milestone2)
 * [Homework #7](homework/07.html)
+    {% endcomment %}
 </td>

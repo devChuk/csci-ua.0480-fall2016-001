@@ -245,7 +245,6 @@ MIDTERM
 <td markdown="block">
 * HTML Primer, JavaScript and the Browser
 * The Document Object Model
-* Manipulating Elements
 </td>
 {% include schedule/17.markdown %}
 </tr>
@@ -255,9 +254,8 @@ MIDTERM
 <tr><td>18</td><td><strong>Nov 03 </strong><br>Thu</td>
 <td markdown="block">
 
-* Timers
-* Events
-* CSS
+* Manipulating Elements
+* Deployment
 
 {% comment %}
 * Events Revisited
@@ -271,8 +269,9 @@ MIDTERM
 <!-- ------------ --><a name="19"></a>
 <tr><td>19</td><td><strong>Nov 08</strong><br>Tue</td>
 <td markdown="block">
-* AJAX
-* APIs
+* Timers
+* Events
+* CSS
 </td>
 {% include schedule/19.markdown %}
 </tr>
@@ -280,13 +279,11 @@ MIDTERM
 <!-- ------------ --><a name="20"></a>
 <tr><td>20</td><td><strong>Nov 10</strong><br>Thu</td>
 <td markdown="block">
-* AJAX Continued
-* Maybe Promises?
+* AJAX
+* APIs
 
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/20.markdown %}
-{% endcomment %}
 </tr>
 
 
@@ -294,20 +291,20 @@ MIDTERM
 <tr><td>21</td><td><strong>Nov 15</strong><br>Tue</td>
 <td markdown="block">
 
-* Flexbox
-* CSS Meta Languages
+* AJAX Continued
+* Promises
+* Maybe Fetch API
 
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/21.markdown %}
-{% endcomment %}
 </tr>
 
 
 <!-- ------------ --><a name="22"></a>
 <tr><td>22</td><td><strong>Nov 17</strong><br>Thu</td>
 <td markdown="block">
-* SocketIO
+* Flexbox
+* CSS Meta Languages
 {% comment %}
 concat and min? grunt and/or gulp?
 {% endcomment %}
@@ -321,8 +318,7 @@ concat and min? grunt and/or gulp?
 <!-- ------------ --><a name="23"></a>
 <tr><td>23</td><td><strong>Nov 22</strong><br>Tue</td>
 <td markdown="block">
-* SocketIO Continued 
-* Final Project Deployment
+* SocketIO
 {% comment %}
 remove css refresher 
 flexbox, etc from old 24
@@ -338,6 +334,7 @@ show react basics
 <!-- ------------ --><a name="24"></a>
 <tr><td>24</td><td><strong>Nov 29</strong><br>Tue</td>
 <td markdown="block">
+* SocketIO Continued
 * Frontend Framework
 {% comment %} consolidate React stuff here maybe from 26 and 27, including build tools {% endcomment %}
 </td>

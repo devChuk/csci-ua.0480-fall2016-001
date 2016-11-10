@@ -1,7 +1,10 @@
 	<td markdown="block">
 
-* See Previous Slides
-* [Ajax Part 1](slides/20/ajax.html)
+* [Layout and Style](slides/19/layout-style.html)
+* [JavaScript Timers](slides/19/timers.html)
+* [Events](slides/19/events.html)
+* [CSS](slides/19/css.html)
+* [Selectors, JS and CSS](slides/19/js-css.html)
 
 {% comment %}
 * homework
