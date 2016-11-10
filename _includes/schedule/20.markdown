@@ -1,8 +1,8 @@
 	<td markdown="block">
 
-From Previous Class
-
-* [CSS](slides/19/css.html)
+* https resources?
+* Back to [CSS](slides/19/css.html)
+* Back to [events](slides/19/events.html)
 * [Ajax Part 1](slides/20/ajax.html)
 
 

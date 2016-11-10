@@ -1,6 +1,6 @@
 ---
 layout: slides
-title: "Events Revisited"
+title: "Events"
 ---
 
 <section markdown="block" class="intro-slide">
