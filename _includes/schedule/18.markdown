@@ -27,6 +27,7 @@
 
 Due Tuesday, November 15th
 
-* [Milestone #2 - Deployment and Form](final-project.html#milestone2)
+* [Milestone #2 - Deployment](final-project.html#milestone2) 
+* [Milestone #2 - Submit this Form](https://docs.google.com/a/nyu.edu/forms/d/15R40l21BD9DzBHFy4MuqKKJskdTr33Tq0RvkpwidLRw/edit)
 * [Homework #7](homework/07.html)
 </td>
