@@ -25,7 +25,9 @@
 </td>
 	<td markdown="block">
 
-Due Tuesday, November 15th
+Due <strike>Tuesday, November 15th</strike>
+
+Extended to: Thursday, November 17th
 
 * [Milestone #2 - Deployment](final-project.html#milestone2) 
 * [Milestone #2 - Submit this Form](https://docs.google.com/a/nyu.edu/forms/d/15R40l21BD9DzBHFy4MuqKKJskdTr33Tq0RvkpwidLRw/edit)

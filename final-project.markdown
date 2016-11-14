@@ -180,7 +180,7 @@ Choose at least __8 points__ worth of these following topics (research and imple
 <br>
 <br>
 
-### 11/15 - Milestone 2 - Initial Deployment and First Form (10 points)
+### <strike>11/15</strike> 11/17 - Milestone 2 - Initial Deployment and First Form (10 points)
 
 1. attempt to deploy your code to i6 by following [these instructions](homework/deploy.html)
 2. use [this form to submit urls to your deployed site](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfgOqmYrFq_XE1P9On8RCrCzVBBlcISpEk7iTdDmkTOBOE5zQ/viewform)

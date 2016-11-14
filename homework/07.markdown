@@ -7,7 +7,9 @@ title: CSCI-UA.0480 - Homework #7
 	<div class="panel-heading">Homework #7</div>
 	<div class="panel-body" markdown="block">
 
-# Threes Dice Game (Client Side JavaScript)- __Due Tuesday, November 15th, by 11PM__
+# Threes Dice Game (Client Side JavaScript)- <strike>Due Tuesday, November 17th, by 11PM</strike>
+
+# Extended: __Tuesday, November 17th, by 11PM__
 
 ## Overview
 
