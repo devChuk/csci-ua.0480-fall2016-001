@@ -208,7 +208,7 @@ The flow of the image-post create form should follow the conventional POST, redi
 * <code>POST /some/path/you/choose</code> (to actually process the submitted form)
 * <code>redirect to GET /image-posts</code> (to go back to the listing of all image-posts)
 
-### (4 points) Form to Create an ImagePost with Images 
+### (6 points) Form to Create an ImagePost with Images 
 
 
 In this route handler, <code>GET /image-posts</code>: 
@@ -221,7 +221,7 @@ In this route handler, <code>GET /image-posts</code>:
 3. have the form post to a path of your choosing (you'll define this route handler later in the next part)
 4. __test that your form renders by going to__ <code>/image-posts</code>
 
-### (8 points) Handling the Image-Post Form
+### (10 points) Handling the Image-Post Form
 
 
 In this route handler, <code>POST /path/of/your/choosing</code>: 
@@ -273,7 +273,7 @@ Troubleshooting if No Documents Are Found
     * <code>console.log(err)</code>
     * <code>res.send(err)</code>
 
-### (8 Points) Displaying All Image Posts
+### (10 Points) Displaying All Image Posts
 
 The list of all <code>ImagePost</code>s should appear underneath your form. Retrieve all of the image-posts from the database (see [the slides on the mongoose API](../slides/15/mongoose.html)), and for every image-post:
 
@@ -300,7 +300,7 @@ The list of all <code>ImagePost</code>s should appear underneath your form. Retr
 
 ## Part 4 - Single ImagePost Detail Page, Adding New Images to ImagePost, Deleting Iamges from ImagePost
 
-### (4 points) Single ImagePost Detail Page
+### (6 points) Single ImagePost Detail Page
 
 
 In this route handler, <code>GET /image-post/[slug-name]</code>: 
@@ -318,7 +318,7 @@ In this route handler, <code>GET /image-post/[slug-name]</code>:
 ![go to detail page](../resources/img/hw06-03-detail-slug.gif) 
 </div>
 
-### (8 points) Adding Images
+### (10 points) Adding Images
 
 Instead of creating a separate page for adding items to your list, embed your form directly underneath your image-post in your image-post details page
 
@@ -352,7 +352,7 @@ __you'll have to handle this post, so...__
 
 ## Part 5 - Deleting Images
 
-### (6 points) Deleting Images
+### (10 points) Deleting Images
 
 Create another form for deleting images from an image-post. The flow of the __image delete form__ should be:
 
