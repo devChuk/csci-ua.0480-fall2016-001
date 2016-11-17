@@ -302,10 +302,12 @@ var p = new Promise(function(succeed, fail) {
 So... Promises also have a method called <code>then</code>. 
 
 * __then__ represents the next step to execute
-* it accepts a callback as its first parameter... the thing to do if our Promise was _resolved_ or _successful_
-* this callback has also has a single parameter...
-	* then execute its callback with
-	* the value that was passed into the succeed function call in the original Promise
+* it accepts a couple of callbacks as parameters... 
+    * the thing to do if our Promise was _resolved_ or _successful_
+    * the thing to do if our Promise was _rejected_ or _unsuccessful_
+* these callbacks have a single parameter
+	* the value that was passed into the original succeed or reject function call in the original Promise
+    * think of these as the succeed and fail in the original promise
 
 <pre><code data-trim contenteditable>
 var p = new Promise(function(succeed, fail) {

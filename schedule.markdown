@@ -309,9 +309,7 @@ MIDTERM
 concat and min? grunt and/or gulp?
 {% endcomment %}
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/22.markdown %}
-{% endcomment %}
 </tr>
 
 
@@ -325,9 +323,7 @@ flexbox, etc from old 24
 show react basics
 {% endcomment %}
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/23.markdown %}
-{% endcomment %}
 </tr>
 
 

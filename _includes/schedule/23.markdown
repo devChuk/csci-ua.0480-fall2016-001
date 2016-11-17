@@ -1,8 +1,8 @@
 	<td markdown="block">
 
+* [Socket.io](slides/23/socketio.html)
 {% comment %}
 * (from forever ago) [CSS](slides/19/css.html)
-{% endcomment %}
 
 * Homework Questions
 * Milestone #2 Questions (read the comments, please)
@@ -13,6 +13,7 @@
     * [repository viewer](http://localhost:4000/slides/21/ajax-express.html#/10)
 * [Promises](slides/22/promises.html)
 * [See AJAX Examples in repository](https://github.com/jversoza/ait-spring-16-examples)
+{% endcomment %}
 
 {% comment %}
 * [Deployment](slides/23/deployment.html)
@@ -30,7 +31,4 @@
 -->
 </td>
 	<td markdown="block">
-Due Friday, April 29th
-
-* [Homework #8](homework/08.html)
 </td>

@@ -1,9 +1,12 @@
 	<td markdown="block">
+* Previous class on AJAX post
+* Previous class on Promises
+* [Flexbox](slides/22/flexbox.html)
 {% comment %}
 * [About Class #22](slides/22/meta.html)
-{% endcomment %}
 
 * [Ajax Part 1](slides/20/ajax.html)
+{% endcomment %}
 
 {% comment %}
 * (from forever ago) [CSS](slides/19/css.html)
