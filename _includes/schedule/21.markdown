@@ -26,10 +26,7 @@
 -->
 </td>
 	<td markdown="block">
-    {% comment %}
-Due Friday, April 22nd
+Due Tuesday, November 22nd
 
-* [Project 2 Milestone ](final-project.html#milestone2)
-* [Homework #7](homework/07.html)
-    {% endcomment %}
+* [Homework #8](homework/08.html) - Last Homework!
 </td>

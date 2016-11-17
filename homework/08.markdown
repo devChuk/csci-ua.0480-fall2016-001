@@ -7,7 +7,7 @@ title: CSCI-UA.0480 - Homework #8
 	<div class="panel-heading">Homework #8</div>
 	<div class="panel-body" markdown="block">
 
-# Movies Ajax - __Due Fri, April 29th, by 11PM__
+# Movies Ajax - __Due Tuesday, November 22nd, by 11PM__
 
 ## Overview
 
@@ -32,7 +32,7 @@ Use the following resources as reference:
 
 1. [Slides on AJAX Part 1](../slides/20/ajax.html)
 2. [Slides on AJAX Part 2](../slides/21/ajax-express.html)
-3. [AJAX POST (from Part 2)](../slides/21/ajax-express.html#/45)
+3. [AJAX POST (from Part 2)](../slides/21/ajax-express.html#/47)
  
 ### Submission Process
 
@@ -41,7 +41,7 @@ You will be given access to a private repository on GitHub.  The final version o
 * __Push__ your changes to the homework repository on GitHub.
 * Commits later than that date will be handled on a case-by-case basis.
 
-### (3 points) Make at Least 4 Commits
+### (4 points) Make at Least 4 Commits
 
 * Commit multiple times throughout your development process.
 * Make at least 4 separate commits
@@ -123,5 +123,3 @@ You will be given access to a private repository on GitHub.  The final version o
 
 </div>
 </div>
-
-
