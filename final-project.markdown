@@ -207,6 +207,7 @@ Choose at least __8 points__ worth of these following topics (research and imple
     1. `ssh` into i6
     2. `cd` into your project directory (should be in `~/opt/NETID-final-project`)
     3. run `forever stopall` and `forever start bin/www` 
+        * __YOU MUST MAKE SURE THIS IS WORKING AFTER DECEMBER 1ST DUE TO SCHEDULED DOWNTIME FOR SERVERS__
         * you'll have to use the full path to forever, likely `~/usr/local/node_modules/bin/forever`
         * and perhaps the full bath to `bin/www`
 3. use [this form to submit urls for the following](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSctfWL5TBDUBqB_NmMBrdZ6X0LabYyPXP3BQyQjoNfXPXNA4g/viewform)
