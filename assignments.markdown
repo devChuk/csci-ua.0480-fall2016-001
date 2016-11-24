@@ -16,3 +16,4 @@ nav-state: assignments
 * [Final Project](final-project.html) 
 * [Final Project - Milestone #1](final-project.html#milestone1) 
 * [Final Project - Milestone #2](final-project.html#milestone2) 
+* [Final Project - Milestone #3](final-project.html#milestone3) 

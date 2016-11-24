@@ -19,7 +19,7 @@ In all of our web applications so far (with the exception the client-side only a
 __We've always had to ask the server if there was new information or data.__ &rarr;
 
 * {:.fragment} the server couldn't push information to the browser without being asked first
-* {:.fragment} that's the way http works (it's a request / response protocol)
+* {:.fragment} that's the way http (well, 1.1) works (it's a request / response protocol)
 * {:.fragment} it's kind of [like this](http://i.stack.imgur.com/TK1ZG.png), right? (thanks for [the diagrams](http://stackoverflow.com/questions/11077857/what-are-long-polling-websockets-server-sent-events-sse-and-comet), Stack Overflow)
 </section>
 

@@ -1,7 +1,8 @@
 	<td markdown="block">
 * Previous class on AJAX post
 * Previous class on Promises
-* [Flexbox](slides/22/flexbox.html)
+* <strike>[Flexbox](slides/22/flexbox.html)</strike> (skipped)
+
 {% comment %}
 * [About Class #22](slides/22/meta.html)
 

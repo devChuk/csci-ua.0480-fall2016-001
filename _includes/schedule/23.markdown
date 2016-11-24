@@ -31,4 +31,7 @@
 -->
 </td>
 	<td markdown="block">
+Due Tuesday, November 29th
+
+* [Milestone #3](final-project.html#milestone3)
 </td>

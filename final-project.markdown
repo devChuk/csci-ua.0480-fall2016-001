@@ -27,7 +27,7 @@ pre {
 	<div class="panel-heading">Final Project</div>
 	<div class="panel-body" markdown="block">
 
-# __Final Project, Due Friday, Dec 2nd at 11pm__
+# __Final Project, Due__ <strike>Friday, Dec 2nd at 11pm</strike> __Tuesday, Dec 6th at 11pm__
 
 ## Overview 
 
@@ -192,6 +192,29 @@ Choose at least __8 points__ worth of these following topics (research and imple
         * a page on your site that's deployed to i6
         * a link to the github repository / line no
 
+<a name="milestone3">
+
+<br>
+<br>
+<br>
+
+### 11/29 - Milestone 3 - 2nd Form and More Progress on Research(10 points)
+
+1. make at least 3 additional commits to add:
+    * your 2nd form / ajax interaction
+    * make more progress on your research topics
+2. redeploy your code to i6 by running git pull and restarting forever
+    1. `ssh` into i6
+    2. `cd` into your project directory (should be in `~/opt/NETID-final-project`)
+    3. run `forever stopall` and `forever start bin/www` 
+        * you'll have to use the full path to forever, likely `~/usr/local/node_modules/bin/forever`
+        * and perhaps the full bath to `bin/www`
+3. use [this form to submit urls for the following](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSctfWL5TBDUBqB_NmMBrdZ6X0LabYyPXP3BQyQjoNfXPXNA4g/viewform)
+    * __both working forms or ajax interactions (that are not login or registration)__ 
+    * a link to show code changes since milestone #2:
+        * start with the url to your repository: `https://github.com/nyu-csci-ua-0480-007-fall-2016/NETID-final-project/`
+        * and append the following to the url: `compare/master@%7B11-18-16%7D...master`
+        * for example: `https://github.com/nyu-csci-ua-0480-007-fall-2016/NETID-final-project/compare/master@%7B11-18-16%7D...master`
 
 {% comment %}
 Prototype With Some Implemented Functionality (10 points total)
@@ -230,13 +253,9 @@ Prototype With Some Implemented Functionality (10 points total)
 <br>
 {% endcomment %} 
 
-<a name="milestone3">
-
-### Date TBD - Milestone 3
-
 {% comment %}
 1. attempt to deploy your code to i6 by following [these instructions](homework/deploy.html)
-2. use [this form to send me the urls](https://docs.google.com/a/nyu.edu/forms/d/112J7_jnQFozXiLUtHdRIxcCFnEomEMdCYbnNLX5AyrQ/viewform) of: 
+2. use [this form to send me the urls]() of: 
     * two working forms in your __deployed__ application 
         * they should allow data to be modified or deleted
         * the results of these forms should be apparent/viewable
@@ -256,7 +275,12 @@ Prototype With Some Implemented Functionality (10 points total)
 
 <a name="milestone4">
 
-### __12/2__ - Final Project Complete and Code is fully  _Deployed_ 
+<br>
+<br>
+<br>
+<br>
+
+### __12/6__ - Final Project Complete and Code is fully  _Deployed_ 
 
 {% comment %}
 * __(extended from Fri, 5/6 to Sun, 5/8)__ to allow some time over the weekend to finish up project
