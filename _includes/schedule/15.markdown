@@ -27,7 +27,7 @@ Mongoose
 </td>
 	<td markdown="block">
 
-* 12/2 - [Final Project](final-project.html)
+* 12/8 - [Final Project](final-project.html)
     * 11/3 - [First milestone](final-project.html#proposal)
 
 </td>

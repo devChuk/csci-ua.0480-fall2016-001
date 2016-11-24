@@ -27,7 +27,7 @@ pre {
 	<div class="panel-heading">Final Project</div>
 	<div class="panel-body" markdown="block">
 
-# __Final Project, Due__ <strike>Friday, Dec 2nd at 11pm</strike> __Tuesday, Dec 6th at 11pm__
+# __Final Project, Due__ <strike>Friday, Dec 2nd at 11pm</strike> __Thursday, Dec 8th at 11pm__
 
 ## Overview 
 
@@ -198,7 +198,7 @@ Choose at least __8 points__ worth of these following topics (research and imple
 <br>
 <br>
 
-### 11/29 - Milestone 3 - 2nd Form and More Progress on Research(10 points)
+### 12/2 - Milestone 3 - 2nd Form and More Progress on Research(10 points)
 
 1. make at least 3 additional commits to add:
     * your 2nd form / ajax interaction
@@ -280,7 +280,7 @@ Prototype With Some Implemented Functionality (10 points total)
 <br>
 <br>
 
-### __12/6__ - Final Project Complete and Code is fully  _Deployed_ 
+### __12/8__ - Final Project Complete and Code is fully  _Deployed_ 
 
 {% comment %}
 * __(extended from Fri, 5/6 to Sun, 5/8)__ to allow some time over the weekend to finish up project
