@@ -213,9 +213,9 @@ Choose at least __8 points__ worth of these following topics (research and imple
 3. use [this form to submit urls for the following](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSctfWL5TBDUBqB_NmMBrdZ6X0LabYyPXP3BQyQjoNfXPXNA4g/viewform)
     * __both working forms or ajax interactions (that are not login or registration)__ 
     * a link to show code changes since milestone #2:
-        * start with the url to your repository: `https://github.com/nyu-csci-ua-0480-007-fall-2016/NETID-final-project/`
+        * start with the url to your repository: `https://github.com/nyu-csci-ua-0480-001-fall-2016/NETID-final-project/`
         * and append the following to the url: `compare/master@%7B11-18-16%7D...master`
-        * for example: `https://github.com/nyu-csci-ua-0480-007-fall-2016/NETID-final-project/compare/master@%7B11-18-16%7D...master`
+        * for example: `https://github.com/nyu-csci-ua-0480-001-fall-2016/NETID-final-project/compare/master@%7B11-18-16%7D...master`
 
 {% comment %}
 Prototype With Some Implemented Functionality (10 points total)
