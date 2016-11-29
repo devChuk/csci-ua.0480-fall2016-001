@@ -195,31 +195,48 @@ On the client:
 <section markdown="block">
 ## (Some) Server Functions
 
-* __<code>io.on('event name', callback</code>__
-	* register a callback to handle a server event
-	* start off by defining what to do on the 'connect' event
-* __<code>io.sockets.emit('event name', 'message')</code>__
-	* send a message to all connected clients (including the one that is on the _current_ socket!)
-	* the message can be anything supported by JSON (strings, objects, etc. ... but not functions)
+The `Server` object represents socket.io server. Instantiate it by:
+
+<pre><code data-trim contenteditable>
+var io = require('socket.io')();
+</code></pre>
+
+Some methods that you can call on it are:
+
+* __<code>io.on('event name', callback)</code>__
+	* {:.fragment} register a callback to handle a server event
+    * {:.fragment} callback takes a socket as a param; socket is an object that allows interaction with a connected client
+	* {:.fragment} start off by defining what to do on the 'connect' event
+* __<code>io.emit('event name', 'message')</code>__ (or <code>io.sockets.emit('event name', 'message')</code>)
+	* {:.fragment}send a message to all connected clients (including the one that is on the _current_ socket!)
+	* {:.fragment} the message can be anything supported by JSON (strings, objects, etc. ... but not functions)
 </section>
 
 <section markdown="block">
 ## (More) Server Functions (and Properties)
 
+The callback passed to `on` for a connection event has a __socket__ as a parameter. This socket object can be used to interact with the connected client:
+
 * __<code>socket.on('event name', callback)</code>__
-	* define a call back to handle socket event
-	* usually custom event names (events that you create)
+	* {:.fragment} define a callback to handle socket event
+	* {:.fragment} usually custom event names (events that you create)
+* __<code>socket.emit('event name', 'message')</code>__ <span class="fragment"> - send a message to this connected client only</span>
 * __<code>socket.broadcast.emit('event name', 'message')</code>__
-	* send a message to all connected clients __except__ for yourself (the socket that sends the message)
-* __<code>socket.id</code>__ - a unique identifier for the socket session / connected client
+	* {:.fragment} send a message to all connected clients __except__ for yourself (the socket that sends the message)
+* __<code>socket.id</code>__ <span class="fragment"> - a unique identifier for the socket session / connected client</span>
 </section>
 
 <section markdown="block">
 ## (Some) Client Functions
 
-* <code>io</code> - a function that gives back a socket
-* <code>socket.on('event name', callback)</code> - listen for an event name, trigger the callback
-* <code>socket.emit('event name', 'message')</code> - send a message to the server
+* __<code>io</code>__ 
+    * {:.fragment} a function that gives back a socket object
+    * {:.fragment} socket can be used to interact with server
+    * {:.fragment} `var socket = io('http://localhost');`
+* __<code>socket.on('event name', callback)</code>__ 
+    * {:.fragment} listen for an event name, trigger the callback
+* __<code>socket.emit('event name', 'message')</code>__  
+    * {:.fragment} send a message to the server
 
 </section>
 <section markdown="block">
@@ -259,9 +276,24 @@ npm install --save socket.io
 <section markdown="block">
 ## Some Server-Side Set Up
 
-Socket.IO requires access to the underlying HTTP server object that backs express (you remember the __<code>http</code>__ module, right!?)
+Socket.IO requires access to the underlying HTTP server object that backs express (you remember the __<code>http</code>__ module, right!?).
 
-You'll have to:
+In its simplest form, you can _attach_ a socket.io Server to Express using this code:
+
+<pre><code data-trim contenteditable>
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+app.listen(3000);
+</code></pre>
+
+
+</section>
+<section markdown="block">
+## Server Side Set Up with with Generator
+
+That was a little different than what we're used to doing. If you want to use express generator, a quick way to attach a socket.io server is to:
 
 * copy the contents of __<code>/bin/www</code>__
 * ... to __<code>app.js</code>__
