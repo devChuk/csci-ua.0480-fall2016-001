@@ -281,11 +281,14 @@ Socket.IO requires access to the underlying HTTP server object that backs expres
 In its simplest form, you can _attach_ a socket.io Server to Express using this code:
 
 <pre><code data-trim contenteditable>
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+app.use(express.static('public'));
 
-app.listen(3000);
+
+server.listen(3000);
 </code></pre>
 
 
@@ -698,87 +701,4 @@ socket.on('other mouse', function(data) {
 __Note that the top and left values are in pixels.__
 {:.fragment}
 
-</section>
-
-<section markdown="block">
-## Don't Want to Broadcast to Everyone?
-
-Socket.IO allows you to have rooms...
-
-* sockets can join and leave rooms
-* messages can be emitted to specific rooms
-</section>
-
-<section markdown="block">
-## Rooms Continued
-
-The server can add a client to a room by using <code>join</code>:
-
-<pre><code data-trim contenteditable>
-socket.join('some room');
-</code></pre>
-
-To send to that room:
-
-<pre><code data-trim contenteditable>
-socket.to('some room').emit('some event'):
-</code></pre>
-
-You can see all of the rooms that a socket is in by:
-
-<pre><code data-trim contenteditable>
-socket.rooms
-</code></pre>
-
-Note that: 
-
-* everyone starts off in a default room based on their socket id
-* you can also be in multiple rooms
-</section>
-
-<section markdown="block">
-# A Quick Demo Using Rooms
-
-</section>
-<section markdown="block">
-## How Did That Work on the Server?
-
-Join a room immediately upon connection (this can be a custom event sent from the client).
-
-<pre><code data-trim contenteditable>
-  // listen for a custom event from the client and join that room
-  socket.on('join', function(room) {
-    console.log('join', room);
-    // joining 
-    socket.join(room);
-  });
-
-</code></pre>
-</section>
-<section markdown="block">
-## Sending to Room Only
-
-In this case, we know that we're in two rooms (the default), so we'll use <code>io.to</code> to send to that particular room.
-
-<pre><code data-trim contenteditable>
-  socket.on('chat message', function(msg) {
-    console.log('got msg from', socket.id, ':', msg);
-    console.log('sending to room', socket.rooms[1]);
-    io.to('my very own room').emit('chat message', msg);
-  });
-</code></pre>
-</section>
-
-<section markdown="block">
-## On the Client
-
-We just have to make sure that we send the custom join event... with the room that we'd like to join.
-
-<pre><code data-trim contenteditable>
-	socket.on('connect', onConnect);
-	function onConnect() {
-		console.log('connected');
-		socket.emit('join', 'my very own room');
-	}
-</code></pre>
 </section>

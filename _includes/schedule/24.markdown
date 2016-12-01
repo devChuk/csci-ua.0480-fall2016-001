@@ -1,7 +1,7 @@
 	<td markdown="block">
 {% comment %}
 {% endcomment %}
-* [Socket IO Intro](slides/24/socketio.html)
+See socket.io from previous class
 </td>
 	<td markdown="block">
 <!--

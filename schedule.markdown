@@ -330,25 +330,20 @@ show react basics
 <!-- ------------ --><a name="24"></a>
 <tr><td>24</td><td><strong>Nov 29</strong><br>Tue</td>
 <td markdown="block">
-* SocketIO Continued
-* Frontend Framework
+* SocketIO 
 {% comment %} consolidate React stuff here maybe from 26 and 27, including build tools {% endcomment %}
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/24.markdown %}
-{% endcomment %}
 </tr>
 
 
 <!-- ------------ --><a name="25"></a>
 <tr><td>25</td><td><strong>Dec 01</strong><br>Thu</td>
 <td markdown="block">
-* Frontend Framework Continued
-* Build Tools 
+* SocketIO - Lab
+* ES6
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/25.markdown %}
-{% endcomment %}
 </tr>
 
 
@@ -357,6 +352,7 @@ show react basics
 <tr><td>26</td><td><strong>Dec 06</strong><br>Tue</td>
 <td markdown="block">
 * ES6?
+* Frontend Framework
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/26.markdown %}
@@ -367,7 +363,8 @@ show react basics
 <!-- ------------ -->
 <tr><td>27</td><td><strong>Dec 08</strong><br>Thu</td>
 <td markdown="block">
-* Everything Together? / TBD
+* Frontend Framework
+* Frontend Framework - Lab
 </td>
 <td></td><td></td><td></td>{% comment %}
 {% include schedule/27.markdown %}
