@@ -78,8 +78,6 @@ server.listen(3000);
 &lt;button class="player2Btn"&gt;Move Face Screaming &amp;rarr;&lt;/button&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-
-
 </code></pre>
 5. use this boilerplate code for the client (in `public/racer.js`):
     <pre><code data-trim contenteditable>
