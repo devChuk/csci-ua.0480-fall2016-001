@@ -1,7 +1,7 @@
 	<td markdown="block">
 * [React Basics](slides/26/react.html)
 * [React Revisited](slides/26/react-webpack.html)
-* [React and Express / Using Webpack](slides/27/react-webpack-continued.html)
+* [React and Express / Using Webpack](slides/26/react-webpack-continued.html)
 
 {% comment %}
 * [Flexbox](slides/24/flexbox.html)
