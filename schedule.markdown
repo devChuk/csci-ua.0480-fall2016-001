@@ -354,9 +354,7 @@ show react basics
 * ES6?
 * Frontend Framework
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/26.markdown %}
-{% endcomment %}
 </tr>
 
 

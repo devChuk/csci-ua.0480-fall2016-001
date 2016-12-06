@@ -167,9 +167,3 @@ console.log(y); // 2
 </code></pre>
 
 </section>
-
-
-
-
-
-

@@ -1,19 +1,19 @@
 	<td markdown="block">
-* [React Basics](slides/24/react.html)
+* [React Basics](slides/26/react.html)
 * [React Revisited](slides/26/react-webpack.html)
+* [React and Express / Using Webpack](slides/27/react-webpack-continued.html)
 
 {% comment %}
-* [React and Express / Using Webpack](slides/27/react-webpack-continued.html)
 * [Flexbox](slides/24/flexbox.html)
 {% endcomment %}
 </td>
 	<td markdown="block">
-<!--
-* Chapter 
-* Chapter 
--->
+
+* [Hello World](https://facebook.github.io/react/docs/hello-world.html) and [Official Tutorial](https://facebook.github.io/react/tutorial/tutorial.html)
+* [Build With React](http://buildwithreact.com/)
 </td>
 	<td markdown="block">
+{% comment %}
 In-class Activity
 
 * [React Clicker](https://docs.google.com/a/nyu.edu/forms/d/1bDbEsO6ZTanAe1F0BIVzYQg4ECJsEBuLeXQztmwPvNw/viewform)
@@ -21,5 +21,6 @@ In-class Activity
 Milestone #3, Due Tuesday, 5/3
 
 * [Final Project Milestone #3 Requirements](final-project.html#milestone3)
+{% endcomment %}
 
 </td>
