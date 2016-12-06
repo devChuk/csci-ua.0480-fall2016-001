@@ -167,3 +167,19 @@ console.log(y); // 2
 </code></pre>
 
 </section>
+<section markdown="block">
+## More ES6!
+
+* arrow functions
+    * do not use as methods, why?
+    * dropping parens
+    * implicit return
+* speaking of methods
+    * shorthand methods in objects
+* classes
+    * constructor
+    * methods
+    * no commas
+    * class syntax
+    * extending classes
+</section>

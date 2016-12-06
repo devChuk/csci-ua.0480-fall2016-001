@@ -1,6 +1,6 @@
 ---
 layout: slides
-title: "React and Webpack"
+title: "React Continued"
 ---
 
 <section markdown="block" class="intro-slide">
@@ -95,7 +95,7 @@ __Using JSX, we could...__ &rarr;
 {:.fragment}
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<h1 className="hello">Hi there!</h1>, 
 	document.body
 );
@@ -109,7 +109,7 @@ React.render(
 __Why did that look so unusual?__ &rarr;
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<h1 className="hello">Hi there!</h1>, 
 	document.body
 );
@@ -170,7 +170,7 @@ var MyComponent = React.createClass({
 </code></pre>
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
   <MyComponent message="Hi there!" &#47;>,
   document.body
 );
@@ -180,7 +180,7 @@ React.render(
 <section markdown="block">
 ## Components and Props
 
-To make a component, use <code>React.createClass</code>, which takes an object as a parameter.
+To make a component, use <code>React.createClass</code>, which takes an object as a parameter or use __ES6 classes__.
 
 * the object must have a function called __render__ (it'll generate elements)
 * note that a __component variable must start with uppercase__
@@ -227,7 +227,7 @@ var MyComponent = React.createClass({
 </code></pre>
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<MyComponent greet={true} &#47;>, 
 	document.body
 );
@@ -251,7 +251,7 @@ var MyButton = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <MyButton &#47;>,
   document.body
 )
@@ -294,7 +294,7 @@ thiss.setState({stateName: stateValue});
 </section>
 
 <section markdown="block">
-## Using State... and Example
+## Using State... an Example
 
 __Let's define a couple of state variables, and put their values in a list when the component is rendered.__ &rarr;
 
@@ -350,7 +350,7 @@ var MyComponent = React.createClass({
 </code></pre>
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<MyComponent &#47;>, 
 	document.body
 );
@@ -393,7 +393,7 @@ Within your component definition:
 
 __Now let's try adding 3 counters to our render...__ &rarr;
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
   &lt;div&gt;&lt;Counter /&gt;&lt;Counter /&gt;&lt;Counter /&gt;&lt;/div&gt;,
     document.body
 );

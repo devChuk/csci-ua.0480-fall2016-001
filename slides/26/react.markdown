@@ -41,7 +41,7 @@ We can use jsbin or codepen to learn the React API.
 
 * for __codepen__: 
 	* set __Babel__ as the JavaScript preprocessor
-	* add the __react libaray__ as external JavaScript
+	* add the __react library__ as external JavaScript
 * for __jsbin__:
 	* use __Add Library__ to add react
 	* select __JSX (React)__ in the JavaScript drop down
@@ -55,7 +55,7 @@ From there, you can use the <code>React</code> object in your JavaScript as __yo
 First... let's try something that should look really familiar. __What do you think this code will do?__ &rarr;
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
     React.createElement('div', {className: 'foo'}, 'Hey... familiar!'), 
 	document.body
 );
@@ -63,21 +63,21 @@ React.render(
 
 * {:.fragment} create a div with class="foo"
 * {:.fragment} the div will have "Hey... familiar!" as text content
-* {:.fragment} ...and the whole div will be _rendered_ into the body
+* {:.fragment} ...and the whole div will be _rendered_ into the body (react components are usually rendered into another containing element, not just document.body)
 </section>
 
 <section markdown="block">
 ## A Bit More About createElement and render
 
-<code>createElement</code>:
+<code>React.createElement</code>:
 
 * first parameter... element that you want to create as a string
-* second parameter... its attributes
+* second parameter... its attributes (note `className` instead of `class`)
 * third parameter... its text content
 * it'll return a __ReactElement__ object
 
 <br>
-<code>render</code>
+<code>ReactDOM.render</code>
 
 * first parameter... element
 * second parameter... insertion point (where to add element as a child)
@@ -88,7 +88,7 @@ React.render(
 __Let's try this...__ &rarr;
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<div className="foo">Um, whut?</div>, 
 	document.body
 );
@@ -102,7 +102,7 @@ React.render(
 __What looks strange about this code?__ &rarr;
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
 	<div className="foo">Um, whut?</div>, 
 	document.body
 );
@@ -171,10 +171,43 @@ var MyComponent = React.createClass({
 </code></pre>
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
   <MyComponent message="Hi there!" &#47;>,
-  document.body
+  document.getElementById('root');
 );
+// assuming element with id="root"
+</code></pre>
+</section>
+
+<section markdown="block">
+## Alternatives for Defining Components
+
+__Using shorthand method definitions:__ &rarr;
+
+<pre><code data-trim contenteditable>
+const MyComponent = React.createClass({
+    render() {
+        return(
+            <div><h1>A Message</h1>{this.props.message}</div>
+        );
+    }
+});
+</code></pre>
+</section>
+
+<section markdown="block">
+## Using ES6 Classes
+
+You can also use ES6 classes to create components by __extending `React.Component`__ &rarr;
+
+<pre><code data-trim contenteditable>
+class MyComponent extends React.Component {
+    render() {
+        return (
+            <div><h1>A Message</h1>{this.props.message}</div>
+        );
+    }
+}
 </code></pre>
 </section>
 
@@ -183,7 +216,7 @@ React.render(
 
 To make a component, use <code>React.createClass</code>, which takes an object as a parameter.
 
-* use must define a render property in the object, and that property should be a function that generates elements
+* you must define a render property in the object, and that property should be a function that returns/generates elements
 * note that a component variable must start with uppercase
 * once you have a component, you can pass it to render using JSX, with the variable name as the tag name
 * you can access attributes defined in JSX via __this.props__ in your component
@@ -215,7 +248,7 @@ Gives us
 ## Too Many Greetings
 
 <pre><code data-trim contenteditable>
-var MyComponent = React.createClass({
+const MyComponent = React.createClass({
   render: function() {
     var text = "";
     for(var i = 0; i < this.props.times; i++) {
@@ -226,16 +259,75 @@ var MyComponent = React.createClass({
     )
   }
 });
-
 </code></pre>
 
 <pre><code data-trim contenteditable>
-React.render(
+ReactDOM.render(
   <MyComponent times="5" &#47;>,
   document.body
 );
 </code></pre>
 
+</section>
+
+<section markdown="block">
+## A Bit About Looping
+
+__What if we wanted to surround our hello with markup and add a number?__ &rarr;
+
+<pre><code data-trim contenteditable>
+const Greeting = React.createClass({
+  render: function() {
+    const paragraphs = [];
+    for(let i = 0; i < this.props.times; i++) {
+      paragraphs.push(<p>hello {i}</p>);
+    }
+    return (
+      <div> {paragraphs} </div>
+    );
+  }
+});
+</code></pre>
+
+* it turns out that you can render a list of elements (but you have to wrap it in a containing single element)
+* in the example above, we generate a few paragraph elements
+* a render a div that contains all of those elements by dropping the Array in curly braces
+
+</section>
+
+
+
+<section markdown="block">
+## Using Map
+
+__It's also pretty common to use map to generate elements.__ &rarr;
+
+* in the example below...
+* map creates an Array of paragraph elements
+* that is nested within a div
+
+<br>
+
+<pre><code data-trim contenteditable>
+const Greeting = React.createClass({
+  render: function() {
+    const greetings = ['hi', 'hello', 'hola'];
+    return (
+      <div>
+        {greetings.map(function(s) {
+          return (<p>{s}</p>)    
+        })}
+      </div>
+    );
+  }
+});
+</code></pre>
+
+And the more concise:
+
+<pre><code data-trim contenteditable>
+{ greetings.map(greet => <p>{greet}</p> )}
+</code></pre>
 </section>
 
 <section markdown="block">
@@ -254,7 +346,7 @@ var MyButton = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <MyButton &#47;>,
   document.body
 )
@@ -264,8 +356,6 @@ React.render(
 <section markdown="block">
 ## Resources
 
+* [React Docs](https://facebook.github.io/react/docs/installation.html)
 * [Build with React](http://buildwithreact.com/)
-* [The React Way](https://blog.risingstack.com/the-react-way-getting-started-tutorial/)
-* [SurviveJS - Webpack and React](http://survivejs.com/webpack_react/introduction/)
-
 </section>
