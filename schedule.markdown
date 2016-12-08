@@ -364,9 +364,7 @@ show react basics
 * Frontend Framework
 * Frontend Framework - Lab
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/27.markdown %}
-{% endcomment %}
 </tr>
 
 <!-- ------------ --><a name="28"></a>
