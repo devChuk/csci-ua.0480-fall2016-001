@@ -374,9 +374,7 @@ show react basics
 <td markdown="block">
 * Review
 </td>
-<td></td><td></td><td></td>{% comment %}
 {% include schedule/28.markdown %}
-{% endcomment %}
 </tr>
 
 <tr class="danger"><td></td><td><strong>Dec 20</strong><br>Tue</td>

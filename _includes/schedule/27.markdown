@@ -1,6 +1,8 @@
 	<td markdown="block">
 
-* [React and Express / Using Webpack](slides/27/react-webpack-continued.html)
+* Previous class on React
+* [Form to submit](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSdORjpmFxMqgYubKcDUJwRHrIUmh-iyKmviuq41pcVHNo2qCw/viewform)
+
 </td>
 	<td markdown="block">
 <!--

@@ -167,19 +167,104 @@ console.log(y); // 2
 </code></pre>
 
 </section>
+
 <section markdown="block">
-## More ES6!
+# More ES6!
+</section>
+
+
+<section markdown="block">
+## Arrow Functions Again
+
+Arrow functions are already pretty concise. In ES5, you might find code that looks like this:
+
+<pre><code data-trim contenteditable>
+var numbers = [1, 2, 3, 4];
+var result = numbers.map(function(num) { return num * 2});
+</code></pre>
+
+With arrow functions, that becomes:
+
+<pre><code data-trim contenteditable>
+const numbers = [1, 2, 3, 4];
+const result = numbers.map((num) => {return num * 2});
+</code></pre>
+
+In fact, we can drop the parentheses, curly braces and rely on the fact that arrow functions will implicitly return the last expression to drop the `return` to get this:
+
+<pre><code data-trim contenteditable>
+const numbers = [1, 2, 3, 4];
+const result = numbers.map(num => num * 2);
+</code></pre>
+</section>
+
+<section markdown="block">
+## Where _Not_ to Use Arrow Functions
+
+That was pretty great, so __why don't we use arrow functions all of the time?__ &rarr;
+
+__There are some places where they don't work quite right.__ 
+{:.fragment}
+
+* {:.fragment} creating methods
+    * {:.fragment} either on object literals
+    * {:.fragment} or on prototypes
+* {:.fragment} creating addEventListener callbacks
+* {:.fragment} creating constructors
+
+<br>
+__But why not?__ &rarr;
+{:.fragment}
+
+Remember, arrow functions do not bind this to a new value, and instead gets its this from the enclosing scope
+{:.fragment}
+
+
+</section>
+
+<section markdown="block">
+## Don't Use Arrow Functions to Create Methods
+
+</section>
+<section markdown="block">
+## 
+
+const obj ={
+    f(){ console.log('f');},
+        g(){ console.log('g');}
+        };
+        obj.f();
+        obj.g();
 
 * arrow functions
     * do not use as methods, why?
-    * dropping parens
-    * implicit return
+        * this works normally in arrow functions
+        * but that means you can't use them as methods
+        * this will be bound to global
+    * dropping parens, curly braces and return to get last expression back (implicit return)
 * speaking of methods
     * shorthand methods in objects
 * classes
+    * classes and inheritance look like classical inheritance (it looks normal now)
+    * behind the scenes it's still prototype
     * constructor
     * methods
     * no commas
     * class syntax
     * extending classes
+
+
+
+
 </section>
+
+
+
+
+
+
+
+
+
+
+

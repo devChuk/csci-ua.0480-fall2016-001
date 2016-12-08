@@ -288,7 +288,7 @@ To set state:
 {:.fragment}
 
 <pre><code data-trim contenteditable>
-thiss.setState({stateName: stateValue});
+this.setState({stateName: stateValue});
 </code></pre>
 {:.fragment}
 </section>
@@ -317,6 +317,111 @@ var MyComponent = React.createClass({
 });
 </code></pre>
 </section>
+
+<section markdown="block">
+## State With ES6 Classes
+
+__Things are slightly different if you're using ES6 Classes to define your components__ &rarr;
+
+* {:.fragment} instead of defining `getInitialState`, create a constructor that sets the state property to an object:
+* {:.fragment} also, you'll have to watch out for how `this` works (`createClass` handles it for you, but ES6 classes do not)
+
+
+</section>
+
+<section markdown="block">
+## From `getInitialState` to `constructor`
+
+__Instead of defining `getInitialState`...__ &rarr;
+
+Create a constructor (optionally defining a props parameter), call `super` and assign an object to `this.state`
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+constructor() {
+  super();
+  this.state = {
+    title: 'A React Component'
+  };
+}
+</code></pre>
+{:.fragment}
+
+Pass in `props` to your constructor if you want access to "attributes" (`this.props` isn't available within the constructor yet, so props can be accessed via parameter):
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+constructor(props) { ... }
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## `createClass` and `this`
+
+Let's check out an event example with `createClass`. __There's something a little suspicious about the code - what's weird about it?__ &rarr;
+
+<pre><code data-trim contenteditable>
+var MyButton = React.createClass({
+  getInitialState: function() {
+    return { msg: 'Clicked!!!' };
+  },
+
+  handleClick: function(evt) { alert(this.state.msg); },
+
+  render: function() {
+    return <div onClick={this.handleClick}>Press Me!<&#47;div>;
+  }
+});
+</code></pre>
+
+* {:.fragment} `this` _should_ refer to the global object, but it doesn't; everything works just fine!
+* {:.fragment} fortunately, when we use `createClass`, `this` is automatically set to the instance of the created `ReactElement` for us!
+</section>
+
+<section markdown="block">
+## Events, State, ES6 Classes
+
+Unfortunately, __ES6 classes__ do not set `this` for us like `createClass` does. __Consequently, the code below, which _looks_ equivalent, will not work!__ &rarr;
+
+<pre><code data-trim contenteditable>
+class MyButton extends React.Component {
+  constructor() {
+    super();
+    this.state = { msg: 'Clicked!!!' };
+  }
+
+  // Y U NO WORK??????
+  handleClick(evt) { alert(this.state.msg); }
+
+  render() {
+    return <div onClick={this.handleClick}>Press Me!</div>;
+  }
+}
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Fixing `this`
+
+__Let's modify the following lines so that `this` is bound to the instance rather than the global object.__ &rarr;
+
+<pre><code data-trim contenteditable>
+handleClick(evt) { alert(this.state.msg); }
+
+render() {
+  return <div onClick={this.handleClick}>Press Me!</div>;
+}
+</code></pre>
+
+* {:.fragment} use good 'ol bind!
+    * {:.fragment} `<div onClick={this.handleClick.bind(this)}>`
+* {:.fragment} wrap `handleClick` in an arrow function to capture `render`'s `this`:
+    * {:.fragment} `<div onClick={() => {this.handleClick()}}>`
+</section>
+
 
 <section markdown="block">
 ## A Challenge
@@ -399,5 +504,122 @@ ReactDOM.render(
 );
 </code></pre>
 
+
 </section>
 
+<section markdown="block">
+## Oh, Also, an ES6 Class Version
+
+<pre><code data-trim contenteditable>
+class Clicker extends React.Component {
+  constructor() {
+    super();
+    this.state = {count: 0};
+  }
+  
+  render() {
+    return <div onClick={() => {this.handleClick()}}><h2>{this.state.count}</h2></div>;
+  }
+  
+  handleClick() {
+    this.setState({count: this.state.count + 1});
+  }
+}
+</code></pre>
+
+</section>
+
+
+<section markdown="block">
+## Nested Components
+
+__When you're actually writing _real_ components__ &rarr;
+
+* you'll often find that you'll be creating components have a nested components interacting with each other
+* ... for example, a button and a text field that set some text in the containing element/component
+
+<br>
+
+__The common pattern for this is to:__ &rarr;
+
+* {:.fragment} move state out of the child components
+* {:.fragment} all of the state will go in the parent
+* {:.fragment} the parent will orchestrate interactions
+* {:.fragment} ...this will be done by the parent setting props on its children
+    * {:.fragment} such as event handler functions
+    * {:.fragment} ...and any other attributes
+
+
+</section>
+<section markdown="block">
+## An Example
+
+__Let's change our clicker so that:__ &rarr;
+
+* the button is a nested component
+* the count is shown in the button
+* the count is shown outside of the button as well
+
+<br>
+
+<pre><code data-trim contenteditable>
+Parent Count: 4
+Child Count: 4
+</code></pre>
+
+
+
+
+</section>
+
+<section markdown="block">
+## Parent: `ClickCounter`
+
+__This component is the parent; you can see that it:__ &rarr;
+
+* controls what the child component will do on click by handing down the `onClick` function via props
+* and sets props on its child by using the values from its own state
+
+<pre><code data-trim contenteditable>
+class ClickCounter extends React.Component {
+  constructor() {
+    super();
+    this.state = { count: 0 };
+  }
+  handleClick(arg) {
+    alert(arg + ' ' + this.state.count);
+    this.setState( { count: this.state.count + 1} );
+  }
+  render() {
+    // wrap onclick callback in arrow function to handle this
+    return <div><h1>Parent Count: {this.state.count}</h1><Clicker count={this.state.count} onClick={() => {this.handleClick("clicked!")}} /></div>;
+  }
+}
+</code></pre>
+
+</section>
+
+
+<section markdown="block">
+## Child: `Clicker`
+
+__Aaaand here's our child implementation__ &rarr;
+
+<pre><code data-trim contenteditable>
+class Clicker extends React.Component {
+  render() {
+    return <div onClick={() => {this.props.onClick()}}>Child Count:{this.props.count}</div>;
+  }
+}
+</code></pre>
+
+Of course... rendering:
+
+<pre><code data-trim contenteditable>
+
+ReactDOM.render(
+  <ClickCounter />,
+  document.body
+)
+</code></pre>
+</section>
