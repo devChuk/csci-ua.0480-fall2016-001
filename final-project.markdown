@@ -288,7 +288,7 @@ Prototype With Some Implemented Functionality (10 points total)
 * __project must be deployed__ on i6 (or other platform, such as Heroku, gomix, zeit, etc.)
     * if your application needs to be restarted while being graded; I will contact you
     * you will not receive a penalty for restarting after the due date
-* __the [final project form submission](https://docs.google.com/a/nyu.edu/forms/d/1Ps_5i_phj4aZ9LCvdr2XCKXhanS3AGV-pUAXrW1L6KY/edit) must be filled out__ (if a form is not submitted, you will receive a 0 for your project)
+* __the [final project form submission](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLScLCi2BBlzIbrlIh31cQ02gBs8BWeWpmQxlRNAmD8eLWHc9Ww/viewform) must be filled out__ (if a form is not submitted, you will receive a 0 for your project)
     * late project form submission will also result in a small point deduction
 
 
