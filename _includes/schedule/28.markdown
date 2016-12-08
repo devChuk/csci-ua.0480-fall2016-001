@@ -3,6 +3,7 @@
 * [About the Final Exam](slides/28/exams.html)
 * [Practice Questions](resources/handouts/final/final_exam_practice.pdf)
 * [Practice Questions Solutions](resources/handouts/final/final_exam_practice_solutions.pdf)
+* Additional practice questions will be posted to cover topics such as Promises, ES6, etc.
 </td>
 	<td markdown="block">
 <!--
