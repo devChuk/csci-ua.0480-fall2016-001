@@ -41,24 +41,14 @@ title: "About the Final Exam"
 
 </section>
 -->
-
-<section markdown="block">
-## About the Exam 
-
-* Thursday, May 12th
-* 10:00AM - 11:50AM 
-* This room
-
-</section>
-
 <section markdown="block">
 ## Exam Format
 
-* Same format as midterm, but 25% longer 
+* Same format and length as midterm
 * Questions will mostly fall into two categories
 	* Conceptual understanding / definitions
 		* Example: When are CORS (Cross Origin Resource Sharing) headers necessary?
-	* Using APIs to accomplish some task
+	* Programming / practical application
 		* Example: Using the DOM API and XMLHttpRequest, prototype a simple chat app
 * __Will be lenient on syntax__ as long as it reasonably resembles the actual code
 * short reference for DOM API, socket.io, React, etc. (names of methods, properties only)
@@ -98,8 +88,9 @@ title: "About the Final Exam"
 * CSS and CSS Selectors
 * AJAX and AJAX with Express
 * Deployment \* 
+* Promises
+* ES6
 * Socket I/O
-* Flexbox
 * React
 * Webpack / Babel / JSX \*
 
@@ -119,6 +110,5 @@ Not on Exam
 
 * The http module
 * Flexbox
-* Promises
 
 </section>
