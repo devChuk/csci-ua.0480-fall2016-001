@@ -72,7 +72,9 @@ title: "About the Final Exam"
 * Project Scaffolding and Setup
 * MongoDB
 * Mongoose
-* HTML Forms \*
+* Cookies
+* HTML Forms
+* Validation
 
 
 </section>
@@ -80,19 +82,18 @@ title: "About the Final Exam"
 <section markdown="block">
 ## Topics from Second Half of Semester
 
-* Validation \*
 * Authentication
 * How to Integrate Client Side JavaScript
 * DOM and DOM Manipulation with JavaScript
 * Handling Events with AddEventListener
 * CSS and CSS Selectors
-* AJAX and AJAX with Express
+* SOP/CORS, AJAX, AJAX with Express
 * Deployment \* 
 * Promises
 * ES6
 * Socket I/O
-* React
-* Webpack / Babel / JSX \*
+* React, JSX
+* Webpack / Babel \*
 
 </section>
 
