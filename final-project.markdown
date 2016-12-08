@@ -274,7 +274,7 @@ Prototype With Some Implemented Functionality (10 points total)
 {% endcomment %}
 
 
-<a name="milestone4">
+<a name="final_submit">
 
 <br>
 <br>
