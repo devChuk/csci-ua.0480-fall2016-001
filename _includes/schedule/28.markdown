@@ -12,8 +12,8 @@
 </td>
 	<td markdown="block">
 
-Due Sunday May 8th
+__Due 12/12 at 11pm__
 
-* [final project requirements](http://foureyes.github.io/csci-ua.0480-spring2016-010/final-project.html)
-* [grading criteria form](https://docs.google.com/a/nyu.edu/forms/d/1uOc7g28_3QrB6WoKBwVxo7pHKDos6OcUrJORWlYskCw/viewform)
+* [final project requirements](final-project.html)
+* [final project submission form](https://docs.google.com/a/nyu.edu/forms/d/1Ps_5i_phj4aZ9LCvdr2XCKXhanS3AGV-pUAXrW1L6KY/edit)
 </td>

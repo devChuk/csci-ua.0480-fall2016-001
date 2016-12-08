@@ -27,7 +27,7 @@ pre {
 	<div class="panel-heading">Final Project</div>
 	<div class="panel-body" markdown="block">
 
-# __Final Project, Due__ <strike>Friday, Dec 2nd at 11pm</strike> __Thursday, Dec 8th at 11pm__
+# __Final Project, Due__ <strike>Friday, Dec 2nd at 11pm</strike> __Monday, Dec 12th at 11pm__
 
 ## Overview 
 
@@ -281,7 +281,18 @@ Prototype With Some Implemented Functionality (10 points total)
 <br>
 <br>
 
-### __12/8__ - Final Project Complete and Code is fully  _Deployed_ 
+### __12/12 11PM__ - Final Project Complete and Code is fully  _Deployed_ 
+
+* __all commits must be in by Monday, December 12th__
+* any late commits will result in point deductions: 10% off of grade
+* __project must be deployed__ on i6 (or other platform, such as Heroku, gomix, zeit, etc.)
+    * if your application needs to be restarted while being graded; I will contact you
+    * you will not receive a penalty for restarting after the due date
+* __the [final project form submission](https://docs.google.com/a/nyu.edu/forms/d/1Ps_5i_phj4aZ9LCvdr2XCKXhanS3AGV-pUAXrW1L6KY/edit) must be filled out__ (if a form is not submitted, you will receive a 0 for your project)
+    * late project form submission will also result in a small point deduction
+
+
+
 
 {% comment %}
 * __(extended from Fri, 5/6 to Sun, 5/8)__ to allow some time over the weekend to finish up project
