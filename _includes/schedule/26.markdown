@@ -16,7 +16,7 @@
 {% comment %}
 In-class Activity
 
-* [React Clicker](https://docs.google.com/a/nyu.edu/forms/d/1bDbEsO6ZTanAe1F0BIVzYQg4ECJsEBuLeXQztmwPvNw/viewform)
+* [React Clicker](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfABPwnxAgOPww2kgYkUfe6nNGooatfZxcM47WG1a8HME8V9g/viewform)
 
 Milestone #3, Due Tuesday, 5/3
 

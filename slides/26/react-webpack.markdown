@@ -529,13 +529,12 @@ class Clicker extends React.Component {
 
 </section>
 
-
 <section markdown="block">
-## Nested Components
+## More Complex Components
 
 __When you're actually writing _real_ components__ &rarr;
 
-* you'll often find that you'll be creating components have a nested components interacting with each other
+* you'll often find that you'll be creating components that have nested components interacting with each other
 * ... for example, a button and a text field that set some text in the containing element/component
 
 <br>
@@ -551,10 +550,258 @@ __The common pattern for this is to:__ &rarr;
 
 
 </section>
-<section markdown="block">
-## An Example
 
-__Let's change our clicker so that:__ &rarr;
+
+<section markdown="block">
+## Communication Between Components
+
+From the react docs: __When you want to__ &rarr;
+
+1. aggregate data from multiple children 
+2. ... or have two child components communicate with each other
+
+<br>
+__Move the state upwards so that it lives in the parent component:__ &rarr;
+
+* The parent can then pass the state back down to the children __via props__... 
+* so that the child components are always in sync with each other and with the parent.
+
+</section>
+
+<section markdown="block">
+## Ceding Control to Parent 
+
+__In this example, the child component doesn't define its own click handler, but instead receives one from its parent via props.__ &rarr;
+
+<pre><code data-trim contenteditable>
+class Parent extends React.Component {
+  // this handleClick will be used by the child!
+  handleClick() {
+    alert('cliiiiick me');
+  }
+  
+  render() {
+    // pass handlClick to child as a prop
+    return <Child onClick={this.handleClick} />
+  }
+}
+</code></pre>
+
+<pre><code data-trim contenteditable>
+class Child extends React.Component {
+  render() {
+    return (&lt;div onClick={this.props.onClick}&gt;
+      PRESS ME&lt;/div&gt;);
+  }
+}
+</code></pre>
+
+<pre><code data-trim contenteditable>
+ReactDOM.render(&lt;Parent /&gt;, document.body);
+</code></pre>
+</section>
+
+<section markdown="block">
+## Counting Revisited
+
+__Let's try rewriting our counter so that the state is moved up to a parent element.__ &rarr;
+
+Start with our parent class...
+
+<pre><code data-trim contenteditable>
+class Parent extends React.Component {
+}
+</code></pre>
+{:.fragment}
+
+Within that parent class, define a constructor to create initial state.
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+  constructor() {
+    super();
+    this.state = {
+      count:0
+    }
+  }
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Parent Class Continued: `handleClick`
+
+__Now let's define `handleClick`__ &rarr;
+
+* {:.fragment} `handleClick` sets the state like it did previously
+* {:.fragment} but note that in order to do set state, it needs access to `this`!
+
+
+<pre><code data-trim contenteditable>
+  handleClick() {
+    this.setState({count: this.state.count + 1});
+  }
+</code></pre>
+{:.fragment}
+
+
+</section>
+
+<section markdown="block">
+## Parent Class Continued: `render`
+
+__`render` creates a child element and passes down a click handler and a count as props__ &rarr;
+
+<pre><code data-trim contenteditable>
+  render() {
+    // note that we have to bind this so that we have 
+    // access to the  this of the instance that render is 
+    // called on(and consequently this.state!
+    const handler = this.handleClick.bind(this);
+    return (
+      &lt;Child onClick={handler} val={this.state.count} /&gt;
+    );
+  }
+</code></pre>
+{:.fragment}
+
+* {:.fragment} use `bind` to bind context of handleClick to instance
+* {:.fragment} alternatively, you can inline and arrow function as the value of onClick in JSX:
+    * {:.fragment} `onClick={() => {this.handleClick()}}`
+    * {:.fragment} note that if you're using an arrow function, call the click handler!
+  
+</section>
+
+<section markdown="block">
+## A Slightly More Efficient Version
+
+__If you're worried about making too many function objects, you can set this.handleClick to the bound version in the constructor rather than each time `render` is called__ &rarr;
+
+<pre><code data-trim contenteditable>
+  constructor() {
+    // add this line...
+    this.handleClick = this.handleClick.bind(this);
+}
+</code></pre>
+
+<pre><code data-trim contenteditable>
+  render() {
+    // change back to using this.handleClick
+    return (
+      &lt;Child onClick={this.handleClick} val={this.state.count} /&gt;
+    );
+  }
+</code></pre>
+</section>
+
+
+<section markdown="block">
+## Child Component
+
+__Finally, for the child component, use props to define its click handler and its text content.__ &rarr;
+
+<pre><code data-trim contenteditable>
+class Child extends React.Component {
+  render() {
+    return (
+      &lt;div onClick={this.props.onClick}&gt;
+        {this.props.val}
+      &lt;/div&gt;);
+  }
+}
+</code></pre>
+{:.fragment}
+
+Of course, call `render`:
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+ReactDOM.render(&lt;Parent /&gt;, document.body);
+</code></pre>
+{:.fragment}
+</section>
+
+
+<section markdown="block">
+## Two Clickers!
+
+Your event handler may require an argument. __For example, it's a way to specify which child component was clicked without the child explicitly__ 
+
+<pre><code data-trim contenteditable>
+// passing args to handle click, fixing arity, computer property names
+class Parent extends React.Component {
+}
+</code></pre>
+
+Again, start with a constructor, but now we have state for two click boxes!
+<pre><code data-trim contenteditable>
+  constructor() {
+    super();
+    this.state = {
+      box1:0,
+      box2:0
+    }
+  }
+
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Two Clickers Continued
+
+__Notice that our handleClick function will take an argument, the name of the box:__ &rarr;
+
+<pre><code data-trim contenteditable>
+  handleClick(name) {
+    // setState will be called based on this name!
+    // this is using shorthand syntax for dynamic keys:
+    this.setState({[name]: this.state[name] + 1});
+  }
+  
+</code></pre>
+
+Lastly, when we define render, note that we're passing in different arguments to the call to handleClick.
+
+<pre><code data-trim contenteditable>
+  render() {
+    return (<div>
+        <Child onClick={() => {this.handleClick('box1')}} val={this.state.box1} />
+        <Child onClick={() => {this.handleClick('box2')}} val={this.state.box2} />
+      </div>);
+  }
+</code></pre>
+</section>
+
+<section markdown="block">
+## Child
+
+And, of course, our Child component code:
+
+<pre><code data-trim contenteditable>
+class Child extends React.Component {
+  render() {
+    return <div onClick={this.props.onClick}>{this.props.val}</div>;
+  }
+}
+
+
+</code></pre>
+
+
+Rendering ...
+
+<pre><code data-trim contenteditable>
+ReactDOM.render(<Parent />, document.body);
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Another Example
+
+__Let's change our original clicker so that:__ &rarr;
 
 * the button is a nested component
 * the count is shown in the button
@@ -616,7 +863,6 @@ class Clicker extends React.Component {
 Of course... rendering:
 
 <pre><code data-trim contenteditable>
-
 ReactDOM.render(
   <ClickCounter />,
   document.body
