@@ -22,8 +22,8 @@
 
 Midterm Practice
 
-* [midterm practice](resources/handouts/midterm_1/midterm_1_practice.pdf)
-* [midterm practice solutions](resources/handouts/midterm_1/midterm_1_practice_solutions.pdf)
+* [midterm practice](resources/handouts/midterm/midterm_1_practice.pdf)
+* [midterm practice solutions](resources/handouts/midterm/midterm_1_practice_solutions.pdf)
 
 Due Tuesday, October 25th at 11PM
 

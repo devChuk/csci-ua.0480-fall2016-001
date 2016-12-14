@@ -182,20 +182,25 @@ Arrow functions are already pretty concise. In ES5, you might find code that loo
 var numbers = [1, 2, 3, 4];
 var result = numbers.map(function(num) { return num * 2});
 </code></pre>
+{:.fragment}
 
 With arrow functions, that becomes:
+{:.fragment}
 
 <pre><code data-trim contenteditable>
 const numbers = [1, 2, 3, 4];
 const result = numbers.map((num) => {return num * 2});
 </code></pre>
+{:.fragment}
 
 In fact, we can drop the parentheses, curly braces and rely on the fact that arrow functions will implicitly return the last expression to drop the `return` to get this:
+{:.fragment}
 
 <pre><code data-trim contenteditable>
 const numbers = [1, 2, 3, 4];
 const result = numbers.map(num => num * 2);
 </code></pre>
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -206,11 +211,11 @@ That was pretty great, so __why don't we use arrow functions all of the time?__ 
 __There are some places where they don't work quite right.__ 
 {:.fragment}
 
+* {:.fragment} creating addEventListener callbacks where you want `this` to refer to the element that generated the event
+* {:.fragment} creating constructors
 * {:.fragment} creating methods
     * {:.fragment} either on object literals
     * {:.fragment} or on prototypes
-* {:.fragment} creating addEventListener callbacks
-* {:.fragment} creating constructors
 
 <br>
 __But why not?__ &rarr;
@@ -223,18 +228,50 @@ Remember, arrow functions do not bind this to a new value, and instead gets its 
 </section>
 
 <section markdown="block">
+## Arrow Functions and addEventListener
+
+__
+
+</section>
+
+<section markdown="block">
 ## Don't Use Arrow Functions to Create Methods
 
+__What's the output of this code?__ &rarr;
+
+<pre><code data-trim contenteditable>const cat = {
+    sound: 'meow',
+    meow: () => {console.log(this.sound);}
+};
+cat.meow();
+</code></pre>
+
+* {:.fragment} `undefined`
+* {:.fragment} ...because arrow functions do not bind a new value to `this`
+* {:.fragment} instead, `this` remains the same as the `this` in the containing context / scope
+</section>
+
+{% comment %}
+<section markdown="block">
+## 
+
+</section>
+
+<section markdown="block">
+## 
+
+<pre><code data-trim contenteditable>
+const obj ={
+    f(){ console.log('f');},
+    g(){ console.log('g');}
+};
+obj.f();
+obj.g();
+</code></pre>
 </section>
 <section markdown="block">
 ## 
 
-const obj ={
-    f(){ console.log('f');},
-        g(){ console.log('g');}
-        };
-        obj.f();
-        obj.g();
 
 * arrow functions
     * do not use as methods, why?
@@ -259,6 +296,7 @@ const obj ={
 </section>
 
 
+{% endcomment %}
 
 
 
