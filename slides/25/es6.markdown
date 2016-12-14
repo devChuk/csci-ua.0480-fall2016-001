@@ -614,6 +614,8 @@ console.log(Object.getPrototypeOf(req).makeRequest);
 <section markdown="block">
 ## Inheritance
 
+__Use `extends` to inherit from a class!__
+
 <pre><code data-trim contenteditable>
 class Element {
     constructor(name) {
@@ -624,6 +626,8 @@ class Element {
 
 <pre><code data-trim contenteditable>
 class ImgElement extends Element {
+    // make sure to call super before using this
+    // within subclass
     constructor(url) {
         super('img');
         this.url = url;
