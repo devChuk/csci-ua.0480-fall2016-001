@@ -228,9 +228,33 @@ Remember, arrow functions do not bind this to a new value, and instead gets its 
 </section>
 
 <section markdown="block">
-## Arrow Functions and addEventListener
+## Arrow Functions and `addEventListener`
 
-__
+__Be careful when using arrow functions and `addEventListener`__ &rarr;
+
+Starting with this code:
+<pre><code data-trim contenteditable>
+const button = document.createElement('button');
+document.body.appendChild(button).textContent = 'Click Me';
+</code></pre>
+
+The following alerts different messages!
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+// alerts window object (essentially global)
+button.addEventListener('click', () => {alert(this)});
+</code></pre>
+{:.fragment} 
+
+<pre><code data-trim contenteditable>
+// alerts button element
+button.addEventListener('click', function()  {alert(this)});
+</code></pre>
+{:.fragment}
+
+* {:.fragment} if you want `this` in your event handler to reference the element event's target element, then use function expressions
+* {:.fragment} ...because arrow functions don't create their own `this`, and instead use the this from the surrounding context
 
 </section>
 
@@ -248,7 +272,7 @@ cat.meow();
 
 * {:.fragment} `undefined`
 * {:.fragment} ...because arrow functions do not bind a new value to `this`
-* {:.fragment} instead, `this` remains the same as the `this` in the containing context / scope
+* {:.fragment} again, `this` remains the same as the `this` in the containing context / scope
 </section>
 
 {% comment %}
