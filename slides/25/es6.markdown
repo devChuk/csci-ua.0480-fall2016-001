@@ -254,6 +254,10 @@ console.log(x); // 1
 console.log(y); // 2
 </code></pre>
 
+<pre><code data-trim contenteditable>
+const {a, b} = {a: 1, b:2}
+</code></pre>
+
 </section>
 
 <section markdown="block">

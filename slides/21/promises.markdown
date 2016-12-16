@@ -98,7 +98,7 @@ get(url, function(data) {
 <section markdown="block">
 ## Let's Actually Try This
 
-We'll create a bunch of json files that each have an object with a url property holding the url of another json file. We'll then retrieve these files one by one...
+__Create 3 json files that each have an object with a `url` property holding the url of another json file. Then retrieve these files one by one...__ &rarr;
 
 1. Create an express app to serve up our files...
 2. Create a bunch of json files in a directory called <code>data</code> within <code>public</code>
@@ -260,48 +260,68 @@ So, an alternate way to deal with this is to __use an API that allows to code as
 
 One of these APIs, __Promise__, is in ES6 and is actually [already available on a lot of browsers](http://caniuse.com/#feat=promises)
 
-A __Promise__ is an object that __represents an asynchronous action__ - some operation that hasn't completed yet.
+A __Promise__ is an object that __represents an asynchronous action__ - some operation that may or may not have been completed yet.
 
 For example, a Promise may represent:
 
 * retrieving data from a database can be a promise
 * writing to a file
 * making an http request
-* etc.
+</section>
+
+<section markdown="block">
+## A Promise Object Continued
+
+__Again, a Promise is an object that represents an async task__ &rarr;
+
+Consequently, a Promise can be in one of the following states:
+
+1. pending - the task hasn't been completed yet (still getting a url, reading a file, etc.)
+2. fulfilled - the task has completed successfully
+3. rejected - the task did not complete successfully (error state)
+
+
 </section>
 
 <section markdown="block">
 ## Creating a Promise
 
-To create a <code>Promise</code> use the <code>Promise</code> constructor: 
+__To create a <code>Promise</code> use the <code>Promise</code> constructor:__ &rarr;
 
-* which takes one argument (a callback function, of course)
-* this callback function is going to some asynchronous stuff
-* it has a couple of parameters passed to it:
-	* a function to call if the task succeeded
-	* a function to call if the task failed
-	* both of these functions take a value as an argument 
+* it has one parameter, a function called the `executor`
+* the executor function is going to do some async stuff
+* it is executed __immediately__, even before the constructor returns!
+* the executor has two parameters:
+	* a function to call if the task succeeded (`fulfill`)
+	* a function to call if the task failed (`reject`)
+	* both of these functions have a single argument 
 
 <pre><code data-trim contenteditable>
-// note that you can call the parameters anything you want
-// resolve, reject ... whatever
-var p = new Promise(function(succeed, fail) {
+var p = new Promise(function(fulfill, reject) {
   // do something async
-  if(goodStuffHappened) {
-	succeed('Success!');
+  if(asyncTaskCompletedSuccessfully) {
+	fulfill('Success!');
   } else {
-	fail('Failure!');
+	reject('Failure!');
   }
 });
 </code></pre>
 </section>
 
 <section markdown="block">
-## Then and Success
+## Promise Objects Methods
 
-So... Promises also have a method called <code>then</code>. 
+__Promise objects have a couple of methods that allow the `fulfill` and `reject` arguments of the `executor` function to be set:__ &rarr;
 
-* __then__ represents the next step to execute
+* {:.fragment} `then(fulfill, reject)` - sets both the `fulfill` and `reject` functions
+* {:.fragment} `catch(reject)`- only sets the `reject` function
+</section>
+
+<section markdown="block">
+## Then and Success / Fulfill
+
+__`then` can represent the next step to execute when a `Promise` completes (either successfully or fails).__ &rarr;
+
 * it accepts a couple of callbacks as parameters... 
     * the thing to do if our Promise was _resolved_ or _successful_
     * the thing to do if our Promise was _rejected_ or _unsuccessful_
@@ -309,55 +329,253 @@ So... Promises also have a method called <code>then</code>.
 	* the value that was passed into the original succeed or reject function call in the original Promise
     * think of these as the succeed and fail in the original promise
 
+</section>
+
+<section markdown="block">
+## An Immediately Fulfilled Promise
+
+Let's take a look at how `then` works: 
+
+* start with a Promise that immediately is fulfilled 
+* (it's as if the async task finished instantly)
+
+<br>
+
+__What is the output of this code, if any?__ &rarr;
+
 <pre><code data-trim contenteditable>
-var p = new Promise(function(succeed, fail) {
-  succeed('Success!');
+var p = new Promise(function(fulfill, reject) {
+  fulfill('Success!');
 });
 p.then(function(val) {
   console.log(val);
 })
 </code></pre>
+
+<pre><code data-trim contenteditable>
+Success!
+</code></pre>
+
 </section>
 
 <section markdown="block">
-## Then Continued
+## An Immediately Fulfilled Promise Continued
 
-The result of calling <code>then</code> is always another Promise. However, what happens with that Promise depends on what then's callback returns.
-
-* if it returns a Promise, the result is a Promise that could succeed or fail depending on the async action
-* if the callback's return is not a Promise, then the result is yet another Promise that immediately succeeds (and consequently the next then's callback is called with the result of the previous then's callback's return. whew!) 
+__Let's take a closer look at what's happening here:__ &rarr;
 
 <pre><code data-trim contenteditable>
-var p = new Promise(function(succeed, fail) {
-  succeed('Success!');
+var p = new Promise(function(fulfill, reject) {
+  fulfill('Success!');
 });
-var anotherPromise = p.then(function(val) {
+p.then(function(val) {
   console.log(val);
-  return 'More success to you!';
-});
-anotherPromise.then(function(val) {
-  console.log(val);
-});
+})
+</code></pre>
+
+* The first argument to `then` is a function that takes a single argument and logs out that argument
+* Using `then` sets `fulfill` to the function above, so calling `fulfill` results in logging out the value
+* In fact any function that takes a single argument would work as the first argument to `then`
+* This would result in the same output:
+
+<br>
+
+<pre><code data-trim contenteditable>
+p.then(console.log);
 </code></pre>
 </section>
 
 <section markdown="block">
-## Promises with Our Example
+## When is Fulfill or Reject Executed?
 
-So maybe our version of get will now just give back a Promise to wrap the async code.
+__The functions passed to `then` are guaranteed to be executed AFTER the Promise is created.__ &rarr;
+
+This is true even if it looks like `fulfill` is called immediately and before `then` is called!. __What's the output of this code?__ &rarr;
+
+<pre><code data-trim contenteditable>
+var p1 = new Promise(function(fulfill, reject) {
+    console.log('begin');
+    fulfill('succeeded');
+    console.log('end');
+});
+p1.then(console.log);
+</code></pre>
+
+<pre><code data-trim contenteditable>
+begin
+end
+succeeded
+// the fulfill function, console.log, is
+// guaranteed to be called after the Promise 
+// is created even though it looks like fulfill 
+// is called between logging begin and end!
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## `then`'s Second Argument
+
+__To specify what happens when a Promise results in an error or if the async task fails, use `then`'s 2nd argument.__ &rarr;
+
+<pre><code data-trim contenteditable>
+var p = new Promise(function(fulfill, reject) {
+    reject('did not work!');
+});
+
+p.then(console.log, function(val) {
+    console.log('ERROR', val);
+});
+</code></pre>
+
+The code above results in the following output ...
+
+<pre><code data-trim contenteditable>
+ERROR did not work!
+</code></pre>
+</section>
+
+<section markdown="block">
+## `catch`
+
+__You can also use the method `catch` to specify the `reject` function.__ &rarr; 
+
+<pre><code data-trim contenteditable>
+var p = new Promise(function(fulfill, reject) {
+    reject('did not work!');
+});
+
+p.catch(function(val) {
+    console.log('ERROR', val);
+});
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Back to Then! 
+
+__`then` always returns a Promise__ &arr;
+
+* if the `fulfill` function returns a `Promise`, `then` will return that `Promise`
+* if the `fulfill` function returns a value, `then` will return a `Promise` that immediately fulfills with the return value
+
+<br>
+That sounds convoluted... __Let's see some examples.__ &rarr;
+
+</section>
+
+<section markdown="block">
+## `then` return Value
+
+Starting with a `Promise`...
+
+<pre><code data-trim contenteditable>
+var p1 = new Promise(function(fulfill, reject) {
+    fulfill(1);
+});
+</code></pre>
+
+The `fulfill` function passed to `then` returns a `Promise`, so `then` returns that same `Promise` object (which is assigned to `p2`)
+
+<pre><code data-trim contenteditable>
+var p2 = p1.then(function(val) {
+    console.log(val);
+    return new Promise(function(fulfill, reject) {
+        fulfill(val + 1);    
+    });
+});
+</code></pre>
+
+Because `p2` is another `Promise`, we can call `then` on that too.
+
+<pre><code data-trim contenteditable>
+p2.then(console.log);
+</code></pre>
+
+__So the resulting output is...__ &rarr;
+
+<pre><code data-trim contenteditable>
+1
+2
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Fulfill not Returning a Promise?
+
+__Let's make a minor modification to the code in the previous slide. Again, start with a Promise...__ &rarr;
+
+<pre><code data-trim contenteditable>
+var p1 = new Promise(function(fulfill, reject) {
+    fulfill(1);
+});
+</code></pre>
+
+This time, though, instead of `fulfill` returning a `Promise`, it'll return a regular value.
+
+<pre><code data-trim contenteditable>
+var p2 = p1.then(function(val) {
+    console.log(val);
+    return val + 1;    
+});
+</code></pre>
+
+Again, let's try calling `then` on `p2` (but is `p2` a `Promise`... or will an error occur!?)
+
+<pre><code data-trim contenteditable>
+p2.then(console.log);
+</code></pre>
+
+`p2` is still a `Promise`
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Wrapping a Value in a Promise
+
+__If `fulfill` returns a non-Promise, `then` will return a `Promise` that immediately calls fulfill with the value that was returned.__ &rarr;
+
+Consequently, the following two code samples return the same `Promise` for `p2`:
+
+<pre><code data-trim contenteditable>
+var p2 = p1.then(function(val) {
+    console.log(val);
+    return new Promise(function(fulfill, reject) {
+        fulfill(val + 1);    
+    });
+});
+</code></pre>
+
+<pre><code data-trim contenteditable>
+var p2 = p1.then(function(val) {
+    console.log(val);
+    return val + 1;    
+});
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Promises with AJAX
+
+__So maybe our version of `get` will now just give back a Promise to wrap the async code.__ &rarr;
+
 <pre><code data-trim contenteditable>
 function get(url) {
-  return new Promise(function(succeed, fail) { 
+  return new Promise(function(fulfill, reject) { 
     console.log('getting ', url);
     req = new XMLHttpRequest();
     req.open('GET', url, true);
     req.addEventListener('load', function() {
-      console.log('loading req');
       if(req.status >= 200 && req.status < 400) {
-        console.log(req.responseText);
-        succeed(req.responseText);
+        fulfill(req.responseText);
+      } else {
+        reject('got bad status code ' + req.status); 
       }
     });
+    // also reject for error event listener!
     req.send();
   });
 }
@@ -400,6 +618,26 @@ get(url)
 
 So, promises are kind of complicated, but in the end, they do simplify things. Some things that we didn't cover that further show the power of using the Promise API are:
 
-* error handling
-* having code trigger only when to async tasks are finished (rather than just one)
+* error handling 
+* having code trigger only when multiple async tasks are finished (rather than just one)
+</section>
+
+<section markdown="block">
+## Promises Look Hard! / Fetch
+
+Using `Promise`s seemed to complicate AJAX rather than make it easier. 
+
+It's certainly tricky manually wrapping async tasks with Promises, but:
+
+* __fortunately for us, we'll mostly encounter Promises as the result of using some built-in functions in JavaScript, like fetch__ &rarr;
+* the [`fetch` api](https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch) provides a global function `fetch` that allows the retrieval of a url
+* but wraps the result of that retrieval in a Promise:
+
+<br>
+<pre><code data-trim contenteditable>
+fetch(url)
+  .then(function(response) { return response.text(); })
+  .then(handleResponse)
+</code></pre>
+
 </section>
