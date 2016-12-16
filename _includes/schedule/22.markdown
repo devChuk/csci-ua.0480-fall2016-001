@@ -1,6 +1,7 @@
 	<td markdown="block">
 * Previous class on AJAX post
 * Previous class on Promises
+* [Example Promise Code for XMLHttpRequest](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/blob/master/class23/ajax/public/javascripts/demo.js#L87)
 * <strike>[Flexbox](slides/22/flexbox.html)</strike> (skipped)
 
 {% comment %}

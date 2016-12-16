@@ -1,6 +1,12 @@
 	<td markdown="block">
 
-* [Socket.io](slides/23/socketio.html)
+* Realtime Apps with Socket.io
+    * [Socket.io](slides/23/socketio.html)
+    * [Example Code for Socket.io Chat](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/tree/master/class25/socketio-chat)
+* AJAX Polling Code Examples
+    * [AJAX Polling Chat](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/blob/master/class24/ajax-chat/public/javascripts/chat.js)
+    * [AJAX Polling Chat Using Date and Time](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/blob/master/class24/ajax-chat/public/javascripts/chatTime.js)
+
 {% comment %}
 * (from forever ago) [CSS](slides/19/css.html)
 

@@ -17,6 +17,7 @@
 In-class Activity
 
 * [React Clicker](https://docs.google.com/a/nyu.edu/forms/d/e/1FAIpQLSfABPwnxAgOPww2kgYkUfe6nNGooatfZxcM47WG1a8HME8V9g/viewform)
+* [Binary Calculator Example Code](https://github.com/nyu-csci-ua-0480-001-fall-2016/examples/blob/master/class27/binary-calculator/src/index.js)
 
 Milestone #3, Due Tuesday, 5/3
 
